@@ -1,0 +1,16 @@
+*.log
+*.tmproj
+.DS_Store
+*.sqlite3
+*.jpg
+*.pdf
+*.odt
+error_log
+*.gif
+*.png
+*.doc
+*.psd
+querylog.txt
+log.err
+errorlog.txt
+database.yml
