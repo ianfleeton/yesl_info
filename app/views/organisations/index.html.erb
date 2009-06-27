@@ -1,0 +1,24 @@
+<h1>Organisations</h1>
+
+<p class="add"><%= link_to 'Add', :action => 'new' %></p>
+
+<%= alpha_links %>
+
+<div id="organisations">
+<% last_c = '' %>
+<% @organisations.each do |o| %>
+  <% this_c = o.name[0...1].downcase %>
+  <% if this_c != last_c %>
+    <% if last_c != '' %>
+      </ul>
+    <% end %>
+  	<% last_c = this_c %>
+  	
+  	<a name="alphanum<%= this_c %>"></a></li>
+  	<h2><%= this_c.upcase %></h2>
+  	<ul>
+  <% end %>
+  <li><%= link_to h(o.name), :action => 'show', :id => o %></li>
+<% end %>
+</ul>
+</div>

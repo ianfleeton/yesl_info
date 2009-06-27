@@ -1,0 +1,128 @@
+#flash_notice {
+	border: 1px solid #ca8902;
+	background: #fee848;
+	padding: 10px;
+	margin: 10px;
+	color: #333;
+}
+
+div, input, li, p { font-family: 'Lucida sans', sans-serif; }
+
+p { margin: 10px; font-size: 12px; line-height: 16px; }
+
+h1, h2 { clear: left; color: #fff;}
+
+h1 { height: 49px; background-image: url(/images/h1.png); text-align: center;
+  font-family: 'Lucida sans'; font-weight: bold; line-height: 49px; font-size: 18px; }
+
+h1 a { color: #fff; }
+
+h2 { height: 23px; background-image: url(/images/h2.png); padding-left: 11px;
+  font-family: 'Lucida sans'; line-height: 23px; }
+
+#main_menu li {
+  float: left;
+  font-size: 12px;
+  width: 14.2857%;
+}
+
+#alpha {
+/*
+  width: 755px;
+  margin-left: auto;
+  margin-right: auto;
+*/
+}
+
+#alpha li {
+  float: left;
+  width: 3.846%;
+}
+
+#alpha a, #main_menu a {
+  display: block;
+/*  width: 29px;*/
+  height: 29px;
+  line-height: 29px;
+  text-align: center;
+/*  background-image: url(/images/alpha.png);*/
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+#alpha a:hover, #main_menu a:hover {
+  background-position: -29px 0;
+  background: #496b9b;
+}
+
+#alpha .alpha_a a {
+  background-position: -58px 0;
+/*  width: 30px;*/
+}
+
+#alpha .alpha_a a:hover {
+  background-position: -88px 0;
+/*  width: 30px;*/
+}
+
+#alpha .alpha_z a {
+  background-position: -118px 0;
+}
+
+#alpha .alpha_z a:hover {
+  background-position: -147px 0;
+}
+
+
+ul#organisations {
+  clear: left;
+}
+
+#organisations li, #people li {
+  height: 28px;
+  line-height: 28px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 12px;
+}
+
+#organisations li a, #people li a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  padding-left: 11px;
+}
+
+#organisations a:hover, #people a:hover {
+  background: #cdd5df;
+}
+
+#people .name, #people .email, #people .organisation { display: block; float: left; overflow: hidden; height: 28px; }
+#people .name { width: 20%; }
+#people .email { width: 25%; }
+#people .organisation { width: 30%; }
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
+td {
+  padding: 11px;
+  font-size: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/**
+ * Forms
+ */
+
+label { font-weight: bold; }
+.form { padding: 10px; margin: 10px; background: #e0e0e0; border: 1px solid #ccc; font-size: 12px; }
+.narrow { width: 300px; margin-left: auto; margin-right: auto; }
+
+.submit { margin: 10px 0; }
+
+.fieldWithErrors { display: inline; color: #f00; }
+.errorExplanation h2 { height: auto; line-height: 14px; background: transparent; padding: 0; color: #f00;  }

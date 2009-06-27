@@ -1,0 +1,22 @@
+<h1>People</h1>
+
+<%= alpha_links %>
+
+<div id="people">
+  <% last_c = '' %>
+  <% @users.each do |u| %>
+    <% this_c = u.name[0...1].downcase %>
+    <% if this_c != last_c %>
+      <% if last_c != '' %>
+        </ul>
+      <% end %>
+    	<% last_c = this_c %>
+
+    	<a name="alphanum<%= this_c %>"></a></li>
+    	<h2><%= this_c.upcase %></h2>
+    	<ul>
+    <% end %>
+    <li><span class="name"><%= link_to h(u.name), :controller => 'users', :action => 'show', :id => u %></span><span class="email"><%= mail_to u.email, u.email %>&nbsp;</span><span class="organisation"><%= link_to h(u.organisation.name), :controller => 'organisations', :action => 'show', :id => u.organisation %></span></li>
+  <% end %>
+  </ul>
+</div>

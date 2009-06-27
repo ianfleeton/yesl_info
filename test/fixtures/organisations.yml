@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  last_contacted: 2009-05-08 14:05:16
+  contact_cycle: 
+
+two:
+  name: MyString
+  last_contacted: 2009-05-08 14:05:16
+  contact_cycle: 
