@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  organisation_id: 1
+  name: MyString
+  web_host_id: 1
+  forwarding_id: 1
+  registered_on: 2009-06-27
+
+two:
+  organisation_id: 1
+  name: MyString
+  web_host_id: 1
+  forwarding_id: 1
+  registered_on: 2009-06-27

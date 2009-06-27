@@ -1,0 +1,22 @@
+<h1>Domains</h1>
+<%= flash_notice %>
+<%= alpha_links %>
+
+<div id="domains">
+<% last_c = '' %>
+<% @domains.each do |d| %>
+  <% this_c = d.name[0...1].downcase %>
+  <% if this_c != last_c %>
+    <% if last_c != '' %>
+      </ul>
+    <% end %>
+  	<% last_c = this_c %>
+  	
+  	<a name="alphanum<%= this_c %>"></a></li>
+  	<h2><%= this_c.upcase %></h2>
+  	<ul>
+  <% end %>
+  <li><%= link_to h(d.name), :action => 'show', :id => d %></li>
+<% end %>
+</ul>
+</div>

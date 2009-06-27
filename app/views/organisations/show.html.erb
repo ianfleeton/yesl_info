@@ -1,1 +1,11 @@
 <h1><%= h @organisation.name %></h1>
+
+<h2>Domains</h2>
+<div class="list">
+  <ul>
+  <li><%= link_to 'add', new_domain_path(:organisation_id => @organisation) %></li>
+  <% @organisation.domains.each do |d| -%>
+  <li><%= link_to h(d.name), domain_path(d) %></li>
+  <% end -%>
+  </ul>
+</div>

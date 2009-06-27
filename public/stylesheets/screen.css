@@ -20,6 +20,8 @@ h1 a { color: #fff; }
 h2 { height: 23px; background-image: url(/images/h2.png); padding-left: 11px;
   font-family: 'Lucida sans'; line-height: 23px; }
 
+h2 a { color: #fff; }
+
 #main_menu li {
   float: left;
   font-size: 12px;
@@ -79,21 +81,21 @@ ul#organisations {
   clear: left;
 }
 
-#organisations li, #people li {
+#organisations li, #people li, #domains li, .list li {
   height: 28px;
   line-height: 28px;
   border-bottom: 1px solid #e0e0e0;
   font-size: 12px;
 }
 
-#organisations li a, #people li a {
+#organisations li a, #people li a, #domains li a, .list li a {
   display: block;
   color: #000;
   text-decoration: none;
   padding-left: 11px;
 }
 
-#organisations a:hover, #people a:hover {
+#organisations a:hover, #people a:hover, #domains a:hover, .list a:hover {
   background: #cdd5df;
 }
 

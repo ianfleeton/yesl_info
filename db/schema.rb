@@ -9,7 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090508170437) do
+ActiveRecord::Schema.define(:version => 20090627185801) do
+
+  create_table "domains", :force => true do |t|
+    t.integer  "organisation_id", :default => 0,  :null => false
+    t.string   "name",            :default => "", :null => false
+    t.integer  "web_host_id",     :default => 0,  :null => false
+    t.integer  "forwarding_id"
+    t.date     "registered_on",                   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organisations", :force => true do |t|
     t.string   "name",           :default => "", :null => false
