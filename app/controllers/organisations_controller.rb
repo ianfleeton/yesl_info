@@ -1,4 +1,6 @@
 class OrganisationsController < ApplicationController
+  before_filter :admin_required
+
   def index
     @organisations = Organisation.find(:all, :order => 'name')
   end
