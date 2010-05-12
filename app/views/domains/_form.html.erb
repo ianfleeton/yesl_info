@@ -1,0 +1,23 @@
+<div>
+	<%= form.label :name %>:<br />
+	<%= form.text_field :name %>
+</div>
+<div>
+	<%= form.label :organisation %>:<br />
+  <%= form.collection_select :organisation_id, Organisation.all(:order => :name), :id, :name %>
+</div>
+<div>
+	<%= form.label :registered_on %>:<br />
+	<%= form.date_select :registered_on, :order => [:day, :month, :year] %>
+</div>
+<div>
+	<label for="domain_with_us_true">With us?:</label><br />
+	<%= form.radio_button :with_us, true, :class => "radio" %> 
+	<label for="domain_with_us_true">Yes</label> 
+	<%= form.radio_button :with_us, false, :class => "radio" %> 
+	<label for="domain_with_us">No</label> 
+</div>
+<div>
+  <%= form.label :forwarding, 'Forwards to' %>:<br />
+  <%= form.collection_select :forwarding_id, @domain.organisation.domains, :id, :name, {:prompt => 'No forwarding'} %>
+</div>

@@ -13,7 +13,7 @@
   	<% last_c = this_c %>
   	
   	<a name="alphanum<%= this_c %>"></a></li>
-  	<h2><%= this_c.upcase %></h2>
+  	<h2><%= this_c.upcase %> <a href="#top" class="top">&#8593;</a></h2>
   	<ul>
   <% end %>
   <li><%= link_to h(d.name), :action => 'show', :id => d %></li>

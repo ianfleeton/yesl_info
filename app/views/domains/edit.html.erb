@@ -1,11 +1,11 @@
 <h1><%= link_to h(@domain.organisation.name), organisation_path(@domain.organisation) %>
-  &rarr; Add new domain</h1>
+  &rarr; Edit <%= h @domain.name %></h1>
 <%= flash_notice %>
 
 <div class="form">
   <%= error_messages_for :domain %>
   <% form_for @domain do |form| %>
     <%= render :partial => 'form', :object => form %>
-    <%= submit_tag 'Add New Domain' %>
+    <%= submit_tag 'Save' %>
   <% end %>
 </div>

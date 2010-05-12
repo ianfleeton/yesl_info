@@ -1,2 +1,24 @@
 <h1><%= link_to h(@domain.organisation.name), organisation_path(@domain.organisation) %>
   &rarr; <%= h @domain.name %></h1>
+<%= flash_notice %>
+<p>
+  <%= link_to 'Edit', edit_domain_path(@domain), :class => 'button' %>
+  <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'button' %>
+  <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'button' %>
+</p>
+<table>
+  <tr><th>Name</th><td><%= h(@domain.name)%></td></tr>
+  <tr><th>Forwarding</th><td><%= @domain.forwarding ? link_to(h(@domain.forwarding.name), domain_path(@domain.forwarding)) : a_cross %></td></tr>
+  <tr><th>Registered on</th><td><%= format_date(@domain.registered_on) %></td></tr>
+  <tr><th>With us?</th><td><%= tick_cross(@domain.with_us?) %></td></tr>
+</table>
+
+<h2>Hosting accounts</h2>
+<div class="list">
+  <ul>
+    <li><%= link_to 'add', new_hosting_account_path(:domain_id => @domain.id) %></li>
+    <% @domain.hosting_accounts.each do |a| -%>
+    <li><%= link_to h(a.host_name)+' on '+h(a.ftp_host), hosting_account_path(a) %></li>
+    <% end -%>
+  </ul>
+</div>
