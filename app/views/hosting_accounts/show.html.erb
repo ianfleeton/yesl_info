@@ -1,0 +1,18 @@
+<h1><%= link_to h(@hosting_account.domain.organisation.name), organisation_path(@hosting_account.domain.organisation) %>
+  &rarr; <%= link_to h(@hosting_account.domain.name), domain_path(@hosting_account.domain) %>
+  &rarr; <%= h(@hosting_account.host_name) %></h1>
+<%= flash_notice %>
+<div class="buttons">
+  <%= link_to 'Edit', edit_hosting_account_path(@hosting_account), :class => 'button' %>
+</div>
+
+<table>
+  <tr><th>Host name</th><td><%= link_to h(@hosting_account.host_name), 'http://' + @hosting_account.host_name %></td></tr>
+  <tr><th>Host IP (nslookup)</th><td><%= h(`nslookup #{@hosting_account.host_name}`.strip).gsub(/\n/, '<br />') %></td></tr>
+  <tr><th>Started on</th><td><%= format_date(@hosting_account.started_on) %></td></tr>
+  <tr><th>Backup cycle</th><td><%= @hosting_account.backup_cycle %> days</td></tr>
+  <tr><th>Backed up on</th><td><%= format_date(@hosting_account.backed_up_on) %></td></tr>
+  <tr><th>FTP host</th><td><%= link_to h(@hosting_account.ftp_host), 'ftp://' + @hosting_account.username + ':' + @hosting_account.password + '@' + @hosting_account.ftp_host %></td></tr>
+  <tr><th>Username</th><td><%= h(@hosting_account.username) %></td></tr>
+  <tr><th>Password</th><td><%= h(@hosting_account.password) %></td></tr>
+</table>

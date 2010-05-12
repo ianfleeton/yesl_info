@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  domain_id: 1
+  ftp_host: MyString
+  username: MyString
+  password: MyString
+  started_on: 2009-12-12
+  host_name: MyString
+  backed_up_on: 2009-12-12
+  backup_cycle: 1
+
+two:
+  domain_id: 1
+  ftp_host: MyString
+  username: MyString
+  password: MyString
+  started_on: 2009-12-12
+  host_name: MyString
+  backed_up_on: 2009-12-12
+  backup_cycle: 1

@@ -1,0 +1,36 @@
+<div>
+	<%= form.label :host_name %>:<br />
+	<%= form.text_field :host_name %>
+</div>
+<div>
+  <%= form.label :domain %>:<br />
+  <%= form.collection_select :domain_id, @hosting_account.domain.organisation.domains, :id, :name %>
+</div>
+<div>
+	<%= form.label :started_on %>:<br />
+	<%= form.date_select :started_on, :order => [:day, :month, :year] %>
+</div>
+<div>
+	<%= form.label :backup_cycle %>:<br />
+	<%= form.text_field :backup_cycle, :class => 'short' %> days
+</div>
+<div>
+	<%= form.label :backed_up_on %>:<br />
+	<%= form.date_select :backed_up_on, :order => [:day, :month, :year] %>
+</div>
+<div>
+	<%= form.label :annual_fee %>:<br />
+	<%= form.text_field :annual_fee, :class => 'short' %> GBP
+</div>
+<div>
+	<%= form.label :ftp_host, 'FTP host' %>:<br />
+	<%= form.text_field :ftp_host %>
+</div>
+<div>
+	<%= form.label :username %>:<br />
+	<%= form.text_field :username %>
+</div>
+<div>
+	<%= form.label :password %>:<br />
+	<%= form.text_field :password %>
+</div>

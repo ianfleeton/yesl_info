@@ -1,0 +1,5 @@
+<% if @hosting_account.nil? -%>
+EOF
+<% else -%>
+<%= @hosting_account.id %>::<%= @hosting_account.host_name %>::<%= @hosting_account.username %>::<%= @hosting_account.password %>
+<% end %>
