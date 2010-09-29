@@ -1,0 +1,47 @@
+<h1>Timesheet</h1>
+
+<h2>Totals logged by person</h2>
+
+<table class="diary">
+  <thead>
+    <tr>
+      <th>Who</th>
+      <th>30 days</th>
+      <th>13 weeks</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @staff.each do |member| -%>
+    <tr>
+      <td><%= h member.name %></td>
+      <td><%= amount_invoiced_by(member, 30, 1) %></td>
+      <td><%= amount_invoiced_by(member, 91, 1) %></td>
+    </tr>
+<% end -%>
+  </tbody>
+</table>
+
+<h2>Recent entries</h2>
+
+<table class="diary">
+  <thead>
+    <tr>
+      <th>When</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Time</th>
+      <th>Who</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @timesheet_entries.each do |e| -%>
+    <tr>
+      <th><%= format_time(e.started_at) %>
+      <td><%= h(e.description) %></td>
+      <td><%= h(e.invoice_value) %></td>
+      <td><%= e.minutes %>m</td>
+      <td><%= h(e.user.name) %></td>
+    </tr>
+<% end -%>
+  </tbody>
+</table>
