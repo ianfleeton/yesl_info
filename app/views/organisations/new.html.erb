@@ -4,8 +4,10 @@
 <div class="form narrow">
 <%= error_messages_for :organisation -%>
 <% form_for :organisation, :url => {:action => 'create'} do |form| %>
-  <%= form.label :name %>:<br />
-  <%= form.text_field :name %><br />
+  <div>
+    <%= form.label :name %>:<br />
+    <%= form.text_field :name %>
+  </div>
   <%= form.submit 'Add Organisation', :class => 'submit' %>
 <% end %>
 </div>
