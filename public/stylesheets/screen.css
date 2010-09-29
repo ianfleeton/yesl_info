@@ -6,7 +6,7 @@
 	color: #333;
 }
 
-div, input, li, p { font-family: 'Lucida sans', sans-serif; }
+body, div, input, li, p, td, th { font-family: 'Lucida sans', sans-serif; }
 
 p { margin: 10px; font-size: 12px; line-height: 16px; }
 
