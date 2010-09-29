@@ -8,7 +8,16 @@
 
 body, div, input, li, p, td, th { font-family: 'Lucida sans', sans-serif; }
 
-p { margin: 10px; font-size: 12px; line-height: 16px; }
+pre {
+  margin: 10px;
+  font-size: 12px;
+  font-family: Courier, 'Courier New', monospace;
+}
+
+p, .buttons { margin: 10px; font-size: 12px; line-height: 16px; }
+
+a { color: #006fbb; text-decoration: none; }
+a:hover { color: #002e4e; }
 
 h1, h2 { clear: left; color: #fff;}
 
@@ -27,6 +36,9 @@ h2 a { color: #fff; }
   font-size: 12px;
   width: 14.2857%;
 }
+
+.tick { color: green; }
+.cross { color: red; }
 
 #alpha {
 /*
@@ -110,10 +122,15 @@ table {
   margin: 10px;
 }
 
-td {
+td, th {
   padding: 11px;
   font-size: 12px;
   border-bottom: 1px solid #e0e0e0;
+}
+
+.gravatar {
+  padding: 1px;
+  border: 1px solid #ccc;
 }
 
 /**
@@ -124,7 +141,57 @@ label { font-weight: bold; }
 .form { padding: 10px; margin: 10px; background: #e0e0e0; border: 1px solid #ccc; font-size: 12px; }
 .narrow { width: 300px; margin-left: auto; margin-right: auto; }
 
+.short {
+  width: 100px;
+}
+
 .submit { margin: 10px 0; }
 
 .fieldWithErrors { display: inline; color: #f00; }
 .errorExplanation h2 { height: auto; line-height: 14px; background: transparent; padding: 0; color: #f00;  }
+
+form.button-to, form.button-to div {
+  margin: 0; display: inline !important;
+}
+
+.form div {
+  margin: 8px 0;
+  line-height: 20px;
+}
+.form label {
+  margin: 4px 0;
+}
+
+.button, input[type=submit] {
+  -moz-border-radius-bottomleft:0.75em;
+  -moz-border-radius-bottomright:0.75em;
+  -moz-border-radius-topleft:0.75em;
+  -moz-border-radius-topright:0.75em;
+  border: none;
+  color:#fff;
+  cursor:pointer;
+  display:inline-block;
+  padding:5px 15px;
+  text-decoration:none;
+  background: #333;
+  font-size: 11px !important; line-height: 15px !important;
+}
+
+.delete, input[type=submit].delete {
+  background: #b34040;
+}
+
+.button:hover, input[type=submit]:hover {
+  background: #496b9b;
+  color: #fff;
+}
+
+.top {
+  float: right;
+  padding: 0 11px;
+  text-decoration: none;
+}
+a.top:hover {
+  color: black;
+  background: transparent !important;
+}
