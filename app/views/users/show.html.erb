@@ -1,19 +1,21 @@
 <h1><% if admin? %><%= link_to "Users", :action => "index" %>
-	&rarr; <% end %>Your Account</h1>
+	&rarr; <% end %> <%= h(@user.name) %> from <%= link_to h(@user.organisation.name), organisation_path(@user.organisation) %></h1>
 
 <%= flash_notice %>
 
-<div class="details">
-	<h2><%= h @user.name %> <%= image_for_admin_status(@user) %></h2>
+<h2><%= h @user.name %></h2>
 
-	<p class="email"><strong>Your registered email address:</strong> <%= mail_to h(@user.email) %></p>
+<p><%= gravatar(@user.email) %> <a href="http://en.gravatar.com/">Change my picture</a></p>
+
+<table>
+  <tr><th>Name</th><td><%= h(@user.name) %></td></tr>
+  <tr><th>Organisation</th><td><%= link_to h(@user.organisation.name), organisation_path(@user.organisation) %></td></tr>
+  <tr><th>Login email address</th><td><%= mail_to h(@user.email) %></td></tr>
+</table>
 
 <% if admin? %>	
-	<p class="modify">
-		<%= link_to "edit", :action => "edit", :id => @user.id %> |
-		<%= link_to "destroy", { :action => "destroy", :id => @user.id },
-		 						 :confirm => 'Are you sure?',
-								 :method => :delete %>
-	</p>
-<% end %>
+<div class="buttons">
+	<%= link_to "Edit", edit_user_path(@user), :class => 'button shrink' %>
+	<%= button_to "Delete", user_path(@user), :method => :delete %>
 </div>
+<% end %>
