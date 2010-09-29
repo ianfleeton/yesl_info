@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :organisation
+  has_many :timesheet_entries
 
   # unencrypted password
   attr_accessor :password
@@ -54,4 +55,8 @@ class User < ActiveRecord::Base
   def password_required?
     encrypted_password.blank? || !password.blank?
   end 
+
+  def self.staff
+    all :conditions => {:staff => true}, :order => 'name ASC'
+  end
 end
