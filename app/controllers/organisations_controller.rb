@@ -7,6 +7,7 @@ class OrganisationsController < ApplicationController
   
   def show
     @organisation = Organisation.find(params[:id])
+    record_view
   end
   
   def new
@@ -22,5 +23,12 @@ class OrganisationsController < ApplicationController
     else
       render :action => "new"
     end
+  end
+
+  protected
+
+  def record_view
+    @organisation.last_viewed_at = Time.now
+    @organisation.save
   end
 end
