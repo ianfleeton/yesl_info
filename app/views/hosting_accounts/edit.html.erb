@@ -5,7 +5,7 @@
 
 <div class="form">
   <%= error_messages_for :hosting_account %>
-  <% form_for @hosting_account do |form| %>
+  <%= form_for @hosting_account do |form| %>
     <%= render :partial => 'form', :object => form %>
     <%= submit_tag 'Save' %>
   <% end %>

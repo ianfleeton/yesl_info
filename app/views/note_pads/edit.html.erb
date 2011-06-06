@@ -3,7 +3,7 @@
 
 <div class="form">
 <%= error_messages_for :note_pad -%>
-<% form_for @note_pad do |form| %>
+<%= form_for @note_pad do |form| %>
   <%= render :partial => 'form', :object => form %>
   <%= form.submit 'Save', :class => 'submit' %>
   <%= button_to "Delete", note_pad_path(@note_pad), :method => :delete, :class => 'delete' %>

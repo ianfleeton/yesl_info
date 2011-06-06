@@ -3,7 +3,7 @@
 
 <div class="form">
 <%= error_messages_for :note_pad -%>
-<% form_for :note_pad, :url => {:action => 'create'} do |form| %>
+<%= form_for :note_pad, :url => {:action => 'create'} do |form| %>
   <%= render :partial => 'form', :object => form %>
   <%= form.submit 'Add Note Pad', :class => 'submit' %>
 <% end %>

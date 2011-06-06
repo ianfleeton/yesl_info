@@ -3,7 +3,7 @@
 
 <div class="form narrow">
 <%= error_messages_for :organisation -%>
-<% form_for :organisation, :url => {:action => 'create'} do |form| %>
+<%= form_for @organisation do |form| %>
   <div>
     <%= form.label :name %>:<br />
     <%= form.text_field :name %>

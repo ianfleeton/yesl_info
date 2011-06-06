@@ -4,7 +4,7 @@
 
 <div class="form">
   <%= error_messages_for :domain %>
-  <% form_for @domain do |form| %>
+  <%= form_for @domain do |form| %>
     <%= render :partial => 'form', :object => form %>
     <%= submit_tag 'Add New Domain' %>
   <% end %>

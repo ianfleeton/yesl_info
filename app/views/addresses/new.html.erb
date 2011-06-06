@@ -4,7 +4,7 @@
 
 <div class="form">
   <%= error_messages_for :address %>
-  <% form_for @address do |form| %>
+  <%= form_for @address do |form| %>
     <%= render :partial => 'form', :object => form %>
     <%= submit_tag 'Add New Address' %>
   <% end %>
