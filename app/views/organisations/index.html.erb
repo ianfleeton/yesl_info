@@ -2,7 +2,7 @@
 
 <p><%= link_to 'Add', new_organisation_path, :class => 'button' %></p>
 
-<%= alpha_links %>
+<%= alpha_links.html_safe %>
 
 <div id="organisations">
 <% last_c = '' %>
