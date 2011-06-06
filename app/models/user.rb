@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :organisation
   has_many :timesheet_entries
+  has_many :email_addresses, :dependent => :delete_all
   has_many :numbers, :dependent => :delete_all
 
   # unencrypted password
