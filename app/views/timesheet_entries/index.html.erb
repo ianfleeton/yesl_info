@@ -14,8 +14,8 @@
 <% @staff.each do |member| -%>
     <tr>
       <td><%= h member.name %></td>
-      <td><%= amount_invoiced_by(member, 30, 1) %></td>
-      <td><%= amount_invoiced_by(member, 91, 1) %></td>
+      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 30, 1), :unit => '£') %></td>
+      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 91, 1), :unit => '£') %></td>
     </tr>
 <% end -%>
   </tbody>
@@ -26,6 +26,7 @@
 <table class="diary">
   <thead>
     <tr>
+      <th>Organisation</th>
       <th>When</th>
       <th>Description</th>
       <th>Value</th>
@@ -36,11 +37,12 @@
   <tbody>
 <% @timesheet_entries.each do |e| -%>
     <tr>
-      <th><%= format_time(e.started_at) %>
-      <td><%= h(e.description) %></td>
-      <td><%= h(e.invoice_value) %></td>
-      <td><%= e.minutes %>m</td>
-      <td><%= h(e.user.name) %></td>
+      <td><%= link_to e.organisation.name, e.organisation %></td>
+      <td><%= format_time(e.started_at) %></td>
+      <td><%= e.description %></td>
+      <td class="numeric"><%= number_to_currency(e.invoice_value, :unit => '£') %></td>
+      <td class="numeric"><%= e.minutes %>m</td>
+      <td><%= link_to e.user.name, e.user %></td>
     </tr>
 <% end -%>
   </tbody>
