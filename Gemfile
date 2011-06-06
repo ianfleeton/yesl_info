@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.7'
 gem 'test-unit', '1.2.3'
 
 # Bundle edge Rails instead:
