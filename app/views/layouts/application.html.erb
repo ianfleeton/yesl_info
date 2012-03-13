@@ -1,34 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
   <title>Your e Solutions Client Centre</title>
-  <%= stylesheet_link_tag "reset" %>
-  <%= stylesheet_link_tag "screen", :media => "screen" %>
-  <%= stylesheet_link_tag "print", :media => "print" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+  <script src="/bootstrap/js/bootstrap.js"></script>
+  <%= csrf_meta_tags %>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
-<body id="top"><div id="wrapper">
-<ul id="main_menu">
-  <li><%= link_to 'Home', :controller => :home %></li>
-  <li><%= link_to 'Organisations', :controller => 'organisations', :action => 'index' %></li>
-  <li><a href="#">Invoicing</a></li>
-  <li><%= link_to 'Domains', :controller => 'domains', :action => 'index' %></li>
-  <li><%= link_to 'Timesheet', :controller => 'timesheet_entries', :action => 'index' %></li>
-  <li><%= link_to 'People', :controller => 'users', :action => 'index' %></li>
-  <li><a href="#">To Do List</a></li>
-</ul>
+<body id="top">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">YESL DB</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Organisations', organisations_path %></li>
+          <li><a href="#">Invoicing</a></li>
+          <li><%= link_to 'Domains', domains_path %></li>
+          <li><%= link_to 'Timesheet', timesheet_entries_path %></li>
+          <li><%= link_to 'People', users_path %></li>
+          <li><a href="#">To Do List</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<form id="organisation_selector" onsubmit="return false;">
-  <label for="view_recent">View recent:</label>
-  <select id="view_recent" name="view_recent" onchange="window.location=this.value">
-    <% Organisation.recently_viewed.each do |o| %>
-    <option value="<%= organisation_path(o) %>"><%= o.name %></option>
-    <% end %>
-  </select>
-  <input type="submit" value="Go"
-    onclick="window.location=document.getElementById('view_recent').value">
-</form>
+<div style="height:40px;"></div>
+<div class="container">
+  <form id="organisation_selector" onsubmit="return false;">
+    <label for="view_recent">View recent:</label>
+    <select id="view_recent" name="view_recent" onchange="window.location=this.value">
+      <% Organisation.recently_viewed.each do |o| %>
+      <option value="<%= organisation_path(o) %>"><%= o.name %></option>
+      <% end %>
+    </select>
+    <input type="submit" value="Go"
+      onclick="window.location=document.getElementById('view_recent').value">
+  </form>
 
 <%= yield %>
-</div><!--#wrapper--></body>
+</div>
+</body>
 </html>

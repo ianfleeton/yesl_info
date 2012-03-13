@@ -1,21 +1,21 @@
-<h1><% if admin? %><%= link_to "Users", :action => "index" %>
-	&rarr; <% end %> <%= h(@user.name) %> from <%= link_to h(@user.organisation.name), organisation_path(@user.organisation) %></h1>
+<div class="page-header">
+  <h1><% if admin? %><%= link_to "Users", :action => "index" %>
+	  &rarr; <% end %> <%= @user.name %> from <%= link_to @user.organisation.name, organisation_path(@user.organisation) %></h1>
+</div>
 
 <%= flash_notice %>
 
-<h2><%= h @user.name %></h2>
+<h2><%= @user.name %></h2>
 
 <p><%= gravatar(@user.email) %> <a href="http://en.gravatar.com/">Change my picture</a></p>
 
 <table>
-  <tr><th>Name</th><td><%= h(@user.name) %></td></tr>
-  <tr><th>Organisation</th><td><%= link_to h(@user.organisation.name), organisation_path(@user.organisation) %></td></tr>
-  <tr><th>Login email address</th><td><%= mail_to h(@user.email) %></td></tr>
+  <tr><th>Name</th><td><%= @user.name %></td></tr>
+  <tr><th>Organisation</th><td><%= link_to @user.organisation.name, organisation_path(@user.organisation) %></td></tr>
+  <tr><th>Login email address</th><td><%= mail_to @user.email %></td></tr>
 </table>
 
-<% if admin? %>	
-<div class="buttons">
-	<%= link_to "Edit", edit_user_path(@user), :class => 'button shrink' %>
-	<%= button_to "Delete", user_path(@user), :method => :delete %>
-</div>
+<% if admin? -%>
+<%= link_to "Edit", edit_user_path(@user), :class => 'btn' %>
+<%= link_to "Delete", user_path(@user), :method => :delete, :class => 'btn btn-danger' %>
 <% end %>

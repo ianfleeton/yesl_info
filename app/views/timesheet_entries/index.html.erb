@@ -1,8 +1,10 @@
-<h1>Timesheet</h1>
+<div class="page-header">
+  <h1>Timesheet</h1>
+</div>
 
 <h2>Totals logged by person</h2>
 
-<table class="diary">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Who</th>
@@ -13,9 +15,9 @@
   <tbody>
 <% @staff.each do |member| -%>
     <tr>
-      <td><%= h member.name %></td>
-      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 30, 1), :unit => '£') %></td>
-      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 91, 1), :unit => '£') %></td>
+      <td><%= member.name %></td>
+      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 30, 1), unit: '£') %></td>
+      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 91, 1), unit: '£') %></td>
     </tr>
 <% end -%>
   </tbody>
@@ -23,7 +25,7 @@
 
 <h2>Recent entries</h2>
 
-<table class="diary">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Organisation</th>
