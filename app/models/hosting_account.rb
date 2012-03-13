@@ -1,3 +1,3 @@
 class HostingAccount < ActiveRecord::Base
-  belongs_to :domain
+  belongs_to :domain, touch: true
 end

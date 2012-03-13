@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :organisation
+  belongs_to :organisation, touch: true
   has_many :email_addresses, :dependent => :delete_all
   has_many :numbers, :dependent => :delete_all
   has_many :timesheet_entries, :dependent => :nullify
