@@ -2,26 +2,40 @@
   <h1>Your e Solutions</h1>
 </div>
 
-<div class="buttons">
-  <%= link_to 'Backups', {:controller => 'hosting_accounts', :action => 'backups'}, :class => 'button' %>
-  <%= link_to 'Passwords', {:controller => 'home', :action => 'passwords'}, :class => 'button' %>
-  <%= link_to 'Webnames', 'http://webnames2.com/', :class => 'button' %>
-  <%= link_to 'Plesk 1', 'https://84.18.198.72:8443/', :class => 'button' %>
-  <%= link_to 'Plesk 2', 'https://84.18.203.198:8443/', :class => 'button' %>
-  <%= link_to 'Gandi', 'http://www.gandi.net/', :class => 'button' %>
+<div class="btn-group">
+  <%= link_to 'Backups', {:controller => 'hosting_accounts', :action => 'backups'}, class: 'btn' %>
+  <%= link_to 'Passwords', passwords_path, class: 'btn' %>
+  <%= link_to 'Webnames', 'http://webnames2.com/', class: 'btn' %>
+  <%= link_to 'Plesk 1', 'https://84.18.198.72:8443/', class: 'btn' %>
+  <%= link_to 'Plesk 2', 'https://84.18.203.198:8443/', class: 'btn' %>
+  <%= link_to 'Gandi', 'http://www.gandi.net/', class: 'btn' %>
 </div>
 <h2>Omkar&#8217;s Links</h2>
-<div class="list">
-  <ul>
-    <li><a href="http://concepts2.sitesinprogress.co.uk/various-concepts/octdec09.htm">October-December &#8219;09</a></li>
-    <li><a href="http://concepts2.sitesinprogress.co.uk/various-concepts/jlysept09.htm">July-September &#8219;09</a></li>
-    <li><a href="http://concepts.sitesinprogress.co.uk/various-concepts/janjune09.htm">January-June &#8219;09</a></li>
-    <li><a href="http://concepts.sitesinprogress.co.uk/various-concepts/juldec08.htm">July-December &#8219;08</a></li>
-    <li><a href="http://concepts.sitesinprogress.co.uk/various-concepts/janjune08.htm">January-June &#8219;08</a></li>
-    <li><a href="http://concepts.sitesinprogress.co.uk/various-concepts/juldec07.htm">July-December &#8219;07</a></li>
-    <li><a href="http://concepts.sitesinprogress.co.uk/various-concepts/janjune07.htm">January-June &#8219;07</a></li>
-    <li><a href="http://concepts.sitesinprogress.co.uk/various-concepts/jlydec06.htm">July-December &#8219;06</a></li>
-  </ul>
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a href="http://concepts2.sitesinprogress.co.uk/various-concepts/octdec09.htm"
+    class="btn">Oct-Dec &#8219;09</a>
+    <a href="http://concepts2.sitesinprogress.co.uk/various-concepts/jlysept09.htm"
+    class="btn">Juy-Sep &#8219;09</a>
+    <a href="http://concepts.sitesinprogress.co.uk/various-concepts/janjune09.htm"
+    class="btn">Jan-Jun &#8219;09</a>
+  </div>
+  <div class="btn-group">
+    <a href="http://concepts.sitesinprogress.co.uk/various-concepts/juldec08.htm"
+    class="btn">Jul-Dec &#8219;08</a>
+    <a href="http://concepts.sitesinprogress.co.uk/various-concepts/janjune08.htm"
+    class="btn">Jan-Jun &#8219;08</a>
+  </div>
+  <div class="btn-group">
+    <a href="http://concepts.sitesinprogress.co.uk/various-concepts/juldec07.htm"
+    class="btn">Jul-Dec &#8219;07</a>
+    <a href="http://concepts.sitesinprogress.co.uk/various-concepts/janjune07.htm"
+    class="btn">Jan-Jun &#8219;07</a>
+  </div>
+  <div class="btn-group">
+    <a href="http://concepts.sitesinprogress.co.uk/various-concepts/jlydec06.htm"
+    class="btn">Jul-Dec &#8219;06</a>
+  </div>
 </div>
 <h2>Priya&#8217;s Links</h2>
 <div class="list">

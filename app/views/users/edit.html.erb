@@ -1,30 +1,51 @@
-<h1>Edit User</h1>
+<div class="page-header">
+  <h1>Edit User</h1>
+</div>
+
+<ul class="breadcrumb">
+<% if admin? -%>
+  <li>
+    <%= link_to "Users", users_path %>
+    <span class="divider">/</span>
+  </li>
+<% end -%>
+  <li>
+    <%= link_to @user.organisation.name, organisation_path(@user.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @user.name, @user %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    Edit
+  </li>
+</ul>
 
 <div class="form"> 
 	<%= error_messages_for :user -%> 
-	 
-	<%= form_for :user, :url => { :action => "update",
-								 :id => @user.id } do |form| %>
-	<div> 
-		<%= form.label :name %>:<br /> 
-		<%= form.text_field :name, :size => 35, :class => "text" %> 
-	</div> 
-	<div> 
-		<%= form.label :email %>:<br /> 
-		<%= form.text_field :email, :size => 35, :class => "text" %> 
-	</div>
+
+	<%= form_for @user do |form| %>
+
+                 <%= form.label :name %>
+		<%= form.text_field :name, :size => 35, :class => "text" %>
+
+
+		<%= form.label :email %>
+		<%= form.text_field :email, :size => 35, :class => "text" %>
+
 <% if admin? %>
 	<div>
-		Administrator: 
-		<%= form.radio_button :admin, true, :class => "radio" %> 
-		<label for="user_admin_true">Yes</label> 
-		<%= form.radio_button :admin, false, :class => "radio" %> 
-		<label for="user_admin_false">No</label> 
+		Administrator:
+		<%= form.radio_button :admin, true, :class => "radio" %>
+		<label for="user_admin_true">Yes</label>
+		<%= form.radio_button :admin, false, :class => "radio" %>
+		<label for="user_admin_false">No</label>
 	</div>
 <% end %>
-	
-	<%= submit_tag "Save", :class => "submit" %> &nbsp; 
-	<%= link_to "Cancel", user_path(@user), :class => 'button' %> 
-	<% end %> 
+
+	<br><%= submit_tag "Save", :class => "btn btn-primary" %>
+	<%= link_to "Cancel", user_path(@user), :class => 'btn' %>
+	<% end %>
 
 </div> 

@@ -1,5 +1,23 @@
-<h1><%= link_to h(@domain.organisation.name), organisation_path(@domain.organisation) %>
-  &rarr; <%= link_to h(@domain.name), domain_path(@domain) %>
-  &rarr; WHOIS</h1>
-<p><%= link_to 'Back', domain_path(@domain), :class => 'button' %></p>
-<pre><%= h(`whois #{@domain.name}`) %></pre>
+<div class="page-header">
+  <h1>whois <%= @domain.name %></h1>
+</div>
+
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @domain.organisation.name, organisation_path(@domain.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @domain.name, domain_path(@domain) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    WHOIS
+  </li>
+</ul>
+
+<p>
+  <%= link_to 'Back', domain_path(@domain), class: 'btn' %>
+</p>
+
+<pre><%= `whois #{@domain.name}` %></pre>

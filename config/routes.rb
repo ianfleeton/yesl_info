@@ -58,7 +58,10 @@ YeslInfo::Application.routes.draw do
   resources :addresses
 
   resources :domains do
-    get 'whois', :on => :collection
+    member do
+      get 'nslookup'
+      get 'whois'
+    end
   end
 
   resources :hosting_accounts do
@@ -68,9 +71,13 @@ YeslInfo::Application.routes.draw do
     end
   end
 
+  match 'passwords' => 'home#passwords', as: :passwords
+
   resources :note_pads
 
   resources :organisations
+
+  resources :sessions
 
   resources :timesheet_entries
 

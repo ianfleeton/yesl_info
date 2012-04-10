@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def admin_required
     unless admin?
       flash[:notice] = 'You must log in as an administrator to perform that action.'
-      redirect_to :controller => 'sessions', :action => 'new'
+      redirect_to new_session_path
     end
   end
   

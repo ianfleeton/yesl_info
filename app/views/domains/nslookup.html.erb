@@ -1,11 +1,54 @@
-<h1><%= link_to h(@domain.organisation.name), organisation_path(@domain.organisation) %>
-  &rarr; <%= link_to h(@domain.name), domain_path(@domain) %>
-  &rarr; nslookup</h1>
-<p><%= link_to 'Back', domain_path(@domain), :class => 'button' %></p>
+<div class="page-header">
+  <h1>nslookup <%= @domain.name %></h1>
+</div>
+
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @domain.organisation.name, organisation_path(@domain.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @domain.name, domain_path(@domain) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    nslookup
+  </li>
+</ul>
+
+<p>
+  <%= link_to 'Back', domain_path(@domain), class: 'btn' %>
+</p>
+
 <table>
-  <tr><th><%= h(@domain.name) %></th><td><%= h(`nslookup #{@domain.name}`.strip).gsub(/\n/, '<br />') %></td></tr>
-  <tr><th>www.<%= h(@domain.name) %></th><td><%= h(`nslookup www.#{@domain.name}`.strip).gsub(/\n/, '<br />') %></td></tr>
-  <tr><th>mail.<%= h(@domain.name) %></th><td><%= h(`nslookup mail.#{@domain.name}`.strip).gsub(/\n/, '<br />') %></td></tr>
-  <tr><th>ftp.<%= h(@domain.name) %></th><td><%= h(`nslookup ftp.#{@domain.name}`.strip).gsub(/\n/, '<br />') %></td></tr>
-  <tr><th>MX <%= h(@domain.name) %></th><td><%= h(`nslookup -query=mx #{@domain.name}`.strip).gsub(/\n/, '<br />') %></td></tr>
+  <tr>
+    <th><%= @domain.name %></th>
+    <td>
+      <pre><%= `nslookup #{@domain.name}`.strip %></pre>
+    </td>
+  </tr>
+  <tr>
+    <th>www.<%= @domain.name %></th>
+    <td>
+      <pre><%= `nslookup www.#{@domain.name}`.strip %></pre>
+    </td>
+  </tr>
+  <tr>
+    <th>mail.<%= @domain.name %></th>
+    <td>
+      <pre><%= `nslookup mail.#{@domain.name}`.strip %></pre>
+    </td>
+  </tr>
+  <tr>
+    <th>ftp.<%= @domain.name %></th>
+    <td>
+      <pre><%= `nslookup ftp.#{@domain.name}`.strip %></pre>
+    </td>
+  </tr>
+  <tr>
+    <th>MX <%= @domain.name %></th>
+    <td>
+      <pre><%= `nslookup -query=mx #{@domain.name}`.strip %></pre>
+    </td>
+  </tr>
 </table>

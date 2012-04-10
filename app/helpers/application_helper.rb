@@ -8,11 +8,11 @@ module ApplicationHelper
   end
 
   def a_tick
-    '<span class="tick">✔</span>'
+    '<span class="tick">✔</span>'.html_safe
   end
 
   def a_cross
-    '<span class="cross">✘</span>'
+    '<span class="cross">✘</span>'.html_safe
   end
 
   def tick_cross yes, show_cross=true
@@ -29,11 +29,11 @@ module ApplicationHelper
 
   def alpha_links
     letters = %w(a b c d e f g h i j k l m n o p q r s t u v w x y z)
-    html = '<ul id="alpha">'
+    html = '<div class="btn-group">'
     letters.each do |l|
-  	  html += '<li class="alpha_' + l + '"><a href="#alphanum' + l + '">' + l + '</a></li>'
+  	  html += '<a class="btn" href="#alphanum' + l + '">' + l + '</a>'
     end
-    html += '</ul>'
+    html += '</div>'
   end
 
   def format_date d

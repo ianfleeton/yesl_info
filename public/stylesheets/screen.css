@@ -1,3 +1,16 @@
+body {
+  background: #9AE4E8;
+  margin: 8px;
+}
+
+#wrapper {
+  background: #fff;
+  width: 800px;
+  padding: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #flash_notice {
 	border: 1px solid #ca8902;
 	background: #fee848;
@@ -6,7 +19,7 @@
 	color: #333;
 }
 
-body, div, input, li, p, td, th { font-family: 'Lucida sans', sans-serif; }
+body, div, input, li, p, td, th { font-family: Helvetica, 'Lucida sans', sans-serif; }
 
 pre {
   margin: 10px;
@@ -19,17 +32,24 @@ p, .buttons { margin: 10px; font-size: 12px; line-height: 16px; }
 a { color: #006fbb; text-decoration: none; }
 a:hover { color: #002e4e; }
 
-h1, h2 { clear: left; color: #fff;}
+h1, h2 { clear: left; }
 
-h1 { height: 49px; background-image: url(/images/h1.png); text-align: center;
-  font-family: 'Lucida sans'; font-weight: bold; line-height: 49px; font-size: 18px; }
-
-h1 a { color: #fff; }
+h1 {
+  height: 49px;
+  font-family: Helvetica, 'Lucida sans', sans-serif;
+  font-weight: bold;
+  line-height: 49px;
+  font-size: 18px;
+}
 
 h2 { height: 23px; background-image: url(/images/h2.png); padding-left: 11px;
-  font-family: 'Lucida sans'; line-height: 23px; }
+  font-family: Helvetica, 'Lucida sans', sans-serif; line-height: 23px; }
 
 h2 a { color: #fff; }
+
+ul#main_menu {
+  height: 29px;
+}
 
 #main_menu li {
   float: left;
@@ -41,11 +61,8 @@ h2 a { color: #fff; }
 .cross { color: red; }
 
 #alpha {
-/*
-  width: 755px;
-  margin-left: auto;
-  margin-right: auto;
-*/
+  height: 31px;
+  margin: 8px 0;
 }
 
 #alpha li {
@@ -55,29 +72,41 @@ h2 a { color: #fff; }
 
 #alpha a, #main_menu a {
   display: block;
-/*  width: 29px;*/
   height: 29px;
   line-height: 29px;
   text-align: center;
-/*  background-image: url(/images/alpha.png);*/
-  background: #333;
-  color: #fff;
   text-decoration: none;
+  margin-right: 3px;
 }
 
-#alpha a:hover, #main_menu a:hover {
-  background-position: -29px 0;
-  background: #496b9b;
+#main_menu a {
+  border: 1px solid #999;  
+  color: #999;
+}
+
+#alpha a {
+  border: 1px solid #A9BF74;
+  background: #E8FECD;
+  color: #000;
+}
+
+#alpha a:hover {
+  background: #FB4A3F;
+  border: 1px solid #FB4A3F;
+  color: #fff;
+}
+
+#main_menu a:hover {
+  color: #000;
+  border: 1px solid #000;
 }
 
 #alpha .alpha_a a {
   background-position: -58px 0;
-/*  width: 30px;*/
 }
 
 #alpha .alpha_a a:hover {
   background-position: -88px 0;
-/*  width: 30px;*/
 }
 
 #alpha .alpha_z a {
@@ -126,6 +155,10 @@ td, th {
   padding: 11px;
   font-size: 12px;
   border-bottom: 1px solid #e0e0e0;
+}
+
+td.numeric {
+  text-align: right;
 }
 
 .gravatar {

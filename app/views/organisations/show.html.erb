@@ -1,9 +1,12 @@
-<h1><%= h @organisation.name %></h1>
+<div class="page-header">
+  <h1><%= h @organisation.name %></h1>
+</div>
+
 <%= flash_notice %>
 <h2>Users</h2>
 <div class="list">
   <ul>
-    <li><%= link_to 'add', new_user_path(:organisation_id => @organisation) %></li>
+    <li><%= link_to 'Add', new_user_path(organisation_id: @organisation), class: 'btn' %></li>
     <% @organisation.users.each do |u| -%>
     <li><%= link_to h(u.name), user_path(u) %></li>
     <% end -%>
@@ -16,18 +19,18 @@
 <h2>Addresses</h2>
 <div class="list">
   <ul>
-    <li><%= link_to 'add', new_address_path(:organisation_id => @organisation) %></li>
+    <li><%= link_to 'Add', new_address_path(organisation_id: @organisation), class: 'btn' %></li>
     <% @organisation.addresses.each do |a| -%>
-    <li><%= link_to h(format_address_single_line(a)), edit_address_path(a) %></li>
+    <li><%= link_to format_address_single_line(a), edit_address_path(a) %></li>
     <% end -%>
   </ul>
 </div>
 <h2>Domains</h2>
 <div class="list">
   <ul>
-  <li><%= link_to 'add', new_domain_path(:organisation_id => @organisation) %></li>
+    <li><%= link_to 'Add', new_domain_path(organisation_id: @organisation), class: 'btn' %></li>
   <% @organisation.domains.each do |d| -%>
-  <li><%= link_to h(d.name), domain_path(d) %></li>
+  <li><%= link_to d.name, domain_path(d) %></li>
   <% end -%>
   </ul>
 </div>
@@ -39,9 +42,9 @@
 <h2>Note Pads</h2>
 <div class="list">
   <ul>
-  <li><%= link_to 'add', new_note_pad_path(:organisation_id => @organisation) %></li>
+    <li><%= link_to 'Add', new_note_pad_path(organisation_id: @organisation), class: 'btn' %></li>
   <% @organisation.note_pads.each do |np| -%>
-  <li><%= link_to h(np.title), edit_note_pad_path(np) %></li>
+  <li><%= link_to np.title, edit_note_pad_path(np) %></li>
   <% end -%>
   </ul>
 </div>

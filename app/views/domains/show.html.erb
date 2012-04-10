@@ -1,24 +1,54 @@
-<h1><%= link_to h(@domain.organisation.name), organisation_path(@domain.organisation) %>
-  &rarr; <%= h @domain.name %></h1>
-<%= flash_notice %>
-<p>
-  <%= link_to 'Edit', edit_domain_path(@domain), :class => 'button' %>
-  <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'button' %>
-  <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'button' %>
-</p>
-<table>
-  <tr><th>Name</th><td><%= h(@domain.name)%></td></tr>
-  <tr><th>Forwarding</th><td><%= @domain.forwarding ? link_to(h(@domain.forwarding.name), domain_path(@domain.forwarding)) : a_cross %></td></tr>
-  <tr><th>Registered on</th><td><%= format_date(@domain.registered_on) %></td></tr>
-  <tr><th>With us?</th><td><%= tick_cross(@domain.with_us?) %></td></tr>
-</table>
+<div class="page-header">
+  <h1><%= @domain.name %></h1>
+</div>
 
-<h2>Hosting accounts</h2>
-<div class="list">
-  <ul>
-    <li><%= link_to 'add', new_hosting_account_path(:domain_id => @domain.id) %></li>
-    <% @domain.hosting_accounts.each do |a| -%>
-    <li><%= link_to h(a.host_name)+' on '+h(a.ftp_host), hosting_account_path(a) %></li>
-    <% end -%>
-  </ul>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @domain.organisation.name, organisation_path(@domain.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= @domain.name %>
+  </li>
+</ul>
+
+<%= flash_notice %>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_domain_path(@domain), :class => 'btn' %>
+  <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'btn' %>
+  <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'btn' %>
+</div>
+<br>
+<div class="row">
+  <div class="span6">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>Name</th>
+        <td><%= @domain.name %></td>
+      </tr>
+      <tr>
+        <th>Forwarding</th>
+        <td><%= @domain.forwarding ? link_to(@domain.forwarding.name, domain_path(@domain.forwarding)) : a_cross %></td>
+      </tr>
+      <tr>
+        <th>Registered on</th>
+        <td><%= format_date(@domain.registered_on) %></td>
+      </tr>
+      <tr>
+        <th>With us?</th>
+        <td><%= tick_cross(@domain.with_us?) %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="span6">
+    <h2>Hosting accounts</h2>
+    <div class="list">
+      <ul>
+        <li><%= link_to 'Add', new_hosting_account_path(:domain_id => @domain.id), class: 'btn' %></li>
+        <% @domain.hosting_accounts.each do |a| -%>
+        <li><%= link_to a.host_name + ' on ' + a.ftp_host, hosting_account_path(a) %></li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
 </div>
