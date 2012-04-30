@@ -41,10 +41,14 @@ class HostingAccountsController < ApplicationController
   end
 
   def backups
-    @hosting_account = HostingAccount.first(:conditions => ["backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)"],
-      :order => "DATE_ADD(backed_up_on, INTERVAL backup_cycle DAY) asc")
+    @hosting_accounts = HostingAccount.all(
+      conditions: ["backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)"],
+      order: "DATE_ADD(backed_up_on, INTERVAL backup_cycle DAY) asc",
+      limit: 20)
     respond_to do |format|
       format.text do
+      end
+      format.html do
       end
     end
   end

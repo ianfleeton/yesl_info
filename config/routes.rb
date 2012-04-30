@@ -67,7 +67,9 @@ YeslInfo::Application.routes.draw do
   resources :hosting_accounts do
     collection do
       get 'backups'
-      get 'backed_up'
+    end
+    member do
+      post 'backed_up'
     end
   end
 

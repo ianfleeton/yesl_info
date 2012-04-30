@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>Backups</h1>
+</div>
+
+<% @hosting_accounts.each do |account| -%>
+<h3><a href="http://<%= account.host_name %>"><%= account.host_name %></a></h3>
+<p>
+  <input type="text" size="30" value="<%= account.ftp_host %>">
+  <input type="text" size="15" value="<%= account.username %>">
+  <input type="text" size="15" value="<%= account.password %>">
+</p>
+<p>
+  <%= link_to 'Backed Up', backed_up_hosting_account_path(account), method: 'post', class: 'btn btn-mini' %>
+</p>
+<% end -%>
