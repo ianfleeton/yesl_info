@@ -7,14 +7,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-*.jpg
-*.pdf
-*.odt
 error_log
-*.gif
-*.png
-*.doc
-*.psd
 querylog.txt
 log.err
 errorlog.txt
