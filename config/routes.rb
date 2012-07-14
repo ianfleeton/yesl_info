@@ -73,6 +73,8 @@ YeslInfo::Application.routes.draw do
     end
   end
 
+  resources :email_addresses
+
   match 'passwords' => 'home#passwords', as: :passwords
 
   resources :note_pads

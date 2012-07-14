@@ -10,6 +10,14 @@
   </ul>
 </div>
 <h2>Email addresses</h2>
+<div class="list">
+  <ul>
+    <li><%= link_to 'Add', new_email_address_path(organisation_id: @organisation), class: 'btn' %></li>
+    <% @organisation.email_addresses.each do |a| -%>
+    <li><%= mail_to a.address, a.address %></li>
+    <% end -%>
+  </ul>
+</div>
 
 <h2>Contact numbers</h2>
 
