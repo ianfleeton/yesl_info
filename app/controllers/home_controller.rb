@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @backups_pending = HostingAccount.where('backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)').count
   end
   
   def passwords
