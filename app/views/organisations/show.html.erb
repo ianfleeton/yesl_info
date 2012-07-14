@@ -1,5 +1,7 @@
 <%= page_header(@organisation.name) %>
 
+<p><%= link_to 'I have recently contacted this organisation', contacted_organisation_path, data: { method: 'post' } %></p>
+
 <h2>Users</h2>
 <div class="list">
   <ul>

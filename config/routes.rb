@@ -79,7 +79,14 @@ YeslInfo::Application.routes.draw do
 
   resources :note_pads
 
-  resources :organisations
+  resources :organisations do
+    collection do
+      get 'contacts'
+    end
+    member do
+      post 'contacted'
+    end
+  end
 
   resources :sessions
 

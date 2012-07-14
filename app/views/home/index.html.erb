@@ -7,6 +7,13 @@
 </p>
 <% end -%>
 
+<% if @contacts > 0 -%>
+<p>
+  <%= @contacts %> organisations to keep in touch with &#8212;
+  <%= link_to 'View Contacts', contacts_organisations_path %>
+</p>
+<% end -%>
+
 <div class="btn-group">
   <%= link_to 'Backups', {:controller => 'hosting_accounts', :action => 'backups'}, class: 'btn' %>
   <%= link_to 'Passwords', passwords_path, class: 'btn' %>

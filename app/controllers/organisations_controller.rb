@@ -1,12 +1,12 @@
 class OrganisationsController < ApplicationController
   before_filter :admin_required
+  before_filter :find_organisation, only: [:show, :contacted]
 
   def index
     @organisations = Organisation.find(:all, :order => 'name')
   end
   
   def show
-    @organisation = Organisation.find(params[:id])
     record_view
   end
   
@@ -25,7 +25,23 @@ class OrganisationsController < ApplicationController
     end
   end
 
+  def contacts
+    @organisations = Organisation
+      .where('last_contacted < DATE_SUB(NOW(), INTERVAL contact_cycle DAY)')
+      .order('DATE_ADD(last_contacted, INTERVAL contact_cycle DAY) ASC')
+      .limit(10)
+  end
+
+  def contacted
+    @organisation.touch(:last_contacted)
+    redirect_to @organisation, notice: 'Contact recorded.'
+  end
+
   protected
+
+  def find_organisation
+    @organisation = Organisation.find(params[:id])
+  end
 
   def record_view
     @organisation.last_viewed_at = Time.now
