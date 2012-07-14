@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1>Organisations</h1>
-</div>
+<%= page_header 'Organisations' %>
 
 <p>
   <%= link_to 'Add', new_organisation_path, class: 'btn btn-primary' %>
@@ -22,7 +20,7 @@
   	<h2><%= this_c.upcase %> <a href="#top" class="top">&#8593;</a></h2>
   	<ul>
   <% end %>
-  <li><%= link_to h(o.name), :action => 'show', :id => o %></li>
+  <li><%= link_to o.name, o %></li>
 <% end %>
 </ul>
 </div>

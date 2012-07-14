@@ -1,11 +1,7 @@
-<h1><%= link_to h(@address.organisation.name), organisation_path(@address.organisation) %>
+<div class="page-header">
+  <h1><%= link_to @address.organisation.name, organisation_path(@address.organisation) %>
   &rarr; Add new address</h1>
+</div>
 <%= flash_notice %>
 
-<div class="form">
-  <%= error_messages_for :address %>
-  <%= form_for @address do |form| %>
-    <%= render :partial => 'form', :object => form %>
-    <%= submit_tag 'Add New Address' %>
-  <% end %>
-</div>
+<%= render 'form' %>

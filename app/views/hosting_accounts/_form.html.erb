@@ -1,36 +1,54 @@
-<div>
-	<%= form.label :host_name %>:<br />
+<% if @hosting_account.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@hosting_account.errors.count, "error") %> prohibited this hosting account from being saved:</h2>
+
+  <ul>
+<% @hosting_account.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
+
+<%= form_for @hosting_account do |form| %>
+  <%= error_messages_for :hosting_account %>
+
+
+	<%= form.label :host_name %>
 	<%= form.text_field :host_name %>
-</div>
-<div>
-  <%= form.label :domain %>:<br />
+
+
+  <%= form.label :domain %>
   <%= form.collection_select :domain_id, @hosting_account.domain.organisation.domains, :id, :name %>
-</div>
-<div>
-	<%= form.label :started_on %>:<br />
+
+
+	<%= form.label :started_on %>
 	<%= form.date_select :started_on, :order => [:day, :month, :year] %>
-</div>
-<div>
-	<%= form.label :backup_cycle %>:<br />
+
+
+	<%= form.label :backup_cycle %>
 	<%= form.text_field :backup_cycle, :class => 'short' %> days
-</div>
-<div>
-	<%= form.label :backed_up_on %>:<br />
+
+
+	<%= form.label :backed_up_on %>
 	<%= form.date_select :backed_up_on, :order => [:day, :month, :year] %>
-</div>
-<div>
-	<%= form.label :annual_fee %>:<br />
+
+
+	<%= form.label :annual_fee %>
 	<%= form.text_field :annual_fee, :class => 'short' %> GBP
-</div>
-<div>
-	<%= form.label :ftp_host, 'FTP host' %>:<br />
+
+
+	<%= form.label :ftp_host, 'FTP host' %>
 	<%= form.text_field :ftp_host %>
-</div>
-<div>
-	<%= form.label :username %>:<br />
+
+
+	<%= form.label :username %>
 	<%= form.text_field :username %>
-</div>
-<div>
-	<%= form.label :password %>:<br />
+
+
+	<%= form.label :password %>
 	<%= form.text_field :password %>
-</div>
+
+  <br><%= form.submit class: 'btn btn-primary' %>
+<% end %>

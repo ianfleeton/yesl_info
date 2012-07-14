@@ -1,12 +1,17 @@
-<h1><%= link_to h(@hosting_account.domain.organisation.name), organisation_path(@hosting_account.domain.organisation) %>
-  &rarr; <%= link_to h(@hosting_account.domain.name), domain_path(@hosting_account.domain) %>
-  &rarr; New hosting</h1>
-<%= flash_notice %>
+<%= page_header('New Hosting Account') %>
 
-<div class="form">
-  <%= error_messages_for :hosting_account %>
-  <%= form_for @hosting_account do |form| %>
-    <%= render :partial => 'form', :object => form %>
-    <%= submit_tag 'Add New Hosting Account' %>
-  <% end %>
-</div>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @hosting_account.domain.organisation.name, organisation_path(@hosting_account.domain.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @hosting_account.domain.name, domain_path(@hosting_account.domain) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    New Hosting Account
+  </li>
+</ul>
+  
+<%= render 'form' %>

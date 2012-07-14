@@ -1,11 +1,21 @@
-<h1>Edit Note Pad</h1>
-<%= flash_notice %>
+<%= page_header('Edit Note Pad') %>
 
-<div class="form">
-<%= error_messages_for :note_pad -%>
-<%= form_for @note_pad do |form| %>
-  <%= render :partial => 'form', :object => form %>
-  <%= form.submit 'Save', :class => 'submit' %>
-  <%= button_to "Delete", note_pad_path(@note_pad), :method => :delete, :class => 'delete' %>
-<% end %>
-</div>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @note_pad.organisation.name, @note_pad.organisation %>
+  </li>
+  <li>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    Edit Note Pad
+  </li>
+</ul>
+
+<p>
+  <em>Last updated: <%= @note_pad.updated_at %></em>
+</p>
+
+<%= render'form' %>
+
+<%= button_to "Delete", @note_pad, method: :delete, class: 'btn btn-danger' %>

@@ -1,11 +1,13 @@
-<h1><%= link_to h(@domain.organisation.name), organisation_path(@domain.organisation) %>
-  &rarr; Add new domain</h1>
-<%= flash_notice %>
+<%= page_header 'Add New Domain' %>
 
-<div class="form">
-  <%= error_messages_for :domain %>
-  <%= form_for @domain do |form| %>
-    <%= render :partial => 'form', :object => form %>
-    <%= submit_tag 'Add New Domain' %>
-  <% end %>
-</div>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @domain.organisation.name, organisation_path(@domain.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    Add new domain
+  </li>
+</ul>
+
+<%= render 'form' %>

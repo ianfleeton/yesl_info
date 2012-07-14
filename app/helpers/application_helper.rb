@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def page_header(heading)
+    content_tag('h1', heading, class: 'page-header')
+  end
+
   def a_tick
     '<span class="tick">✔</span>'.html_safe
   end

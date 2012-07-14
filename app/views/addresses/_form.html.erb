@@ -1,24 +1,42 @@
-<div>
-	<%= form.label :organisation %>:<br />
+<% if @address.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+  <ul>
+<% @address.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
+
+
+<%= form_for @address do |form| %>
+
+	<%= form.label :organisation %>
   <%= form.collection_select :organisation_id, Organisation.all(:order => :name), :id, :name %>
-</div>
-<div>
-	<%= form.label :address_line_1 %>:<br />
+
+
+	<%= form.label :address_line_1 %>
 	<%= form.text_field :address_line_1 %>
-</div>
-<div>
-	<%= form.label :address_line_2 %>:<br />
+
+
+	<%= form.label :address_line_2 %>
 	<%= form.text_field :address_line_2 %>
-</div>
-<div>
-	<%= form.label :town_city, 'Town/city' %>:<br />
+
+
+	<%= form.label :town_city, 'Town/city' %>
 	<%= form.text_field :town_city %>
-</div>
-<div>
-	<%= form.label :county %>:<br />
+
+
+	<%= form.label :county %>
 	<%= form.text_field :county %>
-</div>
-<div>
-	<%= form.label :postcode %>:<br />
+
+
+	<%= form.label :postcode %>
 	<%= form.text_field :postcode %>
-</div>
+
+  <br>
+  <%= form.submit class: 'btn btn-primary' %>
+<% end %>
