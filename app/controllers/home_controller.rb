@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_filter :admin_required, except: [:home]
+
   def index
     @backups_pending = HostingAccount.where('backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)').count
     @contacts = Organisation.where('last_contacted < DATE_SUB(NOW(), INTERVAL contact_cycle DAY)').count
@@ -8,7 +10,19 @@ class HomeController < ApplicationController
     @passwords = Array.new
     10.times {@passwords << create_password}
   end
-  
+
+  def webpanel_logins
+    ActiveRecord::Base.establish_connection(
+      adapter:  'mysql2',
+      host:     'straylight.yesl.co.uk',
+      username: 'webpanel_panel',
+      password: 'VDfTZuh6L1EB',
+      database: 'webpanel_panel'
+    )
+    @logins =  ActiveRecord::Base.connection.select_rows("SELECT username, password FROM users ORDER BY username")
+    ActiveRecord::Base.establish_connection(Rails.env)
+  end
+
   private
   
   def create_password

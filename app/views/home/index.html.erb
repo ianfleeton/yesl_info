@@ -15,7 +15,8 @@
 <% end -%>
 
 <div class="btn-group">
-  <%= link_to 'Backups', {:controller => 'hosting_accounts', :action => 'backups'}, class: 'btn' %>
+  <%= link_to 'Webpanel Logins', webpanel_logins_path, class: 'btn' %>
+  <%= link_to 'Backups', backups_hosting_accounts_path, class: 'btn' %>
   <%= link_to 'Passwords', passwords_path, class: 'btn' %>
   <%= link_to 'Webnames', 'http://webnames2.com/', class: 'btn' %>
   <%= link_to 'Plesk 1', 'https://84.18.198.72:8443/', class: 'btn' %>

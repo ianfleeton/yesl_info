@@ -1,0 +1,14 @@
+<%= page_header('Webpanel Logins') %>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Username</th>
+    <th>Password</th>
+  </tr>
+<% @logins.each do |login| -%>
+  <tr>
+    <td><%= login[0] %></td>
+    <td><%= login[1] %></td>
+  </tr>
+<% end -%>
+</table>
