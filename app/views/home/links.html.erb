@@ -1,0 +1,16 @@
+<%= page_header('Links') %>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>When</th>
+    <th>Description</th>
+    <th>Who</th>
+  </tr>
+<% @timesheet_entries.each do |entry| -%>
+  <tr>
+    <td><%= format_time(entry.started_at) %></td>
+    <td><%= raw entry.description.linkify %></td>
+    <td><%= entry.user.name %></td>
+  </tr>
+<% end -%>
+</table>

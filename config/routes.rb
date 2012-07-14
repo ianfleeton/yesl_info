@@ -75,6 +75,7 @@ YeslInfo::Application.routes.draw do
 
   resources :email_addresses
 
+  match 'links' => 'home#links', as: :links
   match 'passwords' => 'home#passwords', as: :passwords
   match 'webpanel_logins' => 'home#webpanel_logins', as: :webpanel_logins
 
