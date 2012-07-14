@@ -1,5 +1,10 @@
 <%= page_header(@organisation.name) %>
 
+<p>
+  Revenue per hour: <%= number_to_currency(@organisation.revenue_per_hour, unit: '£') %>
+  <small>(invoiceable amount/total time over 2yr)</small>
+</p>
+
 <p><%= link_to 'I have recently contacted this organisation', contacted_organisation_path, data: { method: 'post' } %></p>
 
 <h2>Users</h2>
