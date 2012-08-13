@@ -1,8 +1,19 @@
 <h1>New Organisation</h1>
-<%= flash_notice %>
+
+<% if @organisation.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+
+  <ul>
+<% @organisation.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
 
 <div class="form narrow">
-<%= error_messages_for :organisation -%>
 <%= form_for @organisation do |form| %>
   <div>
     <%= form.label :name %>:<br />

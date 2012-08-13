@@ -2,6 +2,19 @@
   <h1>Edit User</h1>
 </div>
 
+<% if @user.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+  <ul>
+<% @user.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
+
 <ul class="breadcrumb">
 <% if admin? -%>
   <li>
@@ -23,8 +36,6 @@
 </ul>
 
 <div class="form"> 
-	<%= error_messages_for :user -%> 
-
 	<%= form_for @user do |form| %>
 
                  <%= form.label :name %>

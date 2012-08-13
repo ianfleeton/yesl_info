@@ -1,8 +1,19 @@
 <h1>New Note Pad</h1>
-<%= flash_notice %>
+
+<% if @note_pad.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@note_pad.errors.count, "error") %> prohibited this note pad from being saved:</h2>
+
+  <ul>
+<% @note_pad.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
 
 <div class="form">
-<%= error_messages_for :note_pad -%>
 <%= form_for :note_pad, :url => {:action => 'create'} do |form| %>
   <%= render :partial => 'form', :object => form %>
   <%= form.submit 'Add Note Pad', :class => 'submit' %>
