@@ -73,4 +73,18 @@ module ApplicationHelper
       t.strftime("%e %b %Y at ") + t.strftime("%l:%M%p").downcase
     end
   end
+
+  def edit_button(object)
+    link_to '<i class="icon-edit"></i> Edit'.html_safe,
+    edit_polymorphic_path(object),
+    class: 'btn'
+  end
+
+  def delete_button(object)
+    link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe,
+    object,
+    data: { confirm: 'Are you sure?' },
+    method: :delete,
+    class: 'btn btn-danger'
+  end
 end
