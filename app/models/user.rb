@@ -42,6 +42,22 @@ class User < ActiveRecord::Base
     (0...8).map{ charset.to_a[rand(charset.size)] }.join
   end
 
+  def hours_logged(days_ago = 0)
+    the_time = Time.now - days_ago.days
+    beginning_of_the_day = the_time.strftime('%Y-%m-%d 00:00:00')
+    end_of_the_day = the_time.strftime('%Y-%m-%d 23:59:59')
+    TimesheetEntry.where(['user_id = ? AND started_at >= ? AND started_at <= ?', id, beginning_of_the_day, end_of_the_day]).sum('minutes') / 60.0
+  end
+
+  def hours_logged_to_date(days_ago)
+    total = 0;
+    (0..days_ago).each do |days|
+      total += hours_logged(days)
+    end
+    return total.ceil
+  end
+
+
   protected
   
   # before save - create salt, encrypt password

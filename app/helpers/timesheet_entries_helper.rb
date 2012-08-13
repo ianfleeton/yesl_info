@@ -7,4 +7,18 @@ module TimesheetEntriesHelper
       who.id, days, chargeable]
     TimesheetEntry.calculate(:sum, :invoice_value, :conditions => conditions)
   end
+
+  def hours_logged_this_week_by(who)
+    total = 0
+    str = ''
+    (0..6).each do |days_ago|
+      logged = who.hours_logged(days_ago)
+      total += logged
+      str += '%.1f' % logged
+      if(days_ago < 6)
+        str += ' + '
+      end
+    end
+    str + ' = ' + '%.1f' % total
+  end
 end

@@ -10,14 +10,34 @@
       <th>Who</th>
       <th>30 days</th>
       <th>13 weeks</th>
+      <th>Hours logged this week</th>
+      <th>28-day hours</th>
     </tr>
   </thead>
   <tbody>
 <% @staff.each do |member| -%>
     <tr>
       <td><%= member.name %></td>
-      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 30, 1), unit: '£') %></td>
-      <td class="numeric"><%= number_to_currency(amount_invoiced_by(member, 91, 1), unit: '£') %></td>
+      <td class="numeric">
+        <%= number_to_currency(amount_invoiced_by(member, 30), unit: '£') %>
+        <small>
+          (<%= number_to_currency(amount_invoiced_by(member, 30, 1), unit: '£') %> +
+          <%= number_to_currency(amount_invoiced_by(member, 30, 0), unit: '£') %>)
+        </small>
+      </td>
+      <td class="numeric">
+        <%= number_to_currency(amount_invoiced_by(member, 91), unit: '£') %>
+        <small>
+          (<%= number_to_currency(amount_invoiced_by(member, 30, 1), unit: '£') %> +
+          <%= number_to_currency(amount_invoiced_by(member, 30, 0), unit: '£') %>)
+        </small>
+      </td>
+      <td>
+        <%= hours_logged_this_week_by(member) %>
+      </td>
+      <td>
+        <%= member.hours_logged_to_date(28) %>
+      </td>
     </tr>
 <% end -%>
   </tbody>
