@@ -14,9 +14,10 @@
 
 <%= flash_notice %>
 <div class="btn-group">
-  <%= link_to 'Edit', edit_domain_path(@domain), :class => 'btn' %>
+  <%= edit_button(@domain) %>
   <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'btn' %>
   <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'btn' %>
+  <%= delete_button(@domain) %>
 </div>
 <br>
 <div class="row">
