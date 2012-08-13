@@ -1,4 +1,6 @@
 class EmailAddressesController < ApplicationController
+  before_filter :find_email_address, only: [:edit, :update, :destroy]
+
   def new
     @email_address = EmailAddress.new
     @email_address.organisation_id = params[:organisation_id]
@@ -17,5 +19,27 @@ class EmailAddressesController < ApplicationController
     else
       render :action => "new"
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @email_address.update_attributes(params[:domain])
+      redirect_to @email_address.organisation, notice: 'Email address updated.'
+    else
+      render action: 'edit'
+    end
+  end
+
+  def destroy
+    @email_address.destroy
+    redirect_to @email_address.organisation, notice: 'Email address deleted.'
+  end
+
+  protected
+
+  def find_email_address
+    @email_address = EmailAddress.find(params[:id])
   end
 end

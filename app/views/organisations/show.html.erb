@@ -16,17 +16,30 @@
     <% end -%>
   </ul>
 </div>
-<h2>Email addresses</h2>
-<div class="list">
-  <ul>
-    <li><%= link_to 'Add', new_email_address_path(organisation_id: @organisation), class: 'btn' %></li>
+<div class="row">
+  <div class="span6">
+    <h2>Email addresses</h2>
+    <p>
+      <%= link_to 'Add', new_email_address_path(organisation_id: @organisation), class: 'btn' %>
+    </p>
+<% unless @organisation.email_addresses.empty? -%>
+    <table class="table table-bordered">
     <% @organisation.email_addresses.each do |a| -%>
-    <li><%= mail_to a.address, a.address %></li>
+      <tr>
+        <td><%= mail_to a.address, a.address %></td>
+        <td>
+          <%= edit_button(a) %>
+          <%= delete_button(a) %>
+        </td>
+      </tr>
     <% end -%>
-  </ul>
+    </table>
+<% end -%>
+  </div>
+  <div class="span6">
+    <h2>Contact numbers</h2>
+  </div>
 </div>
-
-<h2>Contact numbers</h2>
 
 <h2>Addresses</h2>
 <div class="list">
