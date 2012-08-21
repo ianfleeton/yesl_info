@@ -49,13 +49,13 @@ class UsersController < ApplicationController
   
   def forgot_password_send
     @user = User.find_by_email(params[:email])
-    if @user.nil?
+    if @user.nil? || @user.email.blank?
       flash[:notice] = "There is no user registered with that email address"
-      redirect_to :action => "forgot_password"
+      redirect_to action: 'forgot_password'
     else
       @user.forgot_password_token = User.generate_forgot_password_token
       @user.save
-      UserNotifier.deliver_token @user
+      UserNotifier.token(@user).deliver
     end
   end
 
