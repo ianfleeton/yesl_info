@@ -18,6 +18,7 @@
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="/">YESL DB</a>
+<% if admin? -%>
       <div class="nav-collapse">
         <ul class="nav">
           <li><%= link_to 'Home', root_path %></li>
@@ -42,9 +43,10 @@
           </li>
         </ul>
       </div>
-    </div>
-  </div>
-</div>
+<% end -%>
+    </div><!--.container-->
+  </div><!--.navbar-inner-->
+</div><!--.navbar-->
 
 <div style="height:60px;"></div>
 <div class="container">
