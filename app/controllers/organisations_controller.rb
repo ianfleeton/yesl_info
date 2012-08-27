@@ -1,6 +1,6 @@
 class OrganisationsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_organisation, only: [:show, :contacted]
+  before_filter :find_organisation, only: [:show, :destroy, :contacted]
 
   def index
     @organisations = Organisation.find(:all, :order => 'name')
@@ -21,8 +21,13 @@ class OrganisationsController < ApplicationController
       flash[:notice] = "Successfully added new organisation."
       redirect_to :action => "show", :id => @organisation
     else
-      render :action => "new"
+      render action: 'new'
     end
+  end
+
+  def destroy
+    @organisation.destroy
+    redirect_to organisations_path, notice: "#{@organisation.name} deleted."
   end
 
   def contacts
