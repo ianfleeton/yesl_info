@@ -30,5 +30,5 @@
   <%= form.label :forwarding, 'Forwards to' %>
   <%= form.collection_select :forwarding_id, @domain.organisation.domains, :id, :name, {:prompt => 'No forwarding'} %>
 
-  <br><%= form.submit class: 'btn-primary' %>
+  <br><%= form.submit class: 'btn btn-primary' %>
 <% end %>

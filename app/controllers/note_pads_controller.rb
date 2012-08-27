@@ -25,7 +25,7 @@ class NotePadsController < ApplicationController
       flash[:notice] = 'Note pad saved.'
       redirect_to organisation_path(@note_pad.organisation)
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 

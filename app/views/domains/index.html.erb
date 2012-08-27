@@ -19,7 +19,7 @@
   	<h2><%= this_c.upcase %> <a href="#top" class="top">&#8593;</a></h2>
   	<ul>
   <% end %>
-  <li><%= link_to h(d.name), :action => 'show', :id => d %></li>
+  <li><%= link_to d.name, d %></li>
 <% end %>
 </ul>
 </div>

@@ -3,6 +3,6 @@ class TimesheetEntriesController < ApplicationController
 
   def index
     @staff = User.staff
-    @timesheet_entries = TimesheetEntry.all(:order => 'started_at DESC', :limit => 40)
+    @timesheet_entries = TimesheetEntry.order('started_at DESC').limit(40)
   end
 end
