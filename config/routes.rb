@@ -94,6 +94,12 @@ YeslInfo::Application.routes.draw do
 
   resources :timesheet_entries
 
+  resources :to_dos do
+    collection do
+      post 'update_multiple'
+    end
+  end
+
   resources :users do
     collection do
       get 'forgot_password'

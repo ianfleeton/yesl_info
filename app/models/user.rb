@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :email_addresses, :dependent => :delete_all
   has_many :numbers, :dependent => :delete_all
   has_many :timesheet_entries, :dependent => :nullify
+  has_many :to_dos, foreign_key: 'assignee_id', order: 'completed, priority'
 
   # unencrypted password
   attr_accessor :password
@@ -75,6 +76,6 @@ class User < ActiveRecord::Base
   end 
 
   def self.staff
-    all :conditions => {:staff => true}, :order => 'name ASC'
+    all conditions: {staff: true}, order: 'name ASC'
   end
 end

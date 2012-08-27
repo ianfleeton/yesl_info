@@ -64,6 +64,14 @@
 
 <h2>To-do list</h2>
 
+<p>
+  <%= link_to 'Add', new_to_do_path(organisation_id: @organisation), class: 'btn' %>
+</p>
+
+<% unless @organisation.to_dos.empty? -%>
+<%= render partial: 'to_dos/to_do_list', locals: {to_dos: @organisation.to_dos} %>
+<% end -%>
+
 <h2>Note Pads</h2>
 <div class="list">
   <ul>

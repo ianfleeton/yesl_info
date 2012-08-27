@@ -1,0 +1,30 @@
+<% if @to_do.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@to_do.errors.count, "error") %> prohibited this to-do from being saved:</h2>
+
+  <ul>
+<% @to_do.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
+
+<%= form_for @to_do do |form| %>
+<%= form.label :organisation %>
+<%= form.collection_select :organisation_id, Organisation.order('name'), :id, :name %>
+<%= form.label :title %>
+<%= form.text_field :title %>
+<%= form.label :details %>
+<%= form.text_area :details, class: 'span6' %>
+<%= form.label :priority %>
+<%= select('to_do', 'priority', priority_options) %>
+<%= form.label :date_due %>
+<%= date_select :to_do, :date_due, {order: [:day, :month, :year]} %>
+<%= form.label :assignee_id, 'Assigned to' %>
+<%= select('to_do', 'assignee_id', staff_options) %>
+<%= form.label :setter_id, 'Set by' %>
+<%= select('to_do', 'setter_id', staff_options) %>
+<br><%= form.submit class: 'btn btn-primary' %>
+<% end %>

@@ -14,4 +14,7 @@ module UsersHelper
     image_tag(image_src, :alt => 'Gravatar', :class => 'gravatar')
   end
 
+  def staff_options
+    User.staff.map {|u| [u.name, u.id]}
+  end
 end

@@ -1,0 +1,38 @@
+<%= form_tag controller: 'to_dos', action: 'update_multiple' do %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="del">X</th>
+        <th>Task</th>
+        <th>For</th>
+        <th>Date Due</th>
+        <th>Priority</th>
+        <th>Est. Time</th>
+        <th>Assigned&nbsp;To</th>
+        <th>Set&nbsp;By</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+<% to_dos.each do |to_do| -%>
+      <tr>
+        <td><input type="checkbox" name="id[<%= to_do.id %>]"></td>
+        <td>
+          <%= completed if to_do.completed? %>
+          <strong><%= to_do.title %></strong><br>
+          <%= to_do.details %>
+        </td>
+        <td><%= link_to to_do.organisation.name, to_do.organisation %></td>
+        <td><%= to_do.date_due %></td>
+        <td><%= to_do.priority %></td>
+        <td><%= to_do.estimated_time %>m</td>
+        <td><%= to_do.assignee.name %></td>
+        <td><%= to_do.setter.name %></td>
+        <td><%= edit_button(to_do) %></td>
+      </tr>
+<% end -%>
+    </tbody>
+  </table>
+  <%= submit_tag 'Delete Selected', class: 'btn', data: {confirm: 'Are you sure?'} %>
+  <%= submit_tag 'Mark Selected as Complete', class: 'btn' %>
+<% end %>
