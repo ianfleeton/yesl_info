@@ -74,6 +74,11 @@ module ApplicationHelper
     end
   end
 
+  def add_button(path)
+    link_to '<i class="icon-plus-sign"></i> Add'.html_safe,
+    path, class: 'btn'
+  end
+
   def edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),

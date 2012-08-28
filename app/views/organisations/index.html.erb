@@ -1,8 +1,5 @@
-<%= page_header 'Organisations' %>
-
-<p>
-  <%= link_to 'Add', new_organisation_path, class: 'btn btn-primary' %>
-</p>
+<%= page_header(('Organisations ' + add_button(new_organisation_path))
+  .html_safe) %>
 
 <%= alpha_links.html_safe %>
 
