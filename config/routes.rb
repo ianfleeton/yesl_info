@@ -81,6 +81,8 @@ YeslInfo::Application.routes.draw do
 
   resources :note_pads
 
+  resources :numbers
+
   resources :organisations do
     collection do
       get 'contacts'

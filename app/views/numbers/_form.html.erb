@@ -1,0 +1,24 @@
+<% if @number.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@number.errors.count, "error") %> prohibited this number from being saved:</h2>
+
+  <ul>
+<% @number.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
+
+<%= form_for @number do |form| %>
+<%= form.hidden_field :organisation_id %>
+<%= form.hidden_field :user_id %>
+<%= form.label :number %>
+<%= form.text_field :number %>
+<%= form.label :type %>
+<%= form.select :tel_type, [['tel', 'tel'], ['mob', 'mob'], ['fax', 'fax']] %>
+<%= form.label :note %>
+<%= form.text_field :note, class: 'span6' %>
+<br><%= form.submit class: 'btn btn-primary' %>
+<% end %>

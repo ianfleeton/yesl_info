@@ -43,10 +43,28 @@
     </table>
 <% end -%>
   </div>
-  <div class="span6">
+
+  <div class="tab-pane" id="numbers">
     <h2>Contact numbers</h2>
+    <p>
+      <%= add_button(new_number_path(organisation_id: @organisation)) %>
+    </p>
+<% unless @organisation.numbers.empty? -%>
+    <table class="table table-bordered">
+<% @organisation.numbers.each do |number| -%>
+      <tr>
+        <td><%= number.number %></td>
+        <td><%= number.tel_type %></td>
+        <td><%= number.note %></td>
+        <td>
+          <%= edit_button(number) %>
+          <%= delete_button(number) %>
+        </td>
+      </tr>
+<% end -%>
+    </table>
+<% end -%>
   </div>
-</div>
 
 <h2>Addresses</h2>
 <div class="list">
