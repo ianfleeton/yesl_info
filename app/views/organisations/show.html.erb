@@ -82,6 +82,7 @@
     <p>
       <%= link_to 'Add', new_note_pad_path(organisation_id: @organisation), class: 'btn' %>
     </p>
+<% unless @organisation.note_pads.empty? -%>
     <table class="table table-bordered">
 <% @organisation.note_pads.each do |np| -%>
       <tr>
@@ -97,5 +98,6 @@
       </tr>
 <% end -%>
     </table>
+<% end -%>
   </div>
 </div>
