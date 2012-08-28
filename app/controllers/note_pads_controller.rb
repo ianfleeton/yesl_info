@@ -31,8 +31,7 @@ class NotePadsController < ApplicationController
 
   def destroy
     @note_pad.destroy
-    flash[:notice] = "Note pad deleted."
-    redirect_to organisation_path(@note_pad.organisation)
+    redirect_to @note_pad.organisation, notice: 'Note pad deleted.'
   end
 
   protected

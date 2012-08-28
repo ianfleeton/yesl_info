@@ -22,6 +22,7 @@
 </div>
 <div class="row">
   <div class="span6">
+<div class="tab-content">
     <h2>Email addresses</h2>
     <p>
       <%= link_to 'Add', new_email_address_path(organisation_id: @organisation), class: 'btn' %>
@@ -76,12 +77,25 @@
 <%= render partial: 'to_dos/to_do_list', locals: {to_dos: @organisation.to_dos} %>
 <% end -%>
 
-<h2>Note Pads</h2>
-<div class="list">
-  <ul>
-    <li><%= link_to 'Add', new_note_pad_path(organisation_id: @organisation), class: 'btn' %></li>
-  <% @organisation.note_pads.each do |np| -%>
-  <li><%= link_to np.title, edit_note_pad_path(np) %></li>
-  <% end -%>
-  </ul>
+  <div class="tab-pane" id="notes">
+    <h2>Note Pads</h2>
+    <p>
+      <%= link_to 'Add', new_note_pad_path(organisation_id: @organisation), class: 'btn' %>
+    </p>
+    <table class="table table-bordered">
+<% @organisation.note_pads.each do |np| -%>
+      <tr>
+        <td>
+          <strong><%= np.title %></strong><br>
+          <pre><%= np.content[0..255] %></pre>
+        </td>
+        <td><%= np.updated_at %></td>
+        <td>
+          <%= edit_button(np) %>
+          <%= delete_button(np) %>
+        </td>
+      </tr>
+<% end -%>
+    </table>
+  </div>
 </div>
