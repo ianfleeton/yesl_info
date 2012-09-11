@@ -25,8 +25,8 @@ class EmailAddressesController < ApplicationController
   end
 
   def update
-    if @email_address.update_attributes(params[:domain])
       redirect_to @email_address.organisation, notice: 'Email address updated.'
+    if @email_address.update_attributes(params[:email_address])
     else
       render action: 'edit'
     end
