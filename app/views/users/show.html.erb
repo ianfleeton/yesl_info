@@ -37,6 +37,24 @@
       <tr><th>Name</th><td><%= @user.name %></td></tr>
       <tr><th>Organisation</th><td><%= link_to @user.organisation.name, organisation_path(@user.organisation) %></td></tr>
       <tr><th>Login email address</th><td><%= mail_to @user.email %></td></tr>
+      <tr>
+        <th>Numbers</th>
+        <td>
+<% @user.numbers.each do |n| -%>
+          <%= mini_edit_button(n) %> <%= mini_delete_button(n) %>
+          <%= n.tel_type %>: <%= n.number %><br>
+<% end -%>
+        </td>
+      </tr>
+      <tr>
+        <th>Email addresses</th>
+        <td>
+<% @user.email_addresses.each do |e| -%>
+          <%= mini_edit_button(e) %> <%= mini_delete_button(e) %>
+          <%= mail_to(e.address) %><br>
+<% end -%>
+        </td>
+      </tr>
     </table>
   </div>
 </div>

@@ -33,6 +33,11 @@
 <% @organisation.users.each do |u| -%>
       <tr>
         <td><%= link_to u.name, u %></td>
+        <td>
+<%= u.numbers.map {|n| "#{n.tel_type}: #{n.number}"}.join(', ') %>
+<br>
+<%= u.email_addresses.map {|e| mail_to(e.address)}.join(', ').html_safe %>
+        </td>
       </tr>
 <% end -%>
     </table>
