@@ -1,6 +1,17 @@
-<h1><%= link_to h(@hosting_account.domain.organisation.name), organisation_path(@hosting_account.domain.organisation) %>
-  &rarr; <%= link_to h(@hosting_account.domain.name), domain_path(@hosting_account.domain) %>
-  &rarr; Edit hosting</h1>
-<%= flash_notice %>
+<%= page_header('Edit Hosting Account') %>
+
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @hosting_account.domain.organisation.name, organisation_path(@hosting_account.domain.organisation) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to @hosting_account.domain.name, domain_path(@hosting_account.domain) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    Edit <%= @hosting_account.host_name %>
+  </li>
+</ul>
 
 <%= render 'form' %>

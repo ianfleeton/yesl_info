@@ -16,16 +16,15 @@
   </li>
 </ul>
 
-<%= flash_notice %>
-
 <p>
-  <%= link_to 'Edit', edit_hosting_account_path(@hosting_account), class: 'btn' %>
+  <%= edit_button(@hosting_account) %>
+  <%= delete_button(@hosting_account) %>
 </p>
 
 <table class="table">
   <tr>
     <th>Host name</th>
-    <td><%= link_to h(@hosting_account.host_name), 'http://' + @hosting_account.host_name %></td>
+    <td><%= link_to @hosting_account.host_name, 'http://' + @hosting_account.host_name %></td>
   </tr>
   <tr>
     <th>Host IP (nslookup)</th>

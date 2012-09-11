@@ -3,7 +3,7 @@ class OrganisationsController < ApplicationController
   before_filter :find_organisation, only: [:show, :destroy, :contacted]
 
   def index
-    @organisations = Organisation.find(:all, :order => 'name')
+    @organisations = Organisation.order('name')
   end
   
   def show

@@ -43,13 +43,17 @@
   </div>
   <div class="span6">
     <h2>Hosting accounts</h2>
-    <div class="list">
-      <ul>
-        <li><%= link_to 'Add', new_hosting_account_path(:domain_id => @domain.id), class: 'btn' %></li>
-        <% @domain.hosting_accounts.each do |a| -%>
-        <li><%= link_to a.host_name + ' on ' + a.ftp_host, hosting_account_path(a) %></li>
-        <% end -%>
-      </ul>
-    </div>
+    <p>
+      <%= add_button(new_hosting_account_path(domain_id: @domain.id)) %>
+    </p>
+<% unless @domain.hosting_accounts.empty? -%>
+    <table class="table table-bordered">
+<% @domain.hosting_accounts.each do |a| -%>
+      <tr>
+        <td><%= link_to a.host_name + ' on ' + a.ftp_host, hosting_account_path(a) %></td>
+      </tr>
+<% end -%>
+    </table>
+<% end -%>
   </div>
 </div>

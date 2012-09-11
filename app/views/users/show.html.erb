@@ -1,6 +1,11 @@
-<div class="page-header">
-  <h1><%= @user.name %></h1>
-</div>
+<% if admin? -%>
+<p style="float: right;">
+<%= edit_button(@user) %>
+<%= delete_button(@user) %>
+</p>
+<% end %>
+
+<%= page_header(@user.name) %>
 
 <ul class="breadcrumb">
 <% if admin? -%>
@@ -35,8 +40,3 @@
     </table>
   </div>
 </div>
-
-<% if admin? -%>
-<%= edit_button(@user) %>
-<%= delete_button(@user) %>
-<% end %>

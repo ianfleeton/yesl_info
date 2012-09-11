@@ -1,5 +1,8 @@
-<%= page_header(('Organisations ' + add_button(new_organisation_path))
-  .html_safe) %>
+<p style="float: right;">
+  <%= add_button(new_organisation_path) %>
+</p>
+
+<%= page_header('Organisations') %>
 
 <%= alpha_links.html_safe %>
 

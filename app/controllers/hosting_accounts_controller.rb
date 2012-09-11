@@ -27,10 +27,9 @@ class HostingAccountsController < ApplicationController
 
   def update
     if @hosting_account.update_attributes(params[:hosting_account])
-      flash[:notice] = 'Hosting account updated.'
-      redirect_to hosting_account_path(@hosting_account)
+      redirect_to @hosting_account, notice: 'Hosting account updated.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
