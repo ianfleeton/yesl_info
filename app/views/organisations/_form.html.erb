@@ -1,0 +1,24 @@
+<% if @organisation.errors.any? -%>
+<div class="alert alert-error fade in">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <h2><%= pluralize(@organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+
+  <ul>
+<% @organisation.errors.full_messages.each do |msg| -%>
+    <li><%= msg %></li>
+<% end -%>
+  </ul>
+</div>
+<% end -%>
+
+<%= form_for @organisation do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+	<label for="organisation_on_stop_true">On stop?</label>
+	<%= form.radio_button :on_stop, true, class: "radio" %> 
+	<label for="organisation_on_stop_true">Yes</label> 
+	<%= form.radio_button :on_stop, false, class: "radio" %> 
+	<label for="organisation_on_stop_false">No</label> 
+
+  <br><%= form.submit 'Save', class: 'btn btn-primary' %>
+<% end %>

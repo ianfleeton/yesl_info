@@ -1,4 +1,6 @@
 class Organisation < ActiveRecord::Base
+  attr_accessible :name, :on_stop
+
   has_many :domains, order: 'name', dependent: :destroy
   has_many :users, order: 'name', dependent: :destroy
   has_many :addresses, dependent: :delete_all

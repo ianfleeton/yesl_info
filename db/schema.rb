@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828073124) do
+ActiveRecord::Schema.define(:version => 20120911180530) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "organisation_id", :default => 0,  :null => false
@@ -90,12 +90,13 @@ ActiveRecord::Schema.define(:version => 20120828073124) do
   add_index "numbers", ["user_id"], :name => "index_numbers_on_user_id"
 
   create_table "organisations", :force => true do |t|
-    t.string   "name",           :default => "", :null => false
-    t.datetime "last_contacted",                 :null => false
-    t.integer  "contact_cycle",  :default => 90, :null => false
+    t.string   "name",           :default => "",    :null => false
+    t.datetime "last_contacted",                    :null => false
+    t.integer  "contact_cycle",  :default => 90,    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_viewed_at"
+    t.boolean  "on_stop",        :default => false, :null => false
   end
 
   add_index "organisations", ["last_viewed_at"], :name => "index_organisations_on_last_viewed_at"

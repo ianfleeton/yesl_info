@@ -1,6 +1,6 @@
 class OrganisationsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_organisation, only: [:show, :destroy, :contacted]
+  before_filter :find_organisation, only: [:show, :edit, :update, :destroy, :contacted]
 
   def index
     @organisations = Organisation.order('name')
@@ -22,6 +22,17 @@ class OrganisationsController < ApplicationController
       redirect_to :action => "show", :id => @organisation
     else
       render action: 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @organisation.update_attributes(params[:organisation])
+      redirect_to @organisation, notice: 'Organisation updated.'
+    else
+      render action: 'edit'
     end
   end
 

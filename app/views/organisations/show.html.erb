@@ -1,4 +1,5 @@
 <p style="float: right">
+  <%= edit_button(@organisation) %>
   <%= delete_button(@organisation) %>
 </p>
 
@@ -10,6 +11,16 @@
 </p>
 
 <p><%= link_to 'I have recently contacted this organisation', contacted_organisation_path, data: { method: 'post' } %></p>
+
+<% if @organisation.on_stop? -%>
+<div class="hero-unit">
+  <h1>On stop!</h1>
+  <p>
+    <%= @organisation.name %> is on stop. No new work should be carried out
+    for <%= @organisation.name %> without first speaking to John.
+  </p>
+</div>
+<% end -%>
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#people" data-toggle="tab">People</a></li>
@@ -94,11 +105,13 @@
     <p>
       <%= add_button(new_address_path(organisation_id: @organisation)) %>
     </p>
-    <ul>
-      <% @organisation.addresses.each do |a| -%>
-      <li><%= link_to format_address_single_line(a), edit_address_path(a) %></li>
-      <% end -%>
-    </ul>
+    <table class="table table-bordered">
+<% @organisation.addresses.each do |a| -%>
+      <tr>
+        <td><%= format_address_single_line(a) %></td>
+        <td><%= edit_button(a) %> <%= delete_button(a) %></td>
+<% end -%>
+    </table>
   </div>
 
   <div class="tab-pane" id="domains">
