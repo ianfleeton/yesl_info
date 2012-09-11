@@ -10,14 +10,14 @@ class EmailAddressesController < ApplicationController
   def create
     @email_address = EmailAddress.new(params[:email_address])
     if @email_address.save
-      flash[:notice] = "Added new email address."
+      flash[:notice] = 'Added new email address.'
       if @email_address.user
         redirect_to @email_address.user
       else
         redirect_to @email_address.organisation
       end
     else
-      render :action => "new"
+      render action: 'new'
     end
   end
 
@@ -25,8 +25,9 @@ class EmailAddressesController < ApplicationController
   end
 
   def update
-      redirect_to @email_address.organisation, notice: 'Email address updated.'
     if @email_address.update_attributes(params[:email_address])
+      flash[:notice] = 'Email address updated.'
+      redirect_to(@email_address.organisation ? @email_address.organisation : @email_address.user)
     else
       render action: 'edit'
     end
@@ -34,7 +35,8 @@ class EmailAddressesController < ApplicationController
 
   def destroy
     @email_address.destroy
-    redirect_to @email_address.organisation, notice: 'Email address deleted.'
+    flash[:notice] = 'Email address deleted.'
+    redirect_to(@email_address.organisation ? @email_address.organisation : @email_address.user)
   end
 
   protected

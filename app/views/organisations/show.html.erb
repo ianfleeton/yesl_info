@@ -11,35 +11,53 @@
 
 <p><%= link_to 'I have recently contacted this organisation', contacted_organisation_path, data: { method: 'post' } %></p>
 
-<h2>Users</h2>
-<div class="list">
-  <ul>
-    <% @organisation.users.each do |u| -%>
-    <li><%= link_to u.name, u %></li>
-    <% end -%>
-  </ul>
-</div>
-<div class="row">
-  <div class="span6">
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#people" data-toggle="tab">People</a></li>
+  <li><a href="#emails" data-toggle="tab">Emails</a></li>
+  <li><a href="#numbers" data-toggle="tab">Numbers</a></li>
+  <li><a href="#addresses" data-toggle="tab">Addresses</a></li>
+  <li><a href="#domains" data-toggle="tab">Domains</a></li>
+  <li><a href="#databases" data-toggle="tab">Databases</a></li>
+  <li><a href="#to-dos" data-toggle="tab">To-dos</a></li>
+  <li><a href="#notes" data-toggle="tab">Notes</a></li>
+</ul>
+
 <div class="tab-content">
+  <div class="tab-pane active" id="people">
+    <h2>People</h2>
     <p>
       <%= add_button(new_user_path(organisation_id: @organisation)) %>
     </p>
+<% unless @organisation.users.empty? -%>
+    <table class="table table-bordered">
+<% @organisation.users.each do |u| -%>
+      <tr>
+        <td><%= link_to u.name, u %></td>
+      </tr>
+<% end -%>
+    </table>
+<% end -%>
+  </div>
+
+  <div class="tab-pane" id="emails">
     <h2>Email addresses</h2>
     <p>
       <%= add_button(new_email_address_path(organisation_id: @organisation)) %>
     </p>
 <% unless @organisation.email_addresses.empty? -%>
     <table class="table table-bordered">
-    <% @organisation.email_addresses.each do |a| -%>
+<% @organisation.email_addresses.each do |a| -%>
       <tr>
-        <td><%= mail_to a.address, a.address %></td>
+        <td>
+          <%= mail_to a.address, a.address %>
+          <%= '<br>Password: '.html_safe + a.password unless a.password.blank? %>
+        </td>
         <td>
           <%= edit_button(a) %>
           <%= delete_button(a) %>
         </td>
       </tr>
-    <% end -%>
+<% end -%>
     </table>
 <% end -%>
   </div>
@@ -66,40 +84,45 @@
 <% end -%>
   </div>
 
-<h2>Addresses</h2>
-<div class="list">
-  <ul>
-    <% @organisation.addresses.each do |a| -%>
-    <li><%= link_to format_address_single_line(a), edit_address_path(a) %></li>
-    <% end -%>
-  </ul>
-</div>
-<h2>Domains</h2>
-<div class="list">
-  <ul>
-  <% @organisation.domains.each do |d| -%>
-  <li><%= link_to d.name, domain_path(d) %></li>
-  <% end -%>
-  </ul>
-</div>
+  <div class="tab-pane" id="addresses">
+    <h2>Addresses</h2>
     <p>
       <%= add_button(new_address_path(organisation_id: @organisation)) %>
     </p>
+    <ul>
+      <% @organisation.addresses.each do |a| -%>
+      <li><%= link_to format_address_single_line(a), edit_address_path(a) %></li>
+      <% end -%>
+    </ul>
+  </div>
 
-<h2>Databases</h2>
+  <div class="tab-pane" id="domains">
+    <h2>Domains</h2>
     <p>
       <%= add_button(new_domain_path(organisation_id: @organisation)) %>
     </p>
+    <ul>
+<% @organisation.domains.each do |d| -%>
+      <li><%= link_to d.name, domain_path(d) %></li>
+<% end -%>
+    </ul>
+  </div>
 
-<h2>To-do list</h2>
+  <div class="tab-pane" id="databases">
+    <h2>Databases</h2>
+  </div>
+
+  <div class="tab-pane" id="to-dos">
+    <h2>To-do list</h2>
 
     <p>
       <%= add_button(new_to_do_path(organisation_id: @organisation)) %>
     </p>
 
 <% unless @organisation.to_dos.empty? -%>
-<%= render partial: 'to_dos/to_do_list', locals: {to_dos: @organisation.to_dos} %>
+    <%= render partial: 'to_dos/to_do_list', locals: {to_dos: @organisation.to_dos} %>
 <% end -%>
+  </div>
 
   <div class="tab-pane" id="notes">
     <h2>Note Pads</h2>
