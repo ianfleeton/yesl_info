@@ -92,7 +92,9 @@ YeslInfo::Application.routes.draw do
     end
   end
 
-  resources :sessions
+  resources :sessions do
+    get 'destroy', on: :collection
+  end
 
   resources :timesheet_entries
 
