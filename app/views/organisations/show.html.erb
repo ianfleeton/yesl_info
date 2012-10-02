@@ -31,6 +31,7 @@
   <li><a href="#databases" data-toggle="tab">Databases</a></li>
   <li><a href="#to-dos" data-toggle="tab">To-dos</a></li>
   <li><a href="#notes" data-toggle="tab">Notes</a></li>
+  <li><a href="#timesheet" data-toggle="tab">Timesheet</a></li>
 </ul>
 
 <div class="tab-content">
@@ -164,5 +165,21 @@
 <% end -%>
     </table>
 <% end -%>
+  </div>
+
+  <div class="tab-pane" id="timesheet">
+    <h2>Timesheet</h2>
+
+    <script>
+    $(function() {
+      $('.timesheet th').hide();
+      $('.timesheet td').hide();
+      $('.timesheet th + th').show();
+      $('.timesheet td + td').show();
+    });
+    </script>
+
+    <% @timesheet_entries = @organisation.timesheet_entries.limit(100) %>
+    <%= render 'timesheet_entries/table' %>
   </div>
 </div>

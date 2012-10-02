@@ -1,0 +1,28 @@
+<table class="timesheet table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Organisation</th>
+      <th>When</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Time</th>
+      <th>Who</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @timesheet_entries.each do |e| -%>
+    <tr<%= ' class="success"'.html_safe if e.chargeable? %>>
+      <td><%= link_to e.organisation.name, e.organisation %></td>
+      <td><%= format_time(e.started_at) %></td>
+      <td><%= e.description %></td>
+      <td class="numeric"><%= number_to_currency(e.invoice_value, unit: '£') %></td>
+      <td class="numeric"><%= e.minutes %>m</td>
+<% if e.user -%>
+      <td><%= link_to e.user.name, e.user %></td>
+<% else -%>
+      <td>Unknown</td>
+<% end -%>
+    </tr>
+<% end -%>
+  </tbody>
+</table>

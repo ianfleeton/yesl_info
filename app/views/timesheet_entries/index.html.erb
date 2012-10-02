@@ -33,7 +33,9 @@
         </small>
       </td>
       <td>
-        <%= hours_logged_this_week_by(member) %>
+        <small>
+          <%= hours_logged_this_week_by(member) %>
+        </small>
       </td>
       <td>
         <%= member.hours_logged_to_date(28) %>
@@ -44,28 +46,4 @@
 </table>
 
 <h2>Recent entries</h2>
-
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Organisation</th>
-      <th>When</th>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Time</th>
-      <th>Who</th>
-    </tr>
-  </thead>
-  <tbody>
-<% @timesheet_entries.each do |e| -%>
-    <tr>
-      <td><%= link_to e.organisation.name, e.organisation %></td>
-      <td><%= format_time(e.started_at) %></td>
-      <td><%= e.description %></td>
-      <td class="numeric"><%= number_to_currency(e.invoice_value, :unit => '£') %></td>
-      <td class="numeric"><%= e.minutes %>m</td>
-      <td><%= link_to e.user.name, e.user %></td>
-    </tr>
-<% end -%>
-  </tbody>
-</table>
+<%= render 'table' %>

@@ -7,7 +7,7 @@ class Organisation < ActiveRecord::Base
   has_many :email_addresses, dependent: :delete_all
   has_many :note_pads, dependent: :destroy
   has_many :numbers, dependent: :delete_all
-  has_many :timesheet_entries, dependent: :delete_all
+  has_many :timesheet_entries, dependent: :delete_all, order: 'started_at DESC'
   has_many :to_dos, order: 'priority DESC', dependent: :delete_all
 
   scope :recently_viewed, order: 'last_viewed_at DESC', limit: 10
