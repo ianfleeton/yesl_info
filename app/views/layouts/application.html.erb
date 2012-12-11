@@ -22,12 +22,12 @@
 <% if admin? -%>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to 'Organisations', organisations_path %></li>
-          <li><%= link_to 'Domains', domains_path %></li>
-          <li><%= link_to 'Timesheet', timesheet_entries_path %></li>
-          <li><%= link_to 'People', users_path %></li>
-          <li><%= link_to 'To-Dos', to_dos_path %></a></li>
-          <li><%= link_to 'Links', links_path %></li>
+          <li<%= ' class="active"'.html_safe if current_page?(organisations_path) %>><%= link_to 'Organisations', organisations_path %></li>
+          <li<%= ' class="active"'.html_safe if current_page?(domains_path) %>><%= link_to 'Domains', domains_path %></li>
+          <li<%= ' class="active"'.html_safe if current_page?(timesheet_entries_path) %>><%= link_to 'Timesheet', timesheet_entries_path %></li>
+          <li<%= ' class="active"'.html_safe if current_page?(users_path) %>><%= link_to 'People', users_path %></li>
+          <li<%= ' class="active"'.html_safe if current_page?(to_dos_path) %>><%= link_to 'To-Dos', to_dos_path %></a></li>
+          <li<%= ' class="active"'.html_safe if current_page?(links_path) %>><%= link_to 'Links', links_path %></li>
         </ul>
         <div class="pull-right">
         <ul class="nav">
