@@ -1,0 +1,21 @@
+<%= form_for(@timesheet_entry) do |f| %>
+<%= f.label :organisation %>
+<%= f.collection_select :organisation_id, Organisation.order('name'), :id, :name %>
+<%= f.label :description %>
+<%= f.text_area :description %>
+<%= f.label :minutes %>
+<%= f.text_field :minutes %>
+<%= f.label :invoice_value %>
+<%= f.text_field :invoice_value %>
+<label>
+  <%= f.check_box :chargeable %>
+  Chargeable
+</label>
+<%= f.label :user_id, 'Who' %>
+<%= select('timesheet_entry', 'user_id', staff_options) %>
+<%= f.label :started_at %>
+<%= datetime_select :timesheet_entry, :started_at, {order: [:day, :month, :year]} %>
+<p>
+  <%= f.submit class: 'btn' %>
+</p>
+<% end %>
