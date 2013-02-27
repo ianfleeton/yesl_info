@@ -1,6 +1,4 @@
 class Number < ActiveRecord::Base
-  attr_accessible :note, :number, :organisation_id, :tel_type, :user_id
-
   belongs_to :organisation, touch: true
   belongs_to :user, touch: true
 
