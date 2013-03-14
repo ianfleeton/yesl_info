@@ -1,4 +1,5 @@
 class EmailAddressesController < ApplicationController
+  before_filter :admin_required
   before_filter :find_email_address, only: [:edit, :update, :destroy]
 
   def new
