@@ -46,7 +46,7 @@
       <tr>
         <td><%= link_to u.name, u %></td>
         <td>
-<%= u.numbers.map {|n| "#{n.tel_type}: #{n.number}"}.join(', ') %>
+<%= u.numbers.map {|n| "#{n.teltype}: #{n.number}"}.join(', ') %>
 <br>
 <%= u.email_addresses.map {|e| mail_to(e.address)}.join(', ').html_safe %>
         </td>
@@ -89,7 +89,7 @@
 <% @organisation.numbers.each do |number| -%>
       <tr>
         <td><%= number.number %></td>
-        <td><%= number.tel_type %></td>
+        <td><%= number.teltype %></td>
         <td><%= number.note %></td>
         <td>
           <%= edit_button(number) %>

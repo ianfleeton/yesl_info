@@ -40,7 +40,7 @@
         <td>
 <% @user.numbers.each do |n| -%>
           <%= mini_edit_button(n) %> <%= mini_delete_button(n) %>
-          <%= n.tel_type %>: <%= n.number %><br>
+          <%= n.teltype %>: <%= n.number %><br>
 <% end -%>
         </td>
       </tr>

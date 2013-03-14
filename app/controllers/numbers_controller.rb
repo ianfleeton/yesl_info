@@ -9,7 +9,7 @@ class NumbersController < ApplicationController
   end
 
   def create
-    @number = Number.new(params[:number])
+    @number = Number.new(number_params)
     if @number.save
       flash[:notice] = 'Added new number.'
       if @number.user
@@ -26,7 +26,7 @@ class NumbersController < ApplicationController
   end
 
   def update
-    if @number.update_attributes(params[:number])
+    if @number.update_attributes(number_params)
       flash[:notice] = 'Number updated.'
       redirect_to(@number.organisation ? @number.organisation : @number.user)
     else
@@ -44,5 +44,9 @@ class NumbersController < ApplicationController
 
   def find_number
     @number = Number.find(params[:id])
+  end
+
+  def number_params
+    params.require(:number).permit(:number, :organisation_id, :teltype)
   end
 end
