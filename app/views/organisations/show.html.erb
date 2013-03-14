@@ -147,6 +147,35 @@ $(function() {
 
   <div class="tab-pane" id="databases">
     <h2>Databases</h2>
+    <p>
+      <%= add_button(new_database_path(organisation_id: @organisation)) %>
+    </p>
+<% unless @organisation.databases.empty? -%>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Host</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+<% @organisation.databases.each do |db| -%>
+      <tr>
+        <td><%= db.host %></td>
+        <td><%= db.name %></td>
+        <td><%= db.username %></td>
+        <td><%= db.password %></td>
+        <td><%= db.location %></td>
+        <td>
+          <%= edit_button(db) %>
+          <%= delete_button(db) %>
+        </td>
+      </tr>
+<% end -%>
+    </table>
+<% end -%>
   </div>
 
   <div class="tab-pane" id="to-dos">

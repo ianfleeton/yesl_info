@@ -1,0 +1,17 @@
+<%= page_header('Edit Database') %>
+
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @database.organisation.name, @database.organisation %>
+  </li>
+  <li>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    Edit Database
+  </li>
+</ul>
+
+<%= render 'form' %>
+
+<%= button_to "Delete", @database, method: :delete, class: 'btn btn-danger' %>

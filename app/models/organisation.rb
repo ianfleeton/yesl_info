@@ -1,4 +1,5 @@
 class Organisation < ActiveRecord::Base
+  has_many :databases, dependent: :delete_all
   has_many :domains, order: 'name', dependent: :destroy
   has_many :users, order: 'name', dependent: :destroy
   has_many :addresses, dependent: :delete_all

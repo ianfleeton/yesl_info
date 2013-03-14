@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130314123019) do
+ActiveRecord::Schema.define(version: 20130314140006) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20130314123019) do
   end
 
   add_index "addresses", ["organisation_id"], name: "index_addresses_on_organisation_id"
+
+  create_table "databases", force: true do |t|
+    t.string   "host"
+    t.string   "name"
+    t.string   "username"
+    t.string   "password"
+    t.integer  "organisation_id"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "databases", ["organisation_id"], name: "index_databases_on_organisation_id"
 
   create_table "domains", force: true do |t|
     t.integer  "organisation_id", default: 0,    null: false

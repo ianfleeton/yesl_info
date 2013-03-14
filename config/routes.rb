@@ -54,6 +54,8 @@ YeslInfo::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   resources :addresses
 
+  resources :databases
+
   resources :domains do
     member do
       get 'nslookup'
