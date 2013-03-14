@@ -23,39 +23,29 @@
   </li>
 </ul>
 
-<div class="row">
-  <div class="span6">
-    <p>
-      <%= gravatar(@user.email) %>
-      <a href="http://en.gravatar.com/" class="btn btn-mini">Change my picture</a>
-    </p>
-  </div>
-  <div class="span6">
-    <table class="table">
-      <tr><th>Name</th><td><%= @user.name %></td></tr>
-      <tr><th>Organisation</th><td><%= link_to @user.organisation.name, organisation_path(@user.organisation) %></td></tr>
-      <tr><th>Login email address</th><td><%= mail_to @user.email %></td></tr>
-      <tr>
-        <th>Numbers</th>
-        <td>
+<table class="table">
+  <tr><th>Name</th><td><%= @user.name %></td></tr>
+  <tr><th>Organisation</th><td><%= link_to @user.organisation.name, organisation_path(@user.organisation) %></td></tr>
+  <tr><th>Login email address</th><td><%= mail_to @user.email %></td></tr>
+  <tr>
+    <th>Numbers</th>
+    <td>
 <% @user.numbers.each do |n| -%>
-          <%= mini_edit_button(n) %> <%= mini_delete_button(n) %>
-          <%= n.teltype %>: <%= n.number %><br>
+      <%= mini_edit_button(n) %> <%= mini_delete_button(n) %>
+      <%= n.teltype %>: <%= n.number %><br>
 <% end -%>
-        </td>
-      </tr>
-      <tr>
-        <th>Email addresses</th>
-        <td>
+    </td>
+  </tr>
+  <tr>
+    <th>Email addresses</th>
+    <td>
 <% @user.email_addresses.each do |e| -%>
-          <%= mini_edit_button(e) %> <%= mini_delete_button(e) %>
-          <%= mail_to(e.address) %><br>
+      <%= mini_edit_button(e) %> <%= mini_delete_button(e) %>
+      <%= mail_to(e.address) %><br>
 <% end -%>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+    </td>
+  </tr>
+</table>
 
 <h2>Timesheet</h2>
 
