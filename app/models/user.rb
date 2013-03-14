@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     
   # validation
   validates_length_of     :email, :within => 3..100
-  validates_uniqueness_of :email, :case_sensitive => false, :message => 'has already been taken. If you have forgotten your password, contact us at <a href="mailto:' + EMAIL + '">' + EMAIL + '</a> to request a new one.'
+  validates_uniqueness_of :email, :case_sensitive => false, :message => 'has already been taken. If you have forgotten your password, contact us at ' + EMAIL + ' to request a new one.'
   
   validates_presence_of   :name
   validates_length_of     :password, :within => 4..40,
