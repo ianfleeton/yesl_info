@@ -8,7 +8,7 @@ class EmailAddressesController < ApplicationController
   end
 
   def create
-    @email_address = EmailAddress.new(params[:email_address])
+    @email_address = EmailAddress.new(email_address_params)
     if @email_address.save
       flash[:notice] = 'Added new email address.'
       if @email_address.user
@@ -25,7 +25,7 @@ class EmailAddressesController < ApplicationController
   end
 
   def update
-    if @email_address.update_attributes(params[:email_address])
+    if @email_address.update_attributes(email_address_params)
       flash[:notice] = 'Email address updated.'
       redirect_to(@email_address.organisation ? @email_address.organisation : @email_address.user)
     else
@@ -43,5 +43,9 @@ class EmailAddressesController < ApplicationController
 
   def find_email_address
     @email_address = EmailAddress.find(params[:id])
+  end
+
+  def email_address_params
+    params.require(:email_address).permit(:address, :organisation_id, :password, :user_id)
   end
 end
