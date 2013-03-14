@@ -1,3 +1,21 @@
+<script>
+$(function() {
+  $('.nav-tabs a').on('show', function() {
+    $.cookie('organisation-pane', $(this).attr('href'));
+  });
+
+  panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#to-dos', '#notes', '#timesheet']
+
+  for(var i = 0; i < panes.length; i++) {
+    var id = panes[i];
+    if($.cookie('organisation-pane') == id) {
+      $('a[href="' + id + '"]').tab('show');
+    }
+  }
+});
+</script>
+
+
 <p style="float: right">
   <%= edit_button(@organisation) %>
   <%= delete_button(@organisation) %>
