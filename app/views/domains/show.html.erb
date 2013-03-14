@@ -13,13 +13,13 @@
 </ul>
 
 <%= flash_notice %>
-<div class="btn-group">
+<p class="btn-group">
   <%= edit_button(@domain) %>
   <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'btn' %>
   <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'btn' %>
   <%= delete_button(@domain) %>
-</div>
-<br>
+</p>
+
 <div class="row">
   <div class="span6">
     <table class="table table-bordered table-striped">
