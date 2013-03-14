@@ -14,12 +14,11 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     @user.admin = false
     
     if @user.save
-      flash[:notice] = "Successfully added new user."
-      redirect_to :action => "show", :id => @user.id
+      redirect_to @user, notice: 'Successfully added new user.'
     else
       render :action => "new"
     end
@@ -29,8 +28,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user.admin = params[:user][:admin] if admin?
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(admin? ? user_params_for_admin : user_params)
       flash[:notice] = "User successfully updated."
       redirect_to :action => "show", :id => @user.id
     else
@@ -91,5 +89,13 @@ class UsersController < ApplicationController
   
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :name, :password)
+  end
+
+  def user_params_for_admin
+    params.require(:user).permit(:admin, :email, :name, :organisation_id, :password, :staff)
   end
 end

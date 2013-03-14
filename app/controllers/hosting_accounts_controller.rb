@@ -13,7 +13,7 @@ class HostingAccountsController < ApplicationController
   end
 
   def create
-    @hosting_account = HostingAccount.new(params[:hosting_account])
+    @hosting_account = HostingAccount.new(hosting_account_params)
     if @hosting_account.save
       flash[:notice] = "Added new hosting account."
       redirect_to hosting_account_path(@hosting_account)
@@ -26,7 +26,7 @@ class HostingAccountsController < ApplicationController
   end
 
   def update
-    if @hosting_account.update_attributes(params[:hosting_account])
+    if @hosting_account.update_attributes(hosting_account_params)
       redirect_to @hosting_account, notice: 'Hosting account updated.'
     else
       render action: 'edit'
@@ -66,5 +66,9 @@ class HostingAccountsController < ApplicationController
       flash[:notice] = "That hosting account doesn't exist."
       redirect_to organisations_path
     end
+  end
+
+  def hosting_account_params
+    params.require(:hosting_account).permit(:annual_fee, :backed_up_on, :backup_cycle, :domain_id, :ftp_host, :host_name, :password, :started_on, :username)
   end
 end
