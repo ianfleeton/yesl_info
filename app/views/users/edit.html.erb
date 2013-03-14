@@ -36,14 +36,16 @@
 </ul>
 
 <div class="form"> 
-	<%= form_for @user do |form| %>
+  <%= form_for @user do |form| %>
 
-                 <%= form.label :name %>
-		<%= form.text_field :name, :size => 35, :class => "text" %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
 
+  <%= form.label :email %>
+  <%= form.email_field :email %>
 
-		<%= form.label :email %>
-		<%= form.text_field :email, :size => 35, :class => "text" %>
+  <%= form.label :password %>
+  <%= form.password_field :password %>
 
 <% if admin? %>
 	<label class="radio">

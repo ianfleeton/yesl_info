@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   # before save - create salt, encrypt password
   def encrypt_password
     return if password.blank?
-    if new_record?
+    if salt.blank?
       self.salt = Digest::SHA1.hexdigest("--#{Time.now}--#{email}--")
     end
     self.encrypted_password = User.encrypt(password, salt)
