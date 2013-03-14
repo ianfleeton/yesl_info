@@ -8,7 +8,7 @@ class NotePadsController < ApplicationController
   end
 
   def create
-    @note_pad = NotePad.new(params[:note_pad])
+    @note_pad = NotePad.new(note_pad_params)
     if @note_pad.save
       flash[:notice] = "Note pad saved."
       redirect_to organisation_path(@note_pad.organisation)
@@ -21,7 +21,7 @@ class NotePadsController < ApplicationController
   end
 
   def update
-    if @note_pad.update_attributes(params[:note_pad])
+    if @note_pad.update_attributes(note_pad_params)
       flash[:notice] = 'Note pad saved.'
       redirect_to organisation_path(@note_pad.organisation)
     else
@@ -38,5 +38,9 @@ class NotePadsController < ApplicationController
 
   def find_note_pad
     @note_pad = NotePad.find(params[:id])
+  end
+
+  def note_pad_params
+    params.require(:note_pad).permit(:content, :organisation_id, :title)
   end
 end
