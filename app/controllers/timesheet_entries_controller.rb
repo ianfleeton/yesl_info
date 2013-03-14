@@ -12,7 +12,7 @@ class TimesheetEntriesController < ApplicationController
   end
 
   def create
-    @timesheet_entry = TimesheetEntry.new(params[:timesheet_entry])
+    @timesheet_entry = TimesheetEntry.new(timesheet_entry_params)
     if @timesheet_entry.save
       flash[:notice] = "Successfully added new timesheet entry."
       redirect_to @timesheet_entry.organisation
@@ -25,7 +25,7 @@ class TimesheetEntriesController < ApplicationController
   end
 
   def update
-    if @timesheet_entry.update_attributes(params[:timesheet_entry])
+    if @timesheet_entry.update_attributes(timesheet_entry_params)
       redirect_to @timesheet_entry.organisation, notice: 'Timesheet entry updated.'
     else
       render action: 'edit'
@@ -41,5 +41,9 @@ class TimesheetEntriesController < ApplicationController
 
   def find_timesheet_entry
     @timesheet_entry = TimesheetEntry.find(params[:id])
+  end
+
+  def timesheet_entry_params
+    params.require(:timesheet_entry).permit(:chargeable, :description, :invoice_value, :minutes, :organisation_id, :started_at, :user_id)
   end
 end
