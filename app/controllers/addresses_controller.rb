@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_filter :admin_required
-  before_filter :find_address, :except => [:index, :new, :create]
+  before_filter :find_address, except: [:index, :new, :create]
 
   def new
     @address = Address.new
@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(params[:address])
+    @address = Address.new(address_params)
     if @address.save
       flash[:notice] = "Added new address."
       redirect_to organisation_path(@address.organisation)
@@ -21,7 +21,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-    if @address.update_attributes(params[:address])
+    if @address.update_attributes(address_params)
       flash[:notice] = 'Address updated.'
       redirect_to organisation_path(@address.organisation)
     else
@@ -43,5 +43,9 @@ class AddressesController < ApplicationController
       flash[:notice] = "That address doesn't exist."
       redirect_to addresses_path
     end
+  end
+
+  def address_params
+    params.require(:address).permit(:address_line_1, :address_line_2, :county, :organisation_id, :postcode, :town_city)
   end
 end
