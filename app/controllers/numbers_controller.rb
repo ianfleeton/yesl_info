@@ -47,6 +47,6 @@ class NumbersController < ApplicationController
   end
 
   def number_params
-    params.require(:number).permit(:number, :organisation_id, :teltype)
+    params.require(:number).permit(:number, :organisation_id, :teltype, :user_id)
   end
 end
