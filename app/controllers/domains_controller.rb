@@ -21,11 +21,12 @@ class DomainsController < ApplicationController
   end
 
   def create
-    @domain = Domain.new(params[:domain])
+    @domain = Domain.new(domain_params)
     if @domain.save
       flash[:notice] = "Added new domain."
       redirect_to domain_path(@domain)
     else
+      @organisation = @domain.organisation
       render action: 'new'
     end
   end
@@ -34,7 +35,7 @@ class DomainsController < ApplicationController
   end
 
   def update
-    if @domain.update_attributes(params[:domain])
+    if @domain.update_attributes(domain_params)
       redirect_to @domain, notice: 'Domain updated.'
     else
       render action: 'edit'
@@ -57,5 +58,9 @@ class DomainsController < ApplicationController
     if @domain.nil?
       redirect_to domains_path, notice: "That domain doesn't exist."
     end
+  end
+
+  def domain_params
+    params.require(:domain).permit(:name, :forwarding_id, :organisation_id, :registered_on, :with_us)
   end
 end
