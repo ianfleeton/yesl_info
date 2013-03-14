@@ -5,7 +5,9 @@
   <title>Your e Solutions Client Centre</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css">
   <link rel="shortcut icon" href="/favicon.ico">
   <script src="/bootstrap/js/bootstrap.js"></script>
   <%= csrf_meta_tags %>
@@ -18,9 +20,15 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
       <a class="brand" href="/">YESL DB</a>
 <% if admin? -%>
-      <div class="nav-collapse">
+      <div class="nav-collapse collapse">
         <ul class="nav">
           <li<%= ' class="active"'.html_safe if current_page?(organisations_path) %>><%= link_to 'Organisations', organisations_path %></li>
           <li<%= ' class="active"'.html_safe if current_page?(domains_path) %>><%= link_to 'Domains', domains_path %></li>
