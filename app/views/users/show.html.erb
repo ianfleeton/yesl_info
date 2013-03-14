@@ -47,14 +47,20 @@
   </tr>
 </table>
 
+<% if @user.staff? %>
+
 <h2>Timesheet</h2>
 
 <script>
 $(function() {
   $('.timesheet th + th + th + th + th + th').hide();
   $('.timesheet td + td + td + td + td + td').hide();
+  $('.timesheet th + th + th + th + th + th + th').show();
+  $('.timesheet td + td + td + td + td + td + td').show();
 });
 </script>
 
 <% @timesheet_entries = @user.timesheet_entries.limit(100) %>
 <%= render 'timesheet_entries/table' %>
+
+<% end %>
