@@ -12,6 +12,7 @@
       <th>13 weeks</th>
       <th>Hours logged this week</th>
       <th>28-day hours</th>
+      <th>10-week hours</th>
     </tr>
   </thead>
   <tbody>
@@ -39,6 +40,9 @@
       </td>
       <td>
         <%= member.hours_logged_to_date(27) %>
+      </td>
+      <td>
+        <%= member.hours_logged_to_date(69) %>
       </td>
     </tr>
 <% end -%>
