@@ -1,0 +1,36 @@
+#menu-spacer {
+  height: 60px;
+}
+
+@media (max-width: 1199px) {
+  body {
+    font-size: 12px;
+  }
+
+  small {
+    font-size: 10px;
+  }
+
+  h1, h2, h3 {
+    line-height: 34.28px;
+  }
+
+  h1 {
+    font-size: 33px;
+  }
+
+  h2 {
+    font-size: 27px;
+  }
+
+  .table th, .table td {
+    padding: 6.858px;
+    line-height: 17.14px;
+  }
+}
+
+@media (max-width: 979px) {
+  #menu-spacer {
+    display: none;
+  }
+}
