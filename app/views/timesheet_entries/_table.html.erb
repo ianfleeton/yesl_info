@@ -13,7 +13,7 @@
 <% @timesheet_entries.each do |e| -%>
     <tr<%= ' class="success"'.html_safe if e.chargeable? %>>
       <td><%= link_to e.organisation.name, e.organisation %></td>
-      <td><%= format_time(e.started_at) %></td>
+      <td><%= e.started_at.strftime("%A %-d&nbsp;%b&nbsp;'%y").html_safe %></td>
       <td><%= e.description %></td>
       <td class="numeric"><%= number_to_currency(e.invoice_value, unit: '£') %></td>
       <td class="numeric"><%= e.minutes %>m</td>
