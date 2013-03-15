@@ -15,7 +15,7 @@ class OrganisationsController < ApplicationController
   end
 
   def create
-    @organisation = Organisation.new(params[:organisation])
+    @organisation = Organisation.new(organisation_params)
     @organisation.last_contacted = Time.now
     if @organisation.save
       flash[:notice] = "Successfully added new organisation."
@@ -29,7 +29,7 @@ class OrganisationsController < ApplicationController
   end
 
   def update
-    if @organisation.update_attributes(params[:organisation])
+    if @organisation.update_attributes(organisation_params)
       redirect_to @organisation, notice: 'Organisation updated.'
     else
       render action: 'edit'
@@ -62,5 +62,9 @@ class OrganisationsController < ApplicationController
   def record_view
     @organisation.last_viewed_at = Time.now
     @organisation.save
+  end
+
+  def organisation_params
+    params.require(:organisation).permit(:contact_cycle, :name, :on_stop)
   end
 end
