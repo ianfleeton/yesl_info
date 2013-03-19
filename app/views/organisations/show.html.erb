@@ -229,7 +229,7 @@ $(function() {
     <% @timesheet_entries = @organisation.timesheet_entries.limit(100) %>
     <%= render 'timesheet_entries/table' %>
 
-    <% @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id) %>
+    <% @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: @current_user.id) %>
     <%= render 'timesheet_entries/form' %>
 
   </div>

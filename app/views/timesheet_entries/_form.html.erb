@@ -2,11 +2,11 @@
 <%= f.label :organisation %>
 <%= f.collection_select :organisation_id, Organisation.order('name'), :id, :name %>
 <%= f.label :description %>
-<%= f.text_area :description %>
+<%= f.text_area :description, rows: '4', class: 'span6' %>
 <%= f.label :minutes %>
-<%= f.text_field :minutes %>
+<%= f.text_field :minutes, class: 'span1' %>
 <%= f.label :invoice_value %>
-<%= f.text_field :invoice_value %>
+<%= f.text_field :invoice_value, class: 'span1' %>
 <label>
   <%= f.check_box :chargeable %>
   Chargeable
@@ -14,7 +14,7 @@
 <%= f.label :user_id, 'Who' %>
 <%= select('timesheet_entry', 'user_id', staff_options) %>
 <%= f.label :started_at %>
-<%= datetime_select :timesheet_entry, :started_at, {order: [:day, :month, :year]} %>
+<%= datetime_select :timesheet_entry, :started_at, {order: [:day, :month, :year]}, class: 'datetime' %>
 <p>
   <%= f.submit class: 'btn' %>
 </p>
