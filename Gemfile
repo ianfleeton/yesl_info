@@ -12,9 +12,15 @@ group :development do
 end
 
 group :test, :development do
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'spork-rails', git: 'git://github.com/sahilm/spork-rails.git', branch: 'rails-4'
   gem 'watchr'
-  gem 'spork', '~> 0.9.0'
 end
 
 # Gems used only for assets and not required

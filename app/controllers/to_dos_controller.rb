@@ -14,7 +14,7 @@ class ToDosController < ApplicationController
   end
 
   def create
-    @to_do = ToDo.new(params[:to_do])
+    @to_do = ToDo.new(to_do_params)
     @to_do.completed = false
     if @to_do.save
       ToDoNotifier.new_task(@to_do).deliver
@@ -29,7 +29,7 @@ class ToDosController < ApplicationController
   end
 
   def update
-    if @to_do.update_attributes(params[:to_do])
+    if @to_do.update_attributes(to_do_params)
       flash[:notice] = 'To-do saved.'
       redirect_to organisation_path(@to_do.organisation)
     else
@@ -71,5 +71,9 @@ class ToDosController < ApplicationController
     to_do.completed = true
     to_do.save
     ToDoNotifier.marked_as_complete(to_do).deliver
+  end
+
+  def to_do_params
+    params.require(:to_do).permit(:assignee_id, :date_due, :details, :estimated_time, :organisation_id, :priority, :setter_id, :title)
   end
 end

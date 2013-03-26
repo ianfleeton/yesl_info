@@ -44,7 +44,7 @@
   <div class="span6">
     <h2>Hosting accounts</h2>
     <p>
-      <%= add_button(new_hosting_account_path(domain_id: @domain.id)) %>
+      <%= add_button(HostingAccount, domain_id: @domain.id) %>
     </p>
 <% unless @domain.hosting_accounts.empty? -%>
     <table class="table table-bordered">

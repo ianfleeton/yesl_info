@@ -20,6 +20,8 @@
 <%= form.text_area :details, class: 'span6' %>
 <%= form.label :priority %>
 <%= select('to_do', 'priority', priority_options) %>
+<%= form.label :estimated_time %>
+<%= form.number_field :estimated_time %> minutes
 <%= form.label :date_due %>
 <%= date_select :to_do, :date_due, {order: [:day, :month, :year]} %>
 <%= form.label :assignee_id, 'Assigned to' %>

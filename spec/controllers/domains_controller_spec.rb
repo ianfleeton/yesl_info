@@ -4,9 +4,9 @@ describe DomainsController do
   before { signed_in_as_admin }
 
   describe 'POST create' do
-    it 'allows only name and organisation_id to be set' do
+    it 'allows only whitelisted attributes to be set' do
       post 'create', { domain: Domain.new.attributes }
-      controller.send(:domain_params).keys.should eq(['name', 'forwarding_id', 'organisation_id', 'registered_on', 'with_us'])
+      controller.send(:domain_params).keys.should eq(['forwarding_id', 'name', 'organisation_id', 'registered_on', 'with_us'])
     end
 
     context 'when the domain fails to save' do

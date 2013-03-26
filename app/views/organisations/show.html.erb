@@ -56,7 +56,7 @@ $(function() {
   <div class="tab-pane active" id="people">
     <h2>People</h2>
     <p>
-      <%= add_button(new_user_path(organisation_id: @organisation)) %>
+      <%= add_button(User, organisation_id: @organisation) %>
     </p>
 <% unless @organisation.users.empty? -%>
     <table class="table table-bordered">
@@ -77,7 +77,7 @@ $(function() {
   <div class="tab-pane" id="emails">
     <h2>Email addresses</h2>
     <p>
-      <%= add_button(new_email_address_path(organisation_id: @organisation)) %>
+      <%= add_button(EmailAddress, organisation_id: @organisation) %>
     </p>
 <% unless @organisation.email_addresses.empty? -%>
     <table class="table table-bordered">
@@ -100,7 +100,7 @@ $(function() {
   <div class="tab-pane" id="numbers">
     <h2>Contact numbers</h2>
     <p>
-      <%= add_button(new_number_path(organisation_id: @organisation)) %>
+      <%= add_button(Number, organisation_id: @organisation) %>
     </p>
 <% unless @organisation.numbers.empty? -%>
     <table class="table table-bordered">
@@ -122,7 +122,7 @@ $(function() {
   <div class="tab-pane" id="addresses">
     <h2>Addresses</h2>
     <p>
-      <%= add_button(new_address_path(organisation_id: @organisation)) %>
+      <%= add_button(Address, organisation_id: @organisation) %>
     </p>
     <table class="table table-bordered">
 <% @organisation.addresses.each do |a| -%>
@@ -136,7 +136,7 @@ $(function() {
   <div class="tab-pane" id="domains">
     <h2>Domains</h2>
     <p>
-      <%= add_button(new_domain_path(organisation_id: @organisation)) %>
+      <%= add_button(Domain, organisation_id: @organisation) %>
     </p>
     <ul>
 <% @organisation.domains.each do |d| -%>
@@ -148,7 +148,7 @@ $(function() {
   <div class="tab-pane" id="databases">
     <h2>Databases</h2>
     <p>
-      <%= add_button(new_database_path(organisation_id: @organisation)) %>
+      <%= add_button(Database, organisation_id: @organisation) %>
     </p>
 <% unless @organisation.databases.empty? -%>
     <table class="table table-bordered">
@@ -182,7 +182,7 @@ $(function() {
     <h2>To-do list</h2>
 
     <p>
-      <%= add_button(new_to_do_path(organisation_id: @organisation)) %>
+      <%= add_button(ToDo, organisation_id: @organisation) %>
     </p>
 
 <% unless @organisation.to_dos.empty? -%>
@@ -193,7 +193,7 @@ $(function() {
   <div class="tab-pane" id="notes">
     <h2>Note Pads</h2>
     <p>
-      <%= add_button(new_note_pad_path(organisation_id: @organisation)) %>
+      <%= add_button(NotePad, organisation_id: @organisation) %>
     </p>
 <% unless @organisation.note_pads.empty? -%>
     <table class="table table-bordered">
