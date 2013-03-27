@@ -1,6 +1,11 @@
 class HostingAccountsController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_hosting_account, :except => [:index, :new, :create, :backups]
+  before_filter :admin_required, except: [:backups, :backed_up]
+  before_filter :admin_or_token_required, only: [:backups, :backed_up]
+  skip_before_filter :verify_authenticity_token, only: [:backed_up]
+
+  before_filter :find_hosting_account, only: [:edit, :update, :destroy, :backed_up]
+
+  AUTH_TOKEN = 'pmcK3cXgXt'
 
   def show
   end
@@ -66,6 +71,10 @@ class HostingAccountsController < ApplicationController
       flash[:notice] = "That hosting account doesn't exist."
       redirect_to organisations_path
     end
+  end
+
+  def admin_or_token_required
+    not_found and return unless (admin? || params[:auth_token] == AUTH_TOKEN)
   end
 
   def hosting_account_params

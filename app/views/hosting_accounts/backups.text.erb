@@ -1,5 +1,5 @@
 <% if @hosting_accounts.empty? -%>
 EOF
 <% else -%>
-<%= @hosting_accounts.first.id %>::<%= @hosting_accounts.first.host_name %>::<%= @hosting_accounts.first.username %>::<%= @hosting_accounts.first.password %>
+<%= @hosting_accounts.first.id %>::<%= @hosting_accounts.first.host_name %>::<%= @hosting_accounts.first.ftp_host %>::<%= @hosting_accounts.first.username %>::<%= @hosting_accounts.first.password %>
 <% end %>

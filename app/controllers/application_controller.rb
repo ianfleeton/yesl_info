@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by_id(session[:user])
   end
 
+  def not_found
+    render file: "#{Rails.root.to_s}/public/404.html", layout: false, status: 404
+  end
+
   private
 
   def ssl_required
