@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    @offset = 100
   end
 
   def new
@@ -70,7 +71,14 @@ class UsersController < ApplicationController
       redirect_to :controller => 'sessions', :action => 'new'
     end
   end
-  
+
+  def more_timesheet_entries
+    offset = params[:offset].to_i
+    @timesheet_entries = @user.timesheet_entries.order('started_at DESC').limit(200).offset(offset)
+    @offset = offset + 200
+    render 'timesheet_entries/more_timesheet_entries', layout: nil
+  end
+
   private
   
   def forgot_password_params_ok?

@@ -52,11 +52,15 @@
 <h2>Timesheet</h2>
 
 <script>
-$(function() {
+function filterTimesheet() {
   $('.timesheet th + th + th + th + th + th').hide();
   $('.timesheet td + td + td + td + td + td').hide();
   $('.timesheet th + th + th + th + th + th + th').show();
   $('.timesheet td + td + td + td + td + td + td').show();
+}
+
+$(function() {
+  filterTimesheet();
 });
 </script>
 

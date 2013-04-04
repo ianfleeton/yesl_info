@@ -88,6 +88,7 @@ YeslInfo::Application.routes.draw do
     end
     member do
       post 'contacted'
+      post 'more_timesheet_entries'
     end
   end
 
@@ -95,7 +96,11 @@ YeslInfo::Application.routes.draw do
     delete 'destroy', on: :collection
   end
 
-  resources :timesheet_entries
+  resources :timesheet_entries do
+    collection do
+      post 'more_timesheet_entries'
+    end
+  end
 
   resources :to_dos do
     collection do
@@ -107,6 +112,10 @@ YeslInfo::Application.routes.draw do
     collection do
       get 'forgot_password'
       post 'forgot_password_send'
+    end
+
+    member do
+      post 'more_timesheet_entries'
     end
   end
 end

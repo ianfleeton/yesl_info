@@ -218,11 +218,16 @@ $(function() {
     <h2>Timesheet</h2>
 
     <script>
-    $(function() {
+    function filterTimesheet() {
       $('.timesheet th').hide();
       $('.timesheet td').hide();
       $('.timesheet th + th').show();
       $('.timesheet td + td').show();
+      $('#more-entries-placeholder td').show();
+    }
+
+    $(function() {
+      filterTimesheet();
     });
     </script>
 

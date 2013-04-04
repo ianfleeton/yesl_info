@@ -1,3 +1,22 @@
+<script>
+$(function() {
+  $('.timesheet').on('submit', '#more-entries-placeholder form', function() {
+    var valuesToSubmit = $('#more-entries-placeholder form').serialize();
+    var url = $('#more-entries-placeholder form').attr('action');
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: valuesToSubmit
+    }).success(function(data) {
+      $('#more-entries-placeholder').replaceWith(data);
+      filterTimesheet();
+    }).error(function(data) {
+      alert('Could not fetch more entries.');
+    });
+    return false;
+  });
+});
+</script>
 <table class="timesheet table table-bordered table-striped">
   <thead>
     <tr>
@@ -10,30 +29,6 @@
     </tr>
   </thead>
   <tbody>
-<% @timesheet_entries.each do |e| -%>
-    <tr<%= ' class="success"'.html_safe if e.chargeable? %>>
-      <td><%= link_to e.organisation.name, e.organisation %></td>
-      <td><%= e.started_at.strftime("%A %-d&nbsp;%b&nbsp;'%y").html_safe %></td>
-      <td><%= e.description %></td>
-      <td class="numeric"><%= number_to_currency(e.invoice_value, unit: '£') %></td>
-      <td class="numeric"><%= e.minutes %>m</td>
-<% if e.user -%>
-      <td><%= link_to e.user.name, e.user %></td>
-<% else -%>
-      <td>Unknown</td>
-<% end -%>
-      <td>
-        <div class="btn-group">
-          <button class="btn dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu pull-right">
-            <li><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_timesheet_entry_path(e) %></li>
-            <li><%= link_to '<i class="icon-trash"></i> Delete'.html_safe, e, data: { method: 'delete', confirm: 'Are you sure?' } %></li>
-          </ul>
-        </div>
-      </td>
-    </tr>
-<% end -%>
+    <%= render 'timesheet_entries/body' %>
   </tbody>
 </table>

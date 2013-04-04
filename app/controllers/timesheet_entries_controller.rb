@@ -4,7 +4,17 @@ class TimesheetEntriesController < ApplicationController
 
   def index
     @staff = User.staff
-    @timesheet_entries = TimesheetEntry.order('started_at DESC').limit(200)
+    entries(0)
+  end
+
+  def more_timesheet_entries
+    entries(params[:offset].to_i)
+    render layout: nil
+  end
+
+  def entries(offset)
+    @timesheet_entries = TimesheetEntry.includes(:organisation, :user).order('started_at DESC').limit(200).offset(offset)
+    @offset = offset + 200
   end
 
   def new

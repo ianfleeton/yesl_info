@@ -1,6 +1,6 @@
 class OrganisationsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_organisation, only: [:show, :edit, :update, :destroy, :contacted]
+  before_filter :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries]
 
   def index
     @organisations = Organisation.order('name')
@@ -8,6 +8,7 @@ class OrganisationsController < ApplicationController
   
   def show
     record_view
+    @offset = 100
   end
   
   def new
@@ -51,6 +52,13 @@ class OrganisationsController < ApplicationController
   def contacted
     @organisation.touch(:last_contacted)
     redirect_to @organisation, notice: 'Contact recorded.'
+  end
+
+  def more_timesheet_entries
+    offset = params[:offset].to_i
+    @timesheet_entries = @organisation.timesheet_entries.order('started_at DESC').limit(200).offset(offset)
+    @offset = offset + 200
+    render 'timesheet_entries/more_timesheet_entries', layout: nil
   end
 
   protected
