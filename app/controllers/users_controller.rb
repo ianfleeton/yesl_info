@@ -11,12 +11,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new(organisation_id: params[:organisation_id])
   end
   
   def create
-    @user = User.new(user_params)
-    @user.admin = false
+    @user = User.new(admin? ? user_params_for_admin : user_params)
     
     if @user.save
       redirect_to @user, notice: 'Successfully added new user.'
