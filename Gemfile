@@ -19,7 +19,7 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
-  gem 'spork-rails', git: 'git://github.com/sahilm/spork-rails.git', branch: 'rails-4'
+  gem 'spork-rails', github: 'A-gen/spork-rails'
   gem 'watchr'
 end
 
