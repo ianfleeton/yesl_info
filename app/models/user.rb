@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :organisation, touch: true
-  has_many :email_addresses, :dependent => :delete_all
-  has_many :numbers, :dependent => :delete_all
-  has_many :timesheet_entries, dependent: :nullify, order: 'started_at DESC'
-  has_many :to_dos, foreign_key: 'assignee_id', order: 'completed, priority'
+  has_many :email_addresses, dependent: :delete_all
+  has_many :numbers, dependent: :delete_all
+  has_many :timesheet_entries, -> { order 'started_at DESC' }, dependent: :nullify
+  has_many :to_dos, -> { order 'completed, priority' }, foreign_key: 'assignee_id'
 
   # unencrypted password
   attr_accessor :password
