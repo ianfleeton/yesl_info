@@ -3,7 +3,7 @@ class HostingAccountsController < ApplicationController
   before_filter :admin_or_token_required, only: [:backups, :backed_up]
   skip_before_filter :verify_authenticity_token, only: [:backed_up]
 
-  before_filter :find_hosting_account, only: [:edit, :update, :destroy, :backed_up]
+  before_filter :find_hosting_account, only: [:show, :edit, :update, :destroy, :backed_up]
 
   AUTH_TOKEN = 'pmcK3cXgXt'
 
