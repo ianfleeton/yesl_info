@@ -61,6 +61,6 @@ class DomainsController < ApplicationController
   end
 
   def domain_params
-    params.require(:domain).permit(:name, :forwarding_id, :organisation_id, :registered_on, :with_us)
+    params.require(:domain).permit(:forwarding_id, :name, :organisation_id, :registered_on, :with_us)
   end
 end
