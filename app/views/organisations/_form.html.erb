@@ -14,11 +14,17 @@
 <%= form_for @organisation do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
-	<label for="organisation_on_stop_true">On stop?</label>
-	<%= form.radio_button :on_stop, true, class: "radio" %> 
-	<label for="organisation_on_stop_true">Yes</label> 
-	<%= form.radio_button :on_stop, false, class: "radio" %> 
-	<label for="organisation_on_stop_false">No</label> 
+  <fieldset>
+    <legend>On stop?</legend>
+    <label class="radio">
+      <%= form.radio_button :on_stop, true %>
+      Yes
+    </label>
+    <label class="radio">
+      <%= form.radio_button :on_stop, false %> 
+      No
+    </label>
+  </fieldset>
 
   <br><%= form.submit 'Save', class: 'btn btn-primary' %>
 <% end %>
