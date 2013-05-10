@@ -79,6 +79,11 @@ module ApplicationHelper
     new_polymorphic_path(klass, args), class: 'btn', title: "Add #{klass}"
   end
 
+  def mini_add_icon_button(klass, args = {})
+    link_to '<i class="icon-plus-sign"></i>'.html_safe,
+    new_polymorphic_path(klass, args), class: 'btn btn-mini', title: "Add #{klass}"
+  end
+
   def edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),

@@ -28,7 +28,10 @@
   <tr><th>Organisation</th><td><%= link_to @user.organisation.name, organisation_path(@user.organisation) %></td></tr>
   <tr><th>Login email address</th><td><%= mail_to @user.email %></td></tr>
   <tr>
-    <th>Numbers</th>
+    <th>
+      <%= mini_add_icon_button(Number, user_id: @user.id) %>
+      Numbers
+    </th>
     <td>
 <% @user.numbers.each do |n| -%>
       <%= mini_edit_button(n) %> <%= mini_delete_button(n) %>
@@ -37,7 +40,10 @@
     </td>
   </tr>
   <tr>
-    <th>Email addresses</th>
+    <th>
+      <%= mini_add_icon_button(EmailAddress, user_id: @user.id) %>
+      Email addresses
+    </th>
     <td>
 <% @user.email_addresses.each do |e| -%>
       <%= mini_edit_button(e) %> <%= mini_delete_button(e) %>
