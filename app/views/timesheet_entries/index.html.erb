@@ -1,3 +1,4 @@
+<% cache TimesheetEntry.order('updated_at DESC').first do -%>
 <div class="page-header">
   <h1>Timesheet</h1>
 </div>
@@ -75,3 +76,4 @@
 
 <h2>Recent entries</h2>
 <%= render 'table' %>
+<% end -%>

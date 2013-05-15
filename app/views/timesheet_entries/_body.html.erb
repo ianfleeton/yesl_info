@@ -1,4 +1,5 @@
 <% @timesheet_entries.each do |e| -%>
+<% cache e do -%>
     <tr<%= ' class="success"'.html_safe if e.chargeable? %>>
       <td><%= link_to e.organisation.name, e.organisation %></td>
       <td><%= e.started_at.strftime("%A %-d&nbsp;%b&nbsp;'%y").html_safe %></td>
@@ -22,6 +23,7 @@
         </div>
       </td>
     </tr>
+<% end -%>
 <% end -%>
     <tr id="more-entries-placeholder">
       <td colspan="7" style="text-align: center;">

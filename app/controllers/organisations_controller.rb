@@ -68,8 +68,7 @@ class OrganisationsController < ApplicationController
   end
 
   def record_view
-    @organisation.last_viewed_at = Time.now
-    @organisation.save
+    @organisation.update_column(:last_viewed_at, Time.now)
   end
 
   def organisation_params
