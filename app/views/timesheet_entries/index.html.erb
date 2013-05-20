@@ -1,4 +1,4 @@
-<% cache TimesheetEntry.order('updated_at DESC').first do -%>
+<% cache TimesheetEntry.order('updated_at DESC').first, expires_in: (Time.now.tomorrow.midnight - Time.now) do -%>
 <div class="page-header">
   <h1>Timesheet</h1>
 </div>
