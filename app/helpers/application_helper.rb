@@ -1,12 +1,6 @@
 # coding: utf-8
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def flash_notice 
-    if flash[:notice] 
-      content_tag('div', h(flash[:notice]), {:id => "flash_notice"}) 
-    end
-  end
-
   def page_header(heading)
     content_tag('h1', heading, class: 'page-header')
   end

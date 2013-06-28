@@ -1,0 +1,11 @@
+= page_header 'Login'
+
+= form_tag({action: 'create'}, class: 'well') do
+  label for="email" Email
+  = text_field_tag :email, params[:email], class: 'short'
+  label for="password" Password
+  = password_field_tag :password, params[:password], class: 'span3'
+  .form-actions
+    = submit_tag 'Login', class: 'btn btn-primary'
+
+p= link_to 'Forgotten your password?', controller: 'users', action: 'forgot_password'

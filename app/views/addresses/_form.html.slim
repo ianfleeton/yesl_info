@@ -1,0 +1,32 @@
+- if @address.errors.any?
+  .alert.alert-error.fade.in
+    a.close data-dismiss="alert" href="#" &times;
+    h2=> pluralize(@address.errors.count, "error")
+      | prohibited this address from being saved:
+
+    ul
+    - @address.errors.full_messages.each do |msg|
+      li= msg
+
+= form_for @address do |form|
+
+  = form.label :organisation
+  = form.collection_select :organisation_id, Organisation.order('name'), :id, :name
+
+	= form.label :address_line_1
+	= form.text_field :address_line_1
+
+	= form.label :address_line_2
+	= form.text_field :address_line_2
+
+	= form.label :town_city, 'Town/city'
+	= form.text_field :town_city
+
+	= form.label :county
+	= form.text_field :county
+
+	= form.label :postcode
+	= form.text_field :postcode
+
+  .form-actions
+    = form.submit class: 'btn btn-primary'

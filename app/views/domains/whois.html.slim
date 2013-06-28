@@ -1,0 +1,17 @@
+.page-header
+  h1
+    | whois
+    =< @domain.name
+
+ul.breadcrumb
+  li
+    => link_to @domain.organisation.name, organisation_path(@domain.organisation)
+    span.divider = '/'
+  li
+    => link_to @domain.name, domain_path(@domain)
+    span.divider = '/'
+  li.active WHOIS
+
+p= link_to 'Back', domain_path(@domain), class: 'btn'
+
+pre= `whois #{@domain.name}`

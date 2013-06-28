@@ -1,0 +1,45 @@
+.page-header
+  h1
+    | nslookup
+    =< @domain.name
+
+ul.breadcrumb
+  li
+    = link_to @domain.organisation.name, organisation_path(@domain.organisation)
+    span.divider= "/"
+  li
+    = link_to @domain.name, domain_path(@domain)
+    span.divider= "/"
+  li.active nslookup
+
+p= link_to 'Back', domain_path(@domain), class: 'btn'
+
+table
+  tr
+    th= @domain.name
+    td
+      pre= `nslookup #{@domain.name}`.strip
+  tr
+    th
+      | www.
+      = @domain.name
+    td
+      pre= `nslookup www.#{@domain.name}`.strip
+  tr
+    th
+      | mail.
+      = @domain.name
+    td
+      pre= `nslookup mail.#{@domain.name}`.strip
+  tr
+    th
+      | ftp.
+      = @domain.name
+    td
+      pre= `nslookup ftp.#{@domain.name}`.strip
+  tr
+    th
+      | MX
+      =< @domain.name
+    td
+      pre= `nslookup -query=mx #{@domain.name}`.strip

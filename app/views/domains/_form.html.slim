@@ -1,0 +1,32 @@
+- if @domain.errors.any?
+  .alert.alert-error.fade.in
+    a.close data-dismiss="alert" href="#" &times;
+    h2
+      => pluralize(@domain.errors.count, "error")
+      | prohibited this domain from being saved:
+
+    ul
+      - @domain.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @domain do |form|
+  = form.label :name
+  = form.text_field :name
+
+  = form.label :organisation
+  = form.collection_select :organisation_id, Organisation.order('name'), :id, :name
+
+  = form.label :registered_on
+  = form.date_select :registered_on, order: [:day, :month, :year]
+
+  label for="domain_with_us_true" With us?
+  = form.radio_button :with_us, true, class: 'radio'
+  label for="domain_with_us_true" Yes
+  = form.radio_button :with_us, false, class: 'radio'
+  label for="domain_with_us" No
+
+  = form.label :forwarding, 'Forwards to'
+  = form.collection_select :forwarding_id, @domain.organisation.domains, :id, :name, {prompt: 'No forwarding'}
+
+  .form-actions
+    = form.submit class: 'btn btn-primary'

@@ -1,0 +1,12 @@
+= page_header "Edit #{@domain.name}"
+
+ul.breadcrumb
+  li
+    => link_to @domain.organisation.name, organisation_path(@domain.organisation)
+    span.divider= "/"
+
+  li.active
+    | Edit
+    =< @domain.name
+
+= render 'form'

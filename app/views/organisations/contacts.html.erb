@@ -1,8 +1,0 @@
-<%= page_header 'Organisations to contact' %>
-
-<% @organisations.each do |o| -%>
-<p>
-  Please contact <%= link_to o.name, o %> &#8212;
-  last recorded contact was <%= o.last_contacted %>
-</p>
-<% end -%>

@@ -1,0 +1,6 @@
+.page-header
+  h1
+    => link_to @address.organisation.name, organisation_path(@address.organisation)
+    | &rarr; Add new address
+
+= render 'form'

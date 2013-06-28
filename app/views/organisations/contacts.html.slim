@@ -1,0 +1,4 @@
+= page_header 'Organisations to contact'
+
+- @organisations.each do |o|
+  p= "Please contact #{link_to o.name, o} — last recorded contact was #{o.last_contacted}".html_safe

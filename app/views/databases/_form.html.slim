@@ -1,0 +1,31 @@
+- if @database.errors.any?
+  .alert.alert-error.fade.in
+    a.close data-dismiss="alert" href="#" &times;
+    h2
+      => pluralize(@database.errors.count, "error")
+      | prohibited this database from being saved:
+
+    ul
+      - @database.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @database do |form|
+  = form.hidden_field :organisation_id
+
+  = form.label :host
+  = form.text_field :host
+
+  = form.label :name
+  = form.text_field :name
+
+  = form.label :username
+  = form.text_field :username
+
+  = form.label :password
+  = form.text_field :password
+
+  = form.label :location
+  = form.text_field :location
+
+  .form-actions
+    = form.submit class: 'btn btn-primary'

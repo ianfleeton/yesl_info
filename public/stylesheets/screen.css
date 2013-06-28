@@ -11,14 +11,6 @@ body {
   margin-right: auto;
 }
 
-#flash_notice {
-	border: 1px solid #ca8902;
-	background: #fee848;
-	padding: 10px;
-	margin: 10px;
-	color: #333;
-}
-
 body, div, input, li, p, td, th { font-family: Helvetica, 'Lucida sans', sans-serif; }
 
 pre {
