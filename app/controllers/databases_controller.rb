@@ -1,5 +1,5 @@
 class DatabasesController < ApplicationController
-  before_filter :find_database, except: [:new, :create]
+  before_action :find_database, except: [:new, :create]
 
   def new
     @database = Database.new

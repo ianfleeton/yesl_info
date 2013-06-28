@@ -1,6 +1,6 @@
 class ToDosController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_to_do, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :find_to_do, only: [:edit, :update, :destroy]
 
   def index
   end

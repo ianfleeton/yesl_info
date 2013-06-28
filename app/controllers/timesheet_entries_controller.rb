@@ -1,6 +1,6 @@
 class TimesheetEntriesController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_timesheet_entry, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :find_timesheet_entry, only: [:edit, :update, :destroy]
 
   def index
     @staff = User.staff

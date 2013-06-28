@@ -76,6 +76,6 @@ class User < ActiveRecord::Base
   end 
 
   def self.staff
-    all conditions: {staff: true}, order: 'name ASC'
+    where(staff: true).order('name ASC')
   end
 end

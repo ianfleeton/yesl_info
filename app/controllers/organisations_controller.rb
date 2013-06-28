@@ -1,6 +1,6 @@
 class OrganisationsController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries]
+  before_action :admin_required
+  before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries]
 
   def index
     @organisations = Organisation.order('name')

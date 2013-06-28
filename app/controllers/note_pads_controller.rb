@@ -1,5 +1,5 @@
 class NotePadsController < ApplicationController
-  before_filter :find_note_pad, :except => [:new, :create]
+  before_action :find_note_pad, :except => [:new, :create]
 
   def new
     @note_pad = NotePad.new

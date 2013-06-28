@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :admin_required, except: [:home]
+  before_action :admin_required, except: [:home]
 
   def index
     @backups_pending = HostingAccount.where('backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)').count

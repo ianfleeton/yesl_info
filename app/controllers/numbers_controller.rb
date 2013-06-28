@@ -1,6 +1,6 @@
 class NumbersController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_number, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :find_number, only: [:edit, :update, :destroy]
 
   def new
     @number = Number.new

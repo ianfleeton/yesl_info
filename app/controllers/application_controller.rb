@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  before_filter :ssl_required, :initialize_user
+  before_action :ssl_required, :initialize_user
   
   # make these available as ActionView helper methods.
   helper_method :logged_in?, :admin?

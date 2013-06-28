@@ -1,6 +1,6 @@
 class DomainsController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_domain, except: [:index, :new, :create]
+  before_action :admin_required
+  before_action :find_domain, except: [:index, :new, :create]
 
   def index
     @domains = Domain.order('name')
@@ -54,7 +54,7 @@ class DomainsController < ApplicationController
   private
   
   def find_domain
-    @domain = Domain.find_by_id(params[:id], include: :organisation)
+    @domain = Domain.includes(:organisation).find_by(id: params[:id])
     if @domain.nil?
       redirect_to domains_path, notice: "That domain doesn't exist."
     end

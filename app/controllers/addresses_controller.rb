@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_address, except: [:index, :new, :create]
+  before_action :admin_required
+  before_action :find_address, except: [:index, :new, :create]
 
   def new
     @address = Address.new

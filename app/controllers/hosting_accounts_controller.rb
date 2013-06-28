@@ -1,9 +1,9 @@
 class HostingAccountsController < ApplicationController
-  before_filter :admin_required, except: [:backups, :backed_up]
-  before_filter :admin_or_token_required, only: [:backups, :backed_up]
-  skip_before_filter :verify_authenticity_token, only: [:backed_up]
+  before_action :admin_required, except: [:backups, :backed_up]
+  before_action :admin_or_token_required, only: [:backups, :backed_up]
+  skip_before_action :verify_authenticity_token, only: [:backed_up]
 
-  before_filter :find_hosting_account, only: [:show, :edit, :update, :destroy, :backed_up]
+  before_action :find_hosting_account, only: [:show, :edit, :update, :destroy, :backed_up]
 
   AUTH_TOKEN = 'pmcK3cXgXt'
 
@@ -66,7 +66,7 @@ class HostingAccountsController < ApplicationController
   private
   
   def find_hosting_account
-    @hosting_account = HostingAccount.find_by_id(params[:id], :include => :domain)
+    @hosting_account = HostingAccount.includes(:domain).find_by(id: params[:id])
     if @hosting_account.nil?
       flash[:notice] = "That hosting account doesn't exist."
       redirect_to organisations_path
