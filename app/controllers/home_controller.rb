@@ -22,7 +22,7 @@ class HomeController < ApplicationController
       adapter:  'mysql2',
       host:     'straylight.yesl.co.uk',
       username: 'webpanel_panel',
-      password: 'VDfTZuh6L1EB',
+      password: Secrets[:webpanel_database_password],
       database: 'webpanel_panel'
     )
     @logins =  ActiveRecord::Base.connection.select_rows("SELECT username, password FROM users ORDER BY username")
