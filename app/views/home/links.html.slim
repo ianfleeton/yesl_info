@@ -1,0 +1,12 @@
+= page_header 'Links'
+
+table.table.table-bordered.table-striped
+  tr
+    th When
+    th Description
+    th Who
+  - @timesheet_entries.each do |entry|
+    tr
+      td= format_time(entry.started_at)
+      td= raw entry.description.linkify
+      td= entry.user.name

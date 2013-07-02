@@ -1,0 +1,19 @@
+- if @email_address.errors.any?
+  .alert.alert-error.fade.in
+    a.close data-dismiss="alert" href="#" &times;
+    h2
+      => pluralize(@email_address.errors.count, "error")
+      | prohibited this email address from being saved:
+
+    ul
+      - @email_address.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @email_address do |form|
+  = form.hidden_field :organisation_id
+  = form.hidden_field :user_id
+  = form.label :address
+  = form.text_field :address
+  = form.label :password
+  = form.text_field :password
+  .form-actions= form.submit class: 'btn btn-primary'
