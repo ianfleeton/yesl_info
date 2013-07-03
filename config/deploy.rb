@@ -32,9 +32,10 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
-  desc "Symlinks the database.yml"
+  desc "Symlinks the database.yml and secrets.yml files"
   task :symlink_db, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{deploy_to}/shared/config/secrets.yml #{release_path}/config/secrets.yml"
   end
 end
 
