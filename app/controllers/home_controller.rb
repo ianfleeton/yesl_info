@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   def index
     @backups_pending = HostingAccount.where('backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)').count
     @contacts = Organisation.where('last_contacted < DATE_SUB(NOW(), INTERVAL contact_cycle DAY)').count
+
+    @home_content = home_content
   end
 
   def links
@@ -33,5 +35,10 @@ class HomeController < ApplicationController
   
     def create_password
       SecureRandom.base64(9)
+    end
+
+    def home_content
+      note_pad = NotePad.find_by(title: 'Home Content')
+      note_pad ? note_pad.content : ''
     end
 end

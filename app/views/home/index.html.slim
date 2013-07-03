@@ -1,0 +1,15 @@
+= page_header 'Your e Solutions'
+
+- if @backups_pending > 0
+  p
+    => @backups_pending
+    | backups pending &#8212;
+    =< link_to 'View Backups', backups_hosting_accounts_path
+
+- if @contacts > 0
+  p
+    => @contacts
+    | organisations to keep in touch with &#8212;
+    =< link_to 'View Contacts', contacts_organisations_path
+
+= raw @home_content
