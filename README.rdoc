@@ -1,5 +1,8 @@
 == README
 
+The Capistrano deploy file expects the environment variable
+YESL_INFO_REPOSITORY to be set.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

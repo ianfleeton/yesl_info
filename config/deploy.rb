@@ -5,7 +5,7 @@ set :rvm_type, :system
 set :rvm_path, "/usr/local/rvm"
 
 set :application, "yesl_info"
-set :repository,  "https://ianfleeton:cpXfzATYvq@bitbucket.org/youresolutions/yesl_info.git"
+set :repository,  ENV['YESL_INFO_REPOSITORY']
 set :use_sudo, false
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
