@@ -1,4 +1,5 @@
 class DatabasesController < ApplicationController
+  before_action :admin_required
   before_action :find_database, except: [:new, :create]
 
   def new

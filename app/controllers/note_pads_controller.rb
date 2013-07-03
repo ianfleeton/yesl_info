@@ -1,4 +1,5 @@
 class NotePadsController < ApplicationController
+  before_action :admin_required
   before_action :find_note_pad, :except => [:new, :create]
 
   def new
