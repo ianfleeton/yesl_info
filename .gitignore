@@ -8,5 +8,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore sensitive details
 database.yml
 secrets.yml
+/config/initializers/secret_token.rb
