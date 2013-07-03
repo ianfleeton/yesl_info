@@ -5,8 +5,6 @@ class HostingAccountsController < ApplicationController
 
   before_action :find_hosting_account, only: [:show, :edit, :update, :destroy, :backed_up]
 
-  AUTH_TOKEN = 'pmcK3cXgXt'
-
   def show
   end
 
@@ -74,7 +72,7 @@ class HostingAccountsController < ApplicationController
   end
 
   def admin_or_token_required
-    not_found and return unless (admin? || params[:auth_token] == AUTH_TOKEN)
+    not_found and return unless (admin? || params[:auth_token] == Secrets['auth_token'])
   end
 
   def hosting_account_params
