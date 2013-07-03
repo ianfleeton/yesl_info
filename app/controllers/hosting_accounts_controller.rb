@@ -72,7 +72,7 @@ class HostingAccountsController < ApplicationController
   end
 
   def admin_or_token_required
-    not_found and return unless (admin? || params[:auth_token] == Secrets['auth_token'])
+    not_found and return unless (admin? || params[:auth_token] == Secrets[:auth_token])
   end
 
   def hosting_account_params
