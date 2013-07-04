@@ -5,6 +5,18 @@ module ApplicationHelper
     content_tag('h1', heading, class: 'page-header')
   end
 
+  def menu_links(links)
+    links.map { |text, path| menu_link(text, path) }.join.html_safe
+  end
+
+  def menu_link(text, path)
+    content_tag(
+      :li,
+      link_to(text, path),
+      current_page?(path) ? { class: 'active' } : {}
+    )
+  end
+
   def a_tick
     '<span class="tick">✔</span>'.html_safe
   end
