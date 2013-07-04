@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  before_action :ssl_required, :initialize_user
+  before_action :set_timezone, :ssl_required, :initialize_user
   
   # make these available as ActionView helper methods.
   helper_method :logged_in?, :admin?
@@ -40,7 +40,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def ssl_required
-    redirect_to 'https://yesl.info' if Rails.env.production? && request.protocol != 'https://'
-  end
+    def ssl_required
+      redirect_to 'https://yesl.info' if Rails.env.production? && request.protocol != 'https://'
+    end
+
+    def set_timezone
+      Time.zone = 'London'
+    end
 end
