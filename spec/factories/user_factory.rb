@@ -7,4 +7,10 @@ FactoryGirl.define do
     password    'secret'
     association :organisation
   end
+
+  factory :user do
+    name        'Archibald'
+    email       'archibald@example.org'
+    password    'trustno1'
+  end
 end
