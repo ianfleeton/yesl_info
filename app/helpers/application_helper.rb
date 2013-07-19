@@ -117,4 +117,17 @@ module ApplicationHelper
     method: :delete,
     class: 'btn btn-danger btn-mini'
   end
+
+  def class_for_actual_rate(rate)
+    case
+    when rate < 10
+      'error'
+    when rate < 15 
+      'warning'
+    when rate > 25
+      'success'
+    else
+      ''
+    end
+  end
 end

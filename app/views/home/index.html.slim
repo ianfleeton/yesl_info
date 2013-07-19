@@ -13,3 +13,16 @@
     =< link_to 'View Contacts', contacts_organisations_path
 
 = raw @home_content
+
+h2 Recently Worked With
+
+table.table.table-bordered.table-striped
+  tr
+    th Organisation
+    th Hours
+    th Hourly
+  - TimesheetEntry.recently_worked_with.each do |recent|
+    tr class=class_for_actual_rate(recent.hourly)
+      td= link_to recent.name, organisation_path(id: recent.organisation_id)
+      td.numeric= "%.1f" % recent.hours
+      td.numeric= number_to_currency(recent.hourly, unit: '£')
