@@ -27,16 +27,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="/">YESL DB</a>
 <% if admin? -%>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <%= menu_links(
-            'Organisations' => organisations_path,
-            'Domains' => domains_path,
-            'Timesheet' => timesheet_entries_path,
-            'People' => users_path,
-            'To-Dos' => to_dos_path,
+            '<i class="icon-home"></i>'.html_safe => root_path,
+            '<i class="icon-building"></i>'.html_safe => organisations_path,
+            '<i class="icon-cloud"></i>'.html_safe => domains_path,
+            '<i class="icon-time"></i>'.html_safe => timesheet_entries_path,
+            '<i class="icon-group"></i>'.html_safe => users_path,
+            '<i class="icon-list"></i>'.html_safe => to_dos_path,
           )
           %>
           <li class="dropdown">
