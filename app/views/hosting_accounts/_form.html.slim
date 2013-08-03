@@ -1,0 +1,51 @@
+- if @hosting_account.errors.any?
+  .alert.alert-error.fade.in
+    a.close data-dismiss="alert" href="#" &times;
+    h2= pluralize(@hosting_account.errors.count, "error")
+      | prohibited this hosting account from being saved:
+
+    ul
+      - @hosting_account.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @hosting_account do |form|
+  .form-group
+    = form.label :host_name
+    = form.text_field :host_name, class: 'form-control'
+
+  .form-group
+    = form.label :domain
+    = form.collection_select :domain_id, @hosting_account.domain.organisation.domains, :id, :name, {}, class: 'form-control'
+
+  .form-group
+    = form.label :started_on
+    = form.date_select :started_on, :order => [:day, :month, :year]
+
+  .form-group
+    = form.label :backup_cycle
+    = form.text_field :backup_cycle, class: 'form-control'
+      | days
+
+  .form-group
+    = form.label :backed_up_on
+    = form.date_select :backed_up_on, :order => [:day, :month, :year]
+
+  .form-group
+    = form.label :annual_fee
+    = form.text_field :annual_fee, class: 'form-control'
+      | GBP
+
+  .form-group
+    = form.label :ftp_host, 'FTP host'
+    = form.text_field :ftp_host, class: 'form-control'
+
+  .form-group
+	  = form.label :username
+	  = form.text_field :username, class: 'form-control'
+
+  .form-group
+    = form.label :password
+    = form.text_field :password, class: 'form-control'
+
+  br
+  = form.submit class: 'btn btn-primary'

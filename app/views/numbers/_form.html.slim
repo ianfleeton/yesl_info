@@ -1,0 +1,28 @@
+- if @number.errors.any?
+  .alert.alert-error.fade.in
+    a class="close" data-dismiss="alert" href="#" &times;
+    h2= pluralize(@number.errors.count, "error")
+      | prohibited this number from being saved:
+
+    ul
+    - @number.errors.full_messages.each do |msg|
+      li= msg
+
+= form_for @number do |form|
+  = form.hidden_field :organisation_id
+  = form.hidden_field :user_id
+
+  .form-group
+    = form.label :number
+    = form.text_field :number, class: 'form-control'
+
+  .form-group
+    = form.label :type
+    = form.select :teltype, [['tel', 'tel'], ['mob', 'mob'], ['fax', 'fax']], {}, class: 'form-control'
+
+  .form-group
+    = form.label :note
+    = form.text_field :note, class: 'form-control'
+
+  br
+  = form.submit class: 'btn btn-primary'

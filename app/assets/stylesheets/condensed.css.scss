@@ -33,8 +33,16 @@
   }
 }
 
-@media (max-width: 979px) {
+@media (max-width: 991px) {
+  body {
+    padding-top: 60px;
+  }
+
   #menu-spacer {
     display: none;
+  }
+
+  .alpha-links .btn {
+    padding: 6px 8px;
   }
 }

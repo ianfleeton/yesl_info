@@ -1,0 +1,23 @@
+- if @note_pad.errors.any?
+  .alert.alert-error.fade.in
+    a class="close" data-dismiss="alert" href="#" &times;
+    h2= pluralize(@note_pad.errors.count, "error")
+      | prohibited this note pad from being saved:
+
+    ul
+    - @note_pad.errors.full_messages.each do |msg|
+      li= msg
+
+= form_for @note_pad do |form|
+  = form.hidden_field :organisation_id 
+
+  .form-group
+    = form.label :title
+    = form.text_field :title, class: 'form-control'
+
+  .form-group
+    = form.label :content
+    = form.text_area :content, rows: 12, class: 'form-control'
+
+  br
+  = form.submit class: 'btn btn-primary'

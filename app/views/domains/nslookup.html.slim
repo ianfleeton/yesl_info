@@ -6,13 +6,11 @@
 ul.breadcrumb
   li
     = link_to @domain.organisation.name, organisation_path(@domain.organisation)
-    span.divider= "/"
   li
     = link_to @domain.name, domain_path(@domain)
-    span.divider= "/"
   li.active nslookup
 
-p= link_to 'Back', domain_path(@domain), class: 'btn'
+p= link_to 'Back', domain_path(@domain), class: 'btn btn-default'
 
 table
   tr

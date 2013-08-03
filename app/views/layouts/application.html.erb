@@ -5,7 +5,6 @@
   <title>Your e Solutions Client Centre</title>
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -19,43 +18,41 @@
 </head>
 <body id="top">
 <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
 <% if admin? -%>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <%= menu_links(
-            '<i class="icon-home"></i>'.html_safe => root_path,
-            '<i class="icon-building"></i>'.html_safe => organisations_path,
-            '<i class="icon-cloud"></i>'.html_safe => domains_path,
-            '<i class="icon-time"></i>'.html_safe => timesheet_entries_path,
-            '<i class="icon-group"></i>'.html_safe => users_path,
-            '<i class="icon-list"></i>'.html_safe => to_dos_path,
-          )
-          %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Extras
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <%= menu_links(
-                'Links' => links_path,
-                'Passwords' => passwords_path,
-                'Webpanel Logins' => webpanel_logins_path
-              )
-              %>              
-            </ul>
-          </li>
-        </ul>
-        <div class="pull-right">
-        <ul class="nav">
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        <%= menu_links(
+          '<i class="icon-home"></i>'.html_safe => root_path,
+          '<i class="icon-building"></i>'.html_safe => organisations_path,
+          '<i class="icon-cloud"></i>'.html_safe => domains_path,
+          '<i class="icon-time"></i>'.html_safe => timesheet_entries_path,
+          '<i class="icon-group"></i>'.html_safe => users_path,
+          '<i class="icon-list"></i>'.html_safe => to_dos_path,
+        )
+        %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Extras
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <%= menu_links(
+              'Links' => links_path,
+              'Passwords' => passwords_path,
+              'Webpanel Logins' => webpanel_logins_path
+            )
+            %>              
+          </ul>
+        </li>
+      </ul>
+      <div class="pull-right">
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="icon-user"></i>
@@ -67,7 +64,7 @@
             </ul>
           </li>
         </ul>
-        <ul class="nav">
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">View Recent <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -79,11 +76,10 @@
             </ul>
           </li>
         </ul>
-        </div>
       </div>
+    </div>
 <% end -%>
-    </div><!--.container-->
-  </div><!--.navbar-inner-->
+  </div><!--.container-->
 </div><!--.navbar-->
 
 <div id="menu-spacer"></div>

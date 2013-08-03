@@ -1,21 +1,35 @@
 <%= form_for(@timesheet_entry) do |f| %>
+<div class="form-group">
 <%= f.label :organisation %>
-<%= f.collection_select :organisation_id, Organisation.order('name'), :id, :name %>
+<%= f.collection_select :organisation_id, Organisation.order('name'), :id, :name, {}, class: 'form-control' %>
+</div>
+<div class="form-group">
 <%= f.label :description %>
-<%= f.text_area :description, rows: '4', class: 'span6' %>
+<%= f.text_area :description, rows: '4', class: 'form-control' %>
+</div>
+<div class="form-group">
 <%= f.label :minutes %>
-<%= f.text_field :minutes, class: 'span1' %>
+<%= f.text_field :minutes, class: 'form-control' %>
+</div>
+<div class="form-group">
 <%= f.label :invoice_value %>
-<%= f.text_field :invoice_value, class: 'span1' %>
+<%= f.text_field :invoice_value, class: 'form-control' %>
+</div>
+<div class="checkbox">
 <label>
   <%= f.check_box :chargeable %>
   Chargeable
 </label>
+</div>
+<div class="form-group">
 <%= f.label :user_id, 'Who' %>
-<%= select('timesheet_entry', 'user_id', staff_options) %>
+<%= select('timesheet_entry', 'user_id', staff_options, {}, class: 'form-control') %>
+</div>
+<div class="form-group">
 <%= f.label :started_at %>
 <%= datetime_select :timesheet_entry, :started_at, {order: [:day, :month, :year]}, class: 'datetime' %>
+</div>
 <p>
-  <%= f.submit class: 'btn' %>
+  <%= f.submit class: 'btn btn-primary' %>
 </p>
 <% end %>

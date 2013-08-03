@@ -5,7 +5,6 @@
 <ul class="breadcrumb">
   <li>
     <%= link_to @domain.organisation.name, organisation_path(@domain.organisation) %>
-    <span class="divider">/</span>
   </li>
   <li class="active">
     <%= @domain.name %>
@@ -14,8 +13,8 @@
 
 <p class="btn-group">
   <%= edit_button(@domain) %>
-  <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'btn' %>
-  <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'btn' %>
+  <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'btn btn-default' %>
+  <%= link_to 'nslookup', {:action => :nslookup, :id => @domain}, :class => 'btn btn-default' %>
   <%= delete_button(@domain) %>
 </p>
 

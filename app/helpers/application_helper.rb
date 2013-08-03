@@ -39,9 +39,9 @@ module ApplicationHelper
 
   def alpha_links
     letters = %w(a b c d e f g h i j k l m n o p q r s t u v w x y z)
-    html = '<div class="btn-group">'
+    html = '<div class="btn-group alpha-links">'
     letters.each do |l|
-  	  html += '<a class="btn" href="#alphanum' + l + '">' + l + '</a>'
+  	  html += '<a class="btn btn-default" href="#alphanum' + l + '">' + l + '</a>'
     end
     html += '</div>'
   end
@@ -82,24 +82,24 @@ module ApplicationHelper
 
   def add_button(klass, args = {})
     link_to '<i class="icon-plus-sign"></i> Add'.html_safe,
-    new_polymorphic_path(klass, args), class: 'btn', title: "Add #{klass}"
+    new_polymorphic_path(klass, args), class: 'btn btn-success', title: "Add #{klass}"
   end
 
   def mini_add_icon_button(klass, args = {})
     link_to '<i class="icon-plus-sign"></i>'.html_safe,
-    new_polymorphic_path(klass, args), class: 'btn btn-mini', title: "Add #{klass}"
+    new_polymorphic_path(klass, args), class: 'btn btn-default btn-mini', title: "Add #{klass}"
   end
 
   def edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
-    class: 'btn'
+    class: 'btn btn-default'
   end
 
   def mini_edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
-    class: 'btn btn-mini'
+    class: 'btn btn-default btn-mini'
   end
 
   def delete_button(object)

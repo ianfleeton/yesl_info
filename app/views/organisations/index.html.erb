@@ -1,10 +1,9 @@
 <% cache Organisation.order('updated_at DESC').first do -%>
-<p style="float: right;">
-  <%= add_button(Organisation) %>
-</p>
 
 <%= page_header('Organisations') %>
-
+<p>
+  <%= add_button(Organisation) %>
+</p>
 <%= alpha_links.html_safe %>
 
 <div id="organisations">

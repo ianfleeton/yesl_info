@@ -3,11 +3,9 @@
 <ul class="breadcrumb">
   <li>
     <%= link_to @hosting_account.domain.organisation.name, organisation_path(@hosting_account.domain.organisation) %>
-    <span class="divider">/</span>
   </li>
   <li>
     <%= link_to @hosting_account.domain.name, domain_path(@hosting_account.domain) %>
-    <span class="divider">/</span>
   </li>
   <li class="active">
     New Hosting Account

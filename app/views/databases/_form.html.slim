@@ -12,20 +12,25 @@
 = form_for @database do |form|
   = form.hidden_field :organisation_id
 
-  = form.label :host
-  = form.text_field :host
+  .form-group
+    = form.label :host
+    = form.text_field :host, class: 'form-control'
 
-  = form.label :name
-  = form.text_field :name
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: 'form-control'
 
-  = form.label :username
-  = form.text_field :username
+  .form-group
+    = form.label :username
+    = form.text_field :username, class: 'form-control'
 
-  = form.label :password
-  = form.text_field :password
+  .form-group
+    = form.label :password
+    = form.text_field :password, class: 'form-control'
 
-  = form.label :location
-  = form.text_field :location
+  .form-group
+    = form.label :location
+    = form.text_field :location, class: 'form-control'
 
   .form-actions
     = form.submit class: 'btn btn-primary'

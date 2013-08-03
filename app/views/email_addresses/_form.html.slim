@@ -12,8 +12,10 @@
 = form_for @email_address do |form|
   = form.hidden_field :organisation_id
   = form.hidden_field :user_id
-  = form.label :address
-  = form.text_field :address
-  = form.label :password
-  = form.text_field :password
+  .form-group
+    = form.label :address
+    = form.text_field :address, class: 'form-control'
+  .form-group
+    = form.label :password
+    = form.text_field :password, class: 'form-control'
   .form-actions= form.submit class: 'btn btn-primary'

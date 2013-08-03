@@ -12,8 +12,10 @@
 <% end -%>
 
 <%= form_for @organisation do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
   <fieldset>
     <legend>On stop?</legend>
     <label class="radio">
