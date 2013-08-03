@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  layouts:
+    application:
+      domains: Domains
+      home: Home
+      organisations: Organisations
+      timesheet: Timesheet
+      to_dos: To-Dos
+      users: People

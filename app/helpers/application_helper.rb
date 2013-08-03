@@ -6,14 +6,14 @@ module ApplicationHelper
   end
 
   def menu_links(links)
-    links.map { |text, path| menu_link(text, path) }.join.html_safe
+    links.map { |text, attrs| menu_link(text, attrs[0], attrs[1]) }.join.html_safe
   end
 
-  def menu_link(text, path)
+  def menu_link(text, path, title)
     content_tag(
       :li,
       link_to(text, path),
-      current_page?(path) ? { class: 'active' } : {}
+      { title: title }.merge(current_page?(path) ? { class: 'active' } : {})
     )
   end
 

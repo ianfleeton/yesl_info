@@ -28,12 +28,12 @@
     <div class="nav-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
         <%= menu_links(
-          '<i class="icon-home"></i>'.html_safe => root_path,
-          '<i class="icon-building"></i>'.html_safe => organisations_path,
-          '<i class="icon-cloud"></i>'.html_safe => domains_path,
-          '<i class="icon-time"></i>'.html_safe => timesheet_entries_path,
-          '<i class="icon-group"></i>'.html_safe => users_path,
-          '<i class="icon-list"></i>'.html_safe => to_dos_path,
+          '<i class="icon-home"></i>'.html_safe => [root_path, t('.home')],
+          '<i class="icon-building"></i>'.html_safe => [organisations_path, t('.organisations')],
+          '<i class="icon-cloud"></i>'.html_safe => [domains_path, t('.domains')],
+          '<i class="icon-time"></i>'.html_safe => [timesheet_entries_path, t('.timesheet')],
+          '<i class="icon-group"></i>'.html_safe => [users_path, t('.users')],
+          '<i class="icon-list"></i>'.html_safe => [to_dos_path, t('.to_dos')],
         )
         %>
         <li class="dropdown">
