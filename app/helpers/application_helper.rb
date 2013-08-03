@@ -121,7 +121,7 @@ module ApplicationHelper
   def class_for_actual_rate(rate)
     case
     when rate < 10
-      'error'
+      'danger'
     when rate < 15 
       'warning'
     when rate > 25
