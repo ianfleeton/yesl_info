@@ -1,0 +1,20 @@
+= page_header(t('.heading'))
+
+= form_tag generate_report_timesheet_entries_path do
+  .form-group
+    label
+      = t('.organisation')
+      = select :report, :organisation_id, Organisation.order('name').map {|o| [ o.name, o.id ] }, {selected: params[:report] ? params[:report][:organisation_id] : nil}, class: 'form-control'
+  .form-group
+    label
+      = t('.start_date')
+      = date_select :report, :start
+  .form-group
+    label
+      = t('.end_date')
+      = date_select :report, :end
+  = submit_tag t('.generate_report'), class: 'btn btn-primary'
+
+- if @timesheet_entries
+  = "Total invoiced: #{number_to_currency(@timesheet_entries.map{|e| e.invoice_value }.reduce(:+), unit: '£')}"
+  = render 'timesheet_entries/table'

@@ -47,6 +47,20 @@ class TimesheetEntriesController < ApplicationController
     redirect_to @timesheet_entry.organisation, notice: 'Timesheet entry deleted.'
   end
 
+  def report
+  end
+
+  def generate_report
+    report = params[:report]
+    start_date = Date.new report['start(1i)'].to_i, report['start(2i)'].to_i, report['start(3i)'].to_i
+    end_date = Date.new report['end(1i)'].to_i, report['end(2i)'].to_i, report['end(3i)'].to_i
+
+    @timesheet_entries = TimesheetEntry.where(organisation_id: report['organisation_id'],
+      started_at: start_date.beginning_of_day..end_date.end_of_day)
+
+    render 'report'
+  end
+
   protected
 
   def find_timesheet_entry

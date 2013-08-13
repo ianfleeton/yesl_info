@@ -28,3 +28,11 @@ en:
       timesheet: Timesheet
       to_dos: To-Dos
       users: People
+  timesheet_entries:
+    index:
+      report: 'Report'
+    report:
+      end_date: 'End date'
+      heading: 'Timesheet Entry Report'
+      generate_report: 'Generate Report'
+      start_date: 'Start date'

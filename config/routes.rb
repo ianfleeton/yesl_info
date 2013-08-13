@@ -110,6 +110,9 @@ YeslInfo::Application.routes.draw do
   resources :timesheet_entries do
     collection do
       post 'more_timesheet_entries'
+
+      get 'report'
+      post 'generate_report'
     end
   end
 
