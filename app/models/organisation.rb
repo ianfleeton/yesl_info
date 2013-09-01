@@ -16,7 +16,7 @@ class Organisation < ActiveRecord::Base
   def revenue_per_hour
     minutes = minutes_logged
     return 0 if 0 == minutes
-    invoice_value / (minutes / 60)
+    invoice_value / (minutes / 60.0)
   end
 
   def invoice_value
