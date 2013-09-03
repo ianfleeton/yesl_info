@@ -1,3 +1,4 @@
+<% cache [User.order('updated_at DESC').first, Organisation.order('updated_at DESC').first] do %>
 <div class="page-header">
   <h1>People</h1>
 </div>
@@ -24,3 +25,4 @@
     </tr>
   <% end %>
   </table>
+<% end %>

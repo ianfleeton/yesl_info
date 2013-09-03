@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130314140006) do
+ActiveRecord::Schema.define(version: 20130903200445) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.datetime "updated_at"
   end
 
-  add_index "addresses", ["organisation_id"], name: "index_addresses_on_organisation_id"
+  add_index "addresses", ["organisation_id"], name: "index_addresses_on_organisation_id", using: :btree
 
   create_table "databases", force: true do |t|
     t.string   "host"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.datetime "updated_at"
   end
 
-  add_index "databases", ["organisation_id"], name: "index_databases_on_organisation_id"
+  add_index "databases", ["organisation_id"], name: "index_databases_on_organisation_id", using: :btree
 
   create_table "domains", force: true do |t|
     t.integer  "organisation_id", default: 0,    null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.boolean  "with_us",         default: true, null: false
   end
 
-  add_index "domains", ["organisation_id"], name: "index_domains_on_organisation_id"
+  add_index "domains", ["organisation_id"], name: "index_domains_on_organisation_id", using: :btree
 
   create_table "email_addresses", force: true do |t|
     t.integer  "organisation_id"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.datetime "updated_at"
   end
 
-  add_index "email_addresses", ["organisation_id"], name: "index_email_addresses_on_organisation_id"
-  add_index "email_addresses", ["user_id"], name: "index_email_addresses_on_user_id"
+  add_index "email_addresses", ["organisation_id"], name: "index_email_addresses_on_organisation_id", using: :btree
+  add_index "email_addresses", ["user_id"], name: "index_email_addresses_on_user_id", using: :btree
 
   create_table "hosting_accounts", force: true do |t|
     t.integer  "domain_id",                            default: 0,   null: false
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.datetime "updated_at"
   end
 
-  add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id"
+  add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id", using: :btree
 
   create_table "note_pads", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.datetime "updated_at"
   end
 
-  add_index "note_pads", ["organisation_id"], name: "index_note_pads_on_organisation_id"
+  add_index "note_pads", ["organisation_id"], name: "index_note_pads_on_organisation_id", using: :btree
 
   create_table "numbers", force: true do |t|
     t.integer  "organisation_id"
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.string   "number",          default: "",    null: false
   end
 
-  add_index "numbers", ["organisation_id"], name: "index_numbers_on_organisation_id"
-  add_index "numbers", ["user_id"], name: "index_numbers_on_user_id"
+  add_index "numbers", ["organisation_id"], name: "index_numbers_on_organisation_id", using: :btree
+  add_index "numbers", ["user_id"], name: "index_numbers_on_user_id", using: :btree
 
   create_table "organisations", force: true do |t|
     t.string   "name",           default: "",    null: false
@@ -112,7 +112,8 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.boolean  "on_stop",        default: false, null: false
   end
 
-  add_index "organisations", ["last_viewed_at"], name: "index_organisations_on_last_viewed_at"
+  add_index "organisations", ["last_viewed_at"], name: "index_organisations_on_last_viewed_at", using: :btree
+  add_index "organisations", ["updated_at"], name: "index_organisations_on_updated_at", using: :btree
 
   create_table "timesheet_entries", force: true do |t|
     t.integer  "organisation_id",                          default: 0,     null: false
@@ -126,9 +127,9 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.datetime "started_at",                                               null: false
   end
 
-  add_index "timesheet_entries", ["organisation_id"], name: "index_timesheet_entries_on_organisation_id"
-  add_index "timesheet_entries", ["started_at"], name: "index_timesheet_entries_on_started_at"
-  add_index "timesheet_entries", ["user_id"], name: "index_timesheet_entries_on_user_id"
+  add_index "timesheet_entries", ["organisation_id"], name: "index_timesheet_entries_on_organisation_id", using: :btree
+  add_index "timesheet_entries", ["started_at"], name: "index_timesheet_entries_on_started_at", using: :btree
+  add_index "timesheet_entries", ["user_id"], name: "index_timesheet_entries_on_user_id", using: :btree
 
   create_table "to_dos", force: true do |t|
     t.integer  "organisation_id", null: false
@@ -157,6 +158,7 @@ ActiveRecord::Schema.define(version: 20130314140006) do
     t.boolean  "staff",                 default: false, null: false
   end
 
-  add_index "users", ["staff"], name: "index_users_on_staff"
+  add_index "users", ["staff"], name: "index_users_on_staff", using: :btree
+  add_index "users", ["updated_at"], name: "index_users_on_updated_at", using: :btree
 
 end

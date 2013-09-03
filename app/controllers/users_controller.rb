@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :admin_required, :only => [:index, :new, :create, :destroy]
 
   def index
-    @users = User.find(:all, :order => "name", :include => :organisation)
+    @users = User.order('name').includes(:organisation)
   end
   
   def show
