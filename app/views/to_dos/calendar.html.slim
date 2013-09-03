@@ -1,0 +1,6 @@
+= calendar @to_dos do |to_do|
+  a.calendar-to-do href="#{edit_to_do_path(to_do)}"
+    h4
+      abbr title="#{to_do.organisation.name}"= to_do.organisation.initials
+    p= to_do.assignee.initials
+    p= to_do.title

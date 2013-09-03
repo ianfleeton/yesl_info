@@ -22,6 +22,7 @@
 en:
   layouts:
     application:
+      calendar_to_dos: To-Dos Calendar
       domains: Domains
       home: Home
       organisations: Organisations

@@ -3,3 +3,36 @@
     text-align: right;
   }
 }
+
+table.calendar td {
+  width: 14.28%;
+}
+
+.calendar a {
+  display: block;
+  color: #333;
+}
+
+.calendar-to-do {
+  border-radius: 10px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  margin: 1px 0;
+  padding: 3px;
+
+  h4 {
+    display: inline-block;
+    font-size: 11px;
+    margin: 0;
+  }
+
+  h4 + p {
+    padding: 0 4px;
+  }
+
+  p {
+    display: inline-block;
+    font-size: 11px;
+    margin: 0;
+  }
+}

@@ -118,6 +118,7 @@ YeslInfo::Application.routes.draw do
 
   resources :to_dos do
     collection do
+      get 'calendar'
       post 'update_multiple'
     end
   end

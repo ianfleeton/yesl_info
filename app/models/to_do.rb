@@ -4,4 +4,9 @@ class ToDo < ActiveRecord::Base
   belongs_to :organisation
 
   validates_presence_of :title
+
+  # Returns date_due for interoperability with simple_calendar
+  def start_time
+    date_due
+  end
 end

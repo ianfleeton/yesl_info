@@ -9,6 +9,9 @@ gem 'slim', '~> 2.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# Calendar
+gem 'simple_calendar'
+
 group :development do
   gem 'thin'
 end

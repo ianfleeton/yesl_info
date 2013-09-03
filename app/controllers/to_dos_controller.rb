@@ -55,6 +55,10 @@ class ToDosController < ApplicationController
     redirect_to action: 'index'
   end
 
+  def calendar
+    @to_dos = ToDo.all
+  end
+
   protected
 
   def find_to_do
