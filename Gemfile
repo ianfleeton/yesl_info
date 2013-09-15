@@ -24,6 +24,7 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
+  gem 'simplecov', require: false
   gem 'spork-rails', github: 'A-gen/spork-rails'
   gem 'watchr'
 end
