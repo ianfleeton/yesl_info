@@ -9,7 +9,7 @@ module TimesheetEntriesHelper
     end
     conditions = ["user_id=? AND started_at>=DATE_SUB(NOW(), INTERVAL ? DAY) AND chargeable<>?",
       who.id, days, chargeable]
-    TimesheetEntry.calculate(:sum, :invoice_value, :conditions => conditions)
+    TimesheetEntry.where(conditions).sum(:invoice_value)
   end
 
   def hours_logged_this_week_by(who)
