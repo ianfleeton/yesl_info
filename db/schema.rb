@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903200445) do
+ActiveRecord::Schema.define(version: 20130926193833) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -64,17 +64,18 @@ ActiveRecord::Schema.define(version: 20130903200445) do
   add_index "email_addresses", ["user_id"], name: "index_email_addresses_on_user_id", using: :btree
 
   create_table "hosting_accounts", force: true do |t|
-    t.integer  "domain_id",                            default: 0,   null: false
-    t.string   "ftp_host",                             default: "",  null: false
-    t.string   "username",                             default: "",  null: false
-    t.string   "password",                             default: "",  null: false
-    t.date     "started_on",                                         null: false
-    t.string   "host_name",                            default: "",  null: false
-    t.date     "backed_up_on",                                       null: false
-    t.integer  "backup_cycle",                         default: 14,  null: false
-    t.decimal  "annual_fee",   precision: 6, scale: 2, default: 0.0, null: false
+    t.integer  "domain_id",                                         default: 0,     null: false
+    t.string   "ftp_host",                                          default: "",    null: false
+    t.string   "username",                                          default: "",    null: false
+    t.string   "password",                                          default: "",    null: false
+    t.date     "started_on",                                                        null: false
+    t.string   "host_name",                                         default: "",    null: false
+    t.date     "backed_up_on",                                                      null: false
+    t.integer  "backup_cycle",                                      default: 14,    null: false
+    t.decimal  "annual_fee",                precision: 6, scale: 2, default: 0.0,   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "expected_http_status_code",                         default: "200", null: false
   end
 
   add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id", using: :btree

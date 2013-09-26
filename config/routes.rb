@@ -126,6 +126,8 @@ YeslInfo::Application.routes.draw do
   resources :users do
     collection do
       get 'forgot_password'
+      post 'forgot_password_change'
+      get 'forgot_password_new'
       post 'forgot_password_send'
     end
 

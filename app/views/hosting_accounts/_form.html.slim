@@ -14,6 +14,10 @@
     = form.text_field :host_name, class: 'form-control'
 
   .form-group
+    = form.label :expected_http_status_code, 'Expected HTTP status code'
+    = form.text_field :expected_http_status_code, class: 'form-control'
+
+  .form-group
     = form.label :domain
     = form.collection_select :domain_id, @hosting_account.domain.organisation.domains, :id, :name, {}, class: 'form-control'
 
