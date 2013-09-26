@@ -3,6 +3,19 @@ require 'spec_helper'
 describe HostingAccountsController do
   before { signed_in_as_admin }
 
+  describe 'GET index' do
+    it 'finds all hosting accounts' do
+      HostingAccount.should_receive(:all)
+      get :index
+    end
+
+    it 'renders JSON' do
+      FactoryGirl.create(:hosting_account)
+      get :index
+      response.body.should eq HostingAccount.all.to_json
+    end
+  end
+
   describe 'GET show' do
     it 'finds the hosting account' do
       controller.should_receive(:find_hosting_account)

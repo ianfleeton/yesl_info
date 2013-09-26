@@ -1,9 +1,14 @@
 class HostingAccountsController < ApplicationController
-  before_action :admin_required, except: [:backups, :backed_up]
-  before_action :admin_or_token_required, only: [:backups, :backed_up]
+  API_ACTIONS = [:backups, :backed_up, :index]
+  before_action :admin_required, except: API_ACTIONS
+  before_action :admin_or_token_required, only: API_ACTIONS
   skip_before_action :verify_authenticity_token, only: [:backed_up]
 
   before_action :find_hosting_account, only: [:show, :edit, :update, :destroy, :backed_up]
+
+  def index
+    render json: HostingAccount.all
+  end
 
   def show
   end
