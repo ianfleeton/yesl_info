@@ -12,7 +12,7 @@ describe HostingAccountsController do
     it 'renders JSON' do
       FactoryGirl.create(:hosting_account)
       get :index
-      response.body.should eq HostingAccount.all.to_json
+      expect(response.body).to eq HostingAccount.all.to_json
     end
   end
 
