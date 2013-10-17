@@ -1,0 +1,7 @@
+<%= page_header('Issues') %>
+
+<p>
+  <strong>New issues can be added on the organisation page</strong>
+</p>
+
+<% User.staff.each { |u| %><%= render partial: 'for_user', locals: {user: u} %><% } %>

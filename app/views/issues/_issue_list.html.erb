@@ -1,0 +1,38 @@
+<%= form_tag controller: 'issues', action: 'update_multiple' do %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="del">X</th>
+        <th>Task</th>
+        <th>For</th>
+        <th>Date Due</th>
+        <th>Priority</th>
+        <th>Est. Time</th>
+        <th>Assigned&nbsp;To</th>
+        <th>Set&nbsp;By</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+<% issues.each do |issue| -%>
+      <tr>
+        <td><input type="checkbox" name="id[<%= issue.id %>]"></td>
+        <td>
+          <%= completed if issue.completed? %>
+          <strong><%= issue.title %></strong><br>
+          <%= issue.details %>
+        </td>
+        <td><%= link_to issue.organisation.name, issue.organisation %></td>
+        <td><%= issue.date_due %></td>
+        <td><%= issue.priority %></td>
+        <td><%= issue.estimated_time %>m</td>
+        <td><%= issue.assignee.name %></td>
+        <td><%= issue.setter.name %></td>
+        <td><%= edit_button(issue) %></td>
+      </tr>
+<% end -%>
+    </tbody>
+  </table>
+  <%= submit_tag 'Delete Selected', class: 'btn', data: {confirm: 'Are you sure?'} %>
+  <%= submit_tag 'Mark Selected as Complete', class: 'btn' %>
+<% end %>

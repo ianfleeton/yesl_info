@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130926193833) do
+ActiveRecord::Schema.define(version: 20131017184854) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -80,6 +80,20 @@ ActiveRecord::Schema.define(version: 20130926193833) do
 
   add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id", using: :btree
 
+  create_table "issues", force: true do |t|
+    t.integer  "organisation_id", null: false
+    t.integer  "setter_id",       null: false
+    t.integer  "assignee_id",     null: false
+    t.integer  "priority"
+    t.date     "date_due"
+    t.boolean  "completed",       null: false
+    t.string   "title",           null: false
+    t.text     "details"
+    t.integer  "estimated_time"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "note_pads", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
     t.string   "title",           default: "", null: false
@@ -131,20 +145,6 @@ ActiveRecord::Schema.define(version: 20130926193833) do
   add_index "timesheet_entries", ["organisation_id"], name: "index_timesheet_entries_on_organisation_id", using: :btree
   add_index "timesheet_entries", ["started_at"], name: "index_timesheet_entries_on_started_at", using: :btree
   add_index "timesheet_entries", ["user_id"], name: "index_timesheet_entries_on_user_id", using: :btree
-
-  create_table "to_dos", force: true do |t|
-    t.integer  "organisation_id", null: false
-    t.integer  "setter_id",       null: false
-    t.integer  "assignee_id",     null: false
-    t.integer  "priority"
-    t.date     "date_due"
-    t.boolean  "completed",       null: false
-    t.string   "title",           null: false
-    t.text     "details"
-    t.integer  "estimated_time"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
   create_table "users", force: true do |t|
     t.string   "email",                 default: "",    null: false

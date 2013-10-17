@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :email_addresses, dependent: :delete_all
   has_many :numbers, dependent: :delete_all
   has_many :timesheet_entries, -> { order 'started_at DESC' }, dependent: :nullify
-  has_many :to_dos, -> { order 'completed, priority' }, foreign_key: 'assignee_id'
+  has_many :issues, -> { order 'completed, priority' }, foreign_key: 'assignee_id'
 
   # unencrypted password
   attr_accessor :password

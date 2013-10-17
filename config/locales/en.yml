@@ -22,12 +22,12 @@
 en:
   layouts:
     application:
-      calendar_to_dos: To-Dos Calendar
+      calendar_issues: Issues Calendar
       domains: Domains
       home: Home
       organisations: Organisations
       timesheet: Timesheet
-      to_dos: To-Dos
+      issues: Issues
       users: People
   timesheet_entries:
     index:

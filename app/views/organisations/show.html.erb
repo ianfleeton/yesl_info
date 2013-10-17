@@ -4,7 +4,7 @@ $(function() {
     $.cookie('organisation-pane', $(this).attr('href'), { path: '/' });
   });
 
-  panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#to-dos', '#notes', '#timesheet']
+  panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#issues', '#notes', '#timesheet']
 
   for(var i = 0; i < panes.length; i++) {
     var id = panes[i];
@@ -46,7 +46,7 @@ $(function() {
   <li><a href="#addresses" data-toggle="tab">Addresses</a></li>
   <li><a href="#domains" data-toggle="tab">Domains</a></li>
   <li><a href="#databases" data-toggle="tab">Databases</a></li>
-  <li><a href="#to-dos" data-toggle="tab">To-dos</a></li>
+  <li><a href="#issues" data-toggle="tab">Issues</a></li>
   <li><a href="#notes" data-toggle="tab">Notes</a></li>
   <li><a href="#timesheet" data-toggle="tab">Timesheet</a></li>
 </ul>
@@ -177,15 +177,15 @@ $(function() {
 <% end -%>
   </div>
 
-  <div class="tab-pane" id="to-dos">
-    <h2>To-do list</h2>
+  <div class="tab-pane" id="issues">
+    <h2>Issues</h2>
 
     <p>
-      <%= add_button(ToDo, organisation_id: @organisation) %>
+      <%= add_button(Issue, organisation_id: @organisation) %>
     </p>
 
-<% unless @organisation.to_dos.empty? -%>
-    <%= render partial: 'to_dos/to_do_list', locals: {to_dos: @organisation.to_dos} %>
+<% unless @organisation.issues.empty? -%>
+    <%= render partial: 'issues/issue_list', locals: {issues: @organisation.issues} %>
 <% end -%>
   </div>
 

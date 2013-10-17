@@ -89,6 +89,13 @@ YeslInfo::Application.routes.draw do
   get 'passwords' => 'home#passwords', as: :passwords
   get 'webpanel_logins' => 'home#webpanel_logins', as: :webpanel_logins
 
+  resources :issues do
+    collection do
+      get 'calendar'
+      post 'update_multiple'
+    end
+  end
+
   resources :note_pads
 
   resources :numbers
@@ -113,13 +120,6 @@ YeslInfo::Application.routes.draw do
 
       get 'report'
       post 'generate_report'
-    end
-  end
-
-  resources :to_dos do
-    collection do
-      get 'calendar'
-      post 'update_multiple'
     end
   end
 

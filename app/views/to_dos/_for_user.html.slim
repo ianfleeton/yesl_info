@@ -1,8 +1,0 @@
-h2= user.name
-- if user.to_dos.empty?
-  p
-    | Nothing to do for
-    =< user.name
-- else
-  = render partial: 'to_do_list', locals: {to_dos: user.to_dos}
-

@@ -1,4 +1,4 @@
-class ToDo < ActiveRecord::Base
+class Issue < ActiveRecord::Base
   belongs_to :assignee, class_name: 'User'
   belongs_to :setter, class_name: 'User'
   belongs_to :organisation

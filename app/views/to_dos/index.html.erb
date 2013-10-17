@@ -1,7 +1,0 @@
-<%= page_header('To-Do List') %>
-
-<p>
-  <strong>New to do items can be added on the organisation page</strong>
-</p>
-
-<% User.staff.each { |u| %><%= render partial: 'for_user', locals: {user: u} %><% } %>
