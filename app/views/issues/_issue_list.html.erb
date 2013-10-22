@@ -24,7 +24,7 @@
         </td>
         <td><%= link_to issue.organisation.name, issue.organisation %></td>
         <td><%= issue.date_due %></td>
-        <td><%= issue.priority %></td>
+        <td><%= priority_icon(issue.priority) %></td>
         <td><%= issue.estimated_time %>m</td>
         <td><%= issue.assignee.name %></td>
         <td><%= issue.setter.name %></td>

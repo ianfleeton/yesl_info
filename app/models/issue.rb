@@ -4,6 +4,7 @@ class Issue < ActiveRecord::Base
   belongs_to :organisation
 
   validates_presence_of :title
+  validates :priority, inclusion: { in: 1..5 }
 
   # Returns date_due for interoperability with simple_calendar
   def start_time
