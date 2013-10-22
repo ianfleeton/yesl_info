@@ -1,0 +1,8 @@
+= page_header @organisation.name
+
+h2 Issues
+
+p= add_button(Issue, organisation_id: @organisation)
+
+- unless @organisation.issues.empty?
+  = render partial: 'issues/issue_list', locals: {issues: @organisation.issues}

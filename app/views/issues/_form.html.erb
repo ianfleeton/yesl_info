@@ -12,22 +12,33 @@
 <% end -%>
 
 <%= form_for @issue do |form| %>
+<% if admin? -%>
 <div class="form-group">
   <%= form.label :organisation %>
   <%= form.collection_select :organisation_id, Organisation.order('name'), :id, :name, {}, class: 'form-control' %>
 </div>
+<% end -%>
 <div class="form-group">
   <%= form.label :title %>
   <%= form.text_field :title, class: 'form-control' %>
 </div>
 <div class="form-group">
   <%= form.label :details %>
-  <%= form.text_area :details, class: 'form-control' %>
+  <%= form.text_area :details, class: 'form-control', rows: 5 %>
+  <span class="help-block">
+    Keep your issue concise and use one issue per topic.
+    Tasks should have a clear course of action.
+    Include all steps to reproduce problems.
+  </span>
 </div>
 <div class="form-group">
   <%= form.label :priority %>
   <%= select('issue', 'priority', priority_options, {}, class: 'form-control') %>
+  <span class="help-block">
+    Use priorities to tell us which of your issues are most important to you.
+  </span>
 </div>
+<% if admin? -%>
 <div class="form-group">
   <%= form.label :estimated_time %>
   <%= form.number_field :estimated_time, class: 'form-control' %> minutes
@@ -36,13 +47,16 @@
   <%= form.label :date_due %>
   <%= date_select :issue, :date_due, {order: [:day, :month, :year]} %>
 </div>
+<% end -%>
 <div class="form-group">
   <%= form.label :assignee_id, 'Assigned to' %>
   <%= select('issue', 'assignee_id', staff_options, {}, class: 'form-control') %>
 </div>
+<% if admin? -%>
 <div class="form-group">
   <%= form.label :setter_id, 'Set by' %>
   <%= select('issue', 'setter_id', staff_options, {}, class: 'form-control') %>
 </div>
+<% end -%>
 <br><%= form.submit class: 'btn btn-primary' %>
 <% end %>

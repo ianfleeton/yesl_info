@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
-  before_action :admin_required
+  before_action :admin_required, except: [:new, :create]
+  before_action :user_required, only: [:new, :create]
   before_action :find_issue, only: [:edit, :update, :destroy]
 
   def index
@@ -7,7 +8,7 @@ class IssuesController < ApplicationController
 
   def new
     @issue = Issue.new(
-      setter_id: @current_user.id,
+      setter_id: current_user.id,
       organisation_id: params[:organisation_id],
       date_due: Date.today + 1.week
     )
@@ -15,6 +16,12 @@ class IssuesController < ApplicationController
 
   def create
     @issue = Issue.new(issue_params)
+
+    unless admin?
+      @issue.organisation = current_user.organisation
+      @issue.setter = current_user
+    end
+
     @issue.completed = false
     if @issue.save
       IssueNotifier.new_task(@issue).deliver

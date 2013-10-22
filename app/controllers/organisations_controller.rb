@@ -1,5 +1,7 @@
 class OrganisationsController < ApplicationController
-  before_action :admin_required
+  before_action :admin_required, except: [:show]
+  before_action :user_required, only: [:show]
+
   before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries]
 
   def index
@@ -9,6 +11,12 @@ class OrganisationsController < ApplicationController
   def show
     record_view
     @offset = 100
+
+    if admin?
+      render 'show_admin'
+    else
+      redirect_to new_session_path and return unless same_organisation_as? @organisation
+    end
   end
   
   def new

@@ -5,6 +5,9 @@ class Issue < ActiveRecord::Base
 
   validates_presence_of :title
   validates :priority, inclusion: { in: 1..5 }
+  validates :assignee_id, presence: true
+  validates :setter_id, presence: true
+  validates :organisation_id, presence: true
 
   # Returns date_due for interoperability with simple_calendar
   def start_time

@@ -13,13 +13,15 @@ class ApplicationController < ActionController::Base
   # make these available as ActionView helper methods.
   helper_method :logged_in?, :admin?
 
+  attr_reader :current_user
+
   # Check if the user is already logged in
   def logged_in?
-    @current_user.is_a?(User)
+    current_user.is_a?(User)
   end
   
   def admin?
-    logged_in? and @current_user.admin
+    logged_in? and current_user.admin?
   end
 
   def admin_required
@@ -28,10 +30,25 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
-  
+
+  def user_required
+    unless logged_in?
+      flash[:notice] = 'You must be logged in to perform that action.'
+      redirect_to new_session_path
+    end
+  end
+
+  def same_organisation_as? object
+    if object.is_a? Organisation
+      logged_in? && current_user.organisation == object
+    else
+      logged_in? && current_user.organisation == object.organisation
+    end
+  end
+
   # setup user info on each page
   def initialize_user
-    @current_user = User.find_by_id(session[:user])
+    @current_user = User.find_by(id: session[:user])
   end
 
   def not_found
