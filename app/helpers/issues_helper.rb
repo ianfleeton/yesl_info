@@ -27,4 +27,8 @@ module IssuesHelper
   def completed
     '<span class="label label-success">&radic; Completed</span>'.html_safe
   end
+
+  def issue_user_options(issue)
+    (staff_options + organisation_users_options(issue.organisation)).sort.uniq
+  end
 end

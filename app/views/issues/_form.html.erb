@@ -50,12 +50,12 @@
 <% end -%>
 <div class="form-group">
   <%= form.label :assignee_id, 'Assigned to' %>
-  <%= select('issue', 'assignee_id', staff_options, {}, class: 'form-control') %>
+  <%= select('issue', 'assignee_id', issue_user_options(@issue), {}, class: 'form-control') %>
 </div>
 <% if admin? -%>
 <div class="form-group">
   <%= form.label :setter_id, 'Set by' %>
-  <%= select('issue', 'setter_id', staff_options, {}, class: 'form-control') %>
+  <%= select('issue', 'setter_id', issue_user_options(@issue), {}, class: 'form-control') %>
 </div>
 <% end -%>
 <br><%= form.submit class: 'btn btn-primary' %>
