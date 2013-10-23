@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :set_timezone, :ssl_required, :initialize_user
   
   # make these available as ActionView helper methods.
-  helper_method :logged_in?, :admin?
+  helper_method :logged_in?, :admin?, :current_user
 
   attr_reader :current_user
 

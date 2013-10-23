@@ -26,9 +26,9 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-<% if admin? -%>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
+        <% if admin? -%>
         <%= menu_links(
           '<span class="glyphicon glyphicon-home"></span>'.html_safe => [root_path, t('.home')],
           '<span class="glyphicon glyphicon-tower"></span>'.html_safe => [organisations_path, t('.organisations')],
@@ -53,8 +53,12 @@
             %>              
           </ul>
         </li>
+        <% elsif logged_in? -%>
+          <%= menu_links('Home' => [organisation_path(current_user.organisation), 'Home']) %>
+        <% end -%>
       </ul>
       <div class="pull-right">
+        <% if logged_in? -%>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,6 +71,8 @@
             </ul>
           </li>
         </ul>
+        <% end -%>
+        <% if admin? -%>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">View Recent <b class="caret"></b></a>
@@ -79,9 +85,9 @@
             </ul>
           </li>
         </ul>
+        <% end -%>
       </div>
     </div>
-<% end -%>
   </div><!--.container-->
 </nav><!--.navbar-->
 
