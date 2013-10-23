@@ -1,5 +1,5 @@
 = calendar @issues do |issue|
-  a.calendar-issue href="#{edit_issue_path(issue)}"
+  a.calendar-issue href="#{issue_path(issue)}"
     h4
       abbr title="#{issue.organisation.name}"= issue.organisation.initials
     p= issue.assignee.initials
