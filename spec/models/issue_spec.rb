@@ -20,4 +20,16 @@ describe Issue do
       expect(issue.start_time).to eq Date.today
     end
   end
+
+  describe '#watchers' do
+    it 'includes the assignee' do
+      issue = FactoryGirl.build(:issue)
+      expect(issue.watchers).to include issue.assignee
+    end
+
+    it 'includes the setter' do
+      issue = FactoryGirl.build(:issue)
+      expect(issue.watchers).to include issue.setter
+    end
+  end
 end

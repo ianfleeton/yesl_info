@@ -11,6 +11,23 @@
 
     p= @issue.details
 
+    hr
+
+    h2= "Comments (#{@issue.comments.count})"
+
+    - @issue.comments.each do |comment|
+      - if comment.user
+        p= link_to comment.user, comment.user
+      p= comment.comment
+      p= comment.created_at
+      hr
+
+    = form_for(Comment.new(issue: @issue)) do |form|
+      = form.hidden_field :issue_id
+      .form-group
+        = form.text_area :comment, class: 'form-control', placeholder: 'Add something to the conversation...'
+      = form.submit 'Comment', class: 'btn btn-primary'
+
   .col-md-4
     .pull-right
       p= edit_button(@issue)

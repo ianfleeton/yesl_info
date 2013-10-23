@@ -61,6 +61,8 @@ YeslInfo::Application.routes.draw do
 
   resources :addresses
 
+  resources :comments
+
   resources :databases
 
   resources :domains do

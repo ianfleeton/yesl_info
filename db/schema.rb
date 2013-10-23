@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023082408) do
+ActiveRecord::Schema.define(version: 20131023100822) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20131023082408) do
   end
 
   add_index "addresses", ["organisation_id"], name: "index_addresses_on_organisation_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "issue_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["issue_id"], name: "index_comments_on_issue_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "databases", force: true do |t|
     t.string   "host"

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Initials
 
   belongs_to :organisation, touch: true
+  has_many :comments, -> { order 'created_at DESC' }
   has_many :email_addresses, dependent: :delete_all
   has_many :numbers, dependent: :delete_all
   has_many :timesheet_entries, -> { order 'started_at DESC' }, dependent: :nullify
