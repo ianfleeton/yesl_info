@@ -80,29 +80,29 @@ module ApplicationHelper
   end
 
   def add_button(klass, args = {})
-    link_to '<i class="icon-plus-sign"></i> Add'.html_safe,
+    link_to '<i class="glyphicon glyphicon-plus-sign"></i> Add'.html_safe,
     new_polymorphic_path(klass, args), class: 'btn btn-success', title: "Add #{klass}"
   end
 
   def mini_add_icon_button(klass, args = {})
-    link_to '<i class="icon-plus-sign"></i>'.html_safe,
+    link_to '<i class="glyphicon glyphicon-plus-sign"></i>'.html_safe,
     new_polymorphic_path(klass, args), class: 'btn btn-default btn-mini', title: "Add #{klass}"
   end
 
   def edit_button(object)
-    link_to '<i class="icon-edit"></i> Edit'.html_safe,
+    link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
     class: 'btn btn-default'
   end
 
   def mini_edit_button(object)
-    link_to '<i class="icon-edit"></i> Edit'.html_safe,
+    link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
     class: 'btn btn-default btn-mini'
   end
 
   def delete_button(object)
-    link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe,
+    link_to '<i class="glyphicon glyphicon-trash"></i> Delete'.html_safe,
     object,
     data: { confirm: 'Are you sure?' },
     method: :delete,
@@ -110,7 +110,7 @@ module ApplicationHelper
   end
 
   def mini_delete_button(object)
-    link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe,
+    link_to '<i class="glyphicon glyphicon-trash"></i> Delete'.html_safe,
     object,
     data: { confirm: 'Are you sure?' },
     method: :delete,
