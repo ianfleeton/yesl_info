@@ -15,6 +15,6 @@ class Issue < ActiveRecord::Base
 
   # Returns date_due for interoperability with simple_calendar
   def start_time
-    date_due
+    date_due || Date.today
   end
 end

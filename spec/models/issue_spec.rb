@@ -14,5 +14,10 @@ describe Issue do
       issue = Issue.new(date_due: d)
       expect(issue.start_time).to eq d
     end
+
+    it "returns today's date if date_due is nil" do
+      issue = Issue.new(date_due: nil)
+      expect(issue.start_time).to eq Date.today
+    end
   end
 end
