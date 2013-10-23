@@ -34,7 +34,11 @@ class User < ActiveRecord::Base
     user = find_by_email(email)
     user && user.authenticated?(pass) ? user : nil
   end
-  
+
+  def to_s
+    name
+  end
+
   # does the given password match the stored encrypted password
   def authenticated?(pass)
     encrypted_password == User.encrypt(pass, salt)

@@ -9,6 +9,10 @@ class Issue < ActiveRecord::Base
   validates :setter_id, presence: true
   validates :organisation_id, presence: true
 
+  def to_s
+    "##{id}: #{title}"
+  end
+
   # Returns date_due for interoperability with simple_calendar
   def start_time
     date_due

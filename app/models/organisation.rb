@@ -15,6 +15,10 @@ class Organisation < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def to_s
+    name
+  end
+
   def revenue_per_hour
     minutes = minutes_logged
     return 0 if 0 == minutes

@@ -1,9 +1,12 @@
 class IssuesController < ApplicationController
   before_action :admin_required, except: [:new, :create]
   before_action :user_required, only: [:new, :create]
-  before_action :find_issue, only: [:edit, :update, :destroy]
+  before_action :find_issue, only: [:show, :edit, :update, :destroy]
 
   def index
+  end
+
+  def show
   end
 
   def new
@@ -38,7 +41,7 @@ class IssuesController < ApplicationController
   def update
     if @issue.update_attributes(issue_params)
       flash[:notice] = 'Issue saved.'
-      redirect_to organisation_path(@issue.organisation)
+      redirect_to @issue
     else
       render action: 'edit'
     end

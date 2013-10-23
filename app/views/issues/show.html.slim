@@ -1,0 +1,36 @@
+= page_header @issue.title
+
+.row
+  .col-md-8
+    p= "Issue ##{@issue.id}"
+
+    p
+      => link_to @issue.setter, @issue.setter
+      | created this issue on
+      =< @issue.created_at
+
+    p= @issue.details
+
+  .col-md-4
+    .pull-right
+      p= edit_button(@issue)
+    table.table
+      tr
+        td Organisation
+        td= link_to @issue.organisation, @issue.organisation
+      tr
+        td Assignee
+        td= link_to @issue.assignee, @issue.assignee
+      tr
+        td Date due
+        td= @issue.date_due
+      tr
+        td Priority
+        td
+          => priority_icon(@issue.priority)
+          = priority_name(@issue.priority)
+      tr
+        td Est. time
+        td
+          = @issue.estimated_time
+          | m

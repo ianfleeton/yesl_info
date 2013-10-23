@@ -5,6 +5,7 @@ describe IssuesController do
   let(:admin) { FactoryGirl.create(:admin) }
   let(:user) { FactoryGirl.create(:user, organisation: organisation) }
   let(:trespasser) { FactoryGirl.create(:user) }
+  let(:issue) { FactoryGirl.build(:issue) }
 
   # checks authorization
   context 'when trespassing' do
@@ -43,11 +44,32 @@ describe IssuesController do
       controller.stub(:current_user).and_return(admin)
     end
 
+    describe 'GET show' do
+      before { issue.save }
+
+      it 'finds the issue' do
+        get :show, id: issue.id
+        expect(assigns(:issue)).to eq issue
+      end
+    end
+
     describe 'POST create' do
       it 'allows only whitelisted attributes to be set' do
         post 'create', { issue: Issue.new.attributes }
         controller.send(:issue_params).keys.should eq(['assignee_id', 'date_due', 'details',
           'estimated_time', 'organisation_id', 'priority', 'setter_id', 'title'])
+      end
+    end
+
+    describe 'PATCH update' do
+      def patch_update
+        issue.save!
+        patch :update, id: issue.id, issue: issue.attributes
+      end
+
+      it 'redirects to the issue' do
+        patch_update
+        expect(response).to redirect_to(issue_path(issue))
       end
     end
 
