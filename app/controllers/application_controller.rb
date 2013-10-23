@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def unauthorized
-    flash[:notice] = 'Unauthorized.'
+    flash[:notice] = 'Unauthorised.'
     redirect_to new_session_path
   end
 
@@ -45,6 +45,11 @@ class ApplicationController < ActionController::Base
       flash[:notice] = 'You must be logged in to perform that action.'
       redirect_to new_session_path
     end
+  end
+
+  def authorize_same_organisation!(object)
+    return if admin?
+    raise Errors::AuthorizationError unless same_organisation_as? object
   end
 
   def same_organisation_as? object

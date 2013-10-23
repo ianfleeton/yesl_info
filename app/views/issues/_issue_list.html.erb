@@ -28,6 +28,8 @@
 <% end -%>
     </tbody>
   </table>
-  <%= submit_tag 'Delete Selected', class: 'btn', data: {confirm: 'Are you sure?'} %>
-  <%= submit_tag 'Mark Selected as Complete', class: 'btn' %>
+  <% if admin? %>
+    <%= submit_tag 'Delete Selected', class: 'btn', data: {confirm: 'Are you sure?'} %>
+    <%= submit_tag 'Mark Selected as Complete', class: 'btn' %>
+  <% end %>
 <% end %>

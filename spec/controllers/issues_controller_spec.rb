@@ -1,16 +1,45 @@
 require 'spec_helper'
+require 'shared_examples_for_controllers'
 
 describe IssuesController do
   let(:organisation) { FactoryGirl.create(:organisation) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:user) { FactoryGirl.create(:user, organisation: organisation) }
-  let(:trespasser) { FactoryGirl.create(:user) }
-  let(:issue) { FactoryGirl.build(:issue) }
+  let(:issue) { FactoryGirl.build(:issue, organisation: organisation) }
 
   # checks authorization
   context 'when trespassing' do
+    let(:trespasser) { FactoryGirl.create(:user) }
+
     before do
-      controller.stub(:current_user).and_return(user)
+      controller.stub(:current_user).and_return(trespasser)
+    end
+
+    describe 'GET show' do
+      before { issue.save }
+
+      it 'blocks access for different organisation' do
+        get :show, id: issue.id
+        expect_unauthorized
+      end
+    end
+
+    describe 'GET edit' do
+      before { issue.save }
+
+      it 'blocks access if organisation is different' do
+        get :edit, id: issue.id
+        expect_unauthorized
+      end
+    end
+
+    describe 'PATCH update' do
+      before { issue.save }
+
+      it 'blocks access if organisation is different' do
+        patch :update, id: issue.id, issue: issue.attributes
+        expect_unauthorized
+      end
     end
   end
 

@@ -1,9 +1,12 @@
 class CommentsController < ApplicationController
-  before_action :admin_required
+  before_action :user_required
 
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user
+
+    authorize_same_organisation! @comment.issue
+
     @comment.save
     redirect_to @comment.issue
   end

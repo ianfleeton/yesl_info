@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
-  before_action :admin_required, except: [:new, :create]
-  before_action :user_required, only: [:new, :create]
+  EXTERNAL_USER_ACTIONS = [:create, :edit, :new, :show, :update]
+  before_action :admin_required, except: EXTERNAL_USER_ACTIONS
+  before_action :user_required, only: EXTERNAL_USER_ACTIONS
   before_action :find_issue, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -73,7 +74,11 @@ class IssuesController < ApplicationController
 
   def find_issue
     @issue = Issue.find_by_id(params[:id])
-    not_found unless @issue
+    if @issue
+      authorize_same_organisation! @issue
+    else
+      not_found
+    end
   end
 
   def destroy_issue(id)

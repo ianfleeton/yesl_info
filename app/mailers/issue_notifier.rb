@@ -1,4 +1,6 @@
 class IssueNotifier < ActionMailer::Base
+  helper :issues
+
   def marked_as_complete(issue)
     @issue = issue
 
