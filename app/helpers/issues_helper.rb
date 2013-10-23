@@ -20,7 +20,7 @@ module IssuesHelper
     occurrences = [1, 2, 1, 1, 2]
 
     icon = content_tag(:span, '', title: priority_name(priority),
-      class: "icon icon-#{glyphs[priority - 1]} priority-#{priority_name(priority)}")
+      class: "glyphicon glyphicon-#{glyphs[priority - 1]} priority-#{priority_name(priority)}")
     (icon * occurrences[priority - 1]).html_safe
   end
 
