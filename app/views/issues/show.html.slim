@@ -9,7 +9,7 @@
       | created this issue on
       =< @issue.created_at
 
-    p= @issue.details
+    = raw markdown(@issue.details)
 
     hr
 
@@ -18,7 +18,7 @@
     - @issue.comments.each do |comment|
       - if comment.user
         p= link_to comment.user, comment.user
-      p= comment.comment
+      = raw markdown(comment.comment)
       p= comment.created_at
       hr
 

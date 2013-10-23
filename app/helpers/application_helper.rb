@@ -1,5 +1,13 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def markdown(string)
+    redcarpet.render(string)
+  end
+
+  def redcarpet
+    @redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, disable_indented_code_blocks: true, fenced_code_blocks: true, no_intra_emphasis: true, space_after_headers: true, tables: true)
+  end
+
   def page_header(heading)
     content_tag('h1', heading, class: 'page-header')
   end

@@ -12,6 +12,9 @@ gem 'sqlite3'
 # Calendar
 gem 'simple_calendar'
 
+# Markdown
+gem 'redcarpet'
+
 group :development do
   gem 'thin'
 end

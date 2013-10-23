@@ -116,6 +116,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     ref (1.0.5)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
@@ -197,6 +198,7 @@ DEPENDENCIES
   libv8 (~> 3.11.8)
   mysql2
   rails (= 4.0.1.rc1)
+  redcarpet
   rspec-rails
   rvm-capistrano
   sass-rails (~> 4.0.0)
