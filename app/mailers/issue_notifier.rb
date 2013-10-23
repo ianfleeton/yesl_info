@@ -7,10 +7,10 @@ class IssueNotifier < ActionMailer::Base
     mail(to: issue.setter.email, from: issue.assignee.email, subject: issue_subject(issue))
   end
 
-  def new_task(issue)
+  def new_task(issue, watcher)
     @issue = issue
 
-    mail(to: issue.assignee.email, from: issue.setter.email, subject: issue_subject(issue))
+    mail(to: watcher.email, from: 'noreply@yesl.info', subject: issue_subject(issue))
   end
 
   def new_comment(comment, watcher)

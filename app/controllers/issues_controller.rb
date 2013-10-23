@@ -28,7 +28,6 @@ class IssuesController < ApplicationController
 
     @issue.completed = false
     if @issue.save
-      IssueNotifier.new_task(@issue).deliver
       flash[:notice] = 'Issue saved.'
       redirect_to organisation_path(@issue.organisation)
     else

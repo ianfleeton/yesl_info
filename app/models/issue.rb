@@ -11,6 +11,8 @@ class Issue < ActiveRecord::Base
   validates :setter_id, presence: true
   validates :organisation_id, presence: true
 
+  after_create :notify_watchers_of_creation
+
   def to_s
     "##{id}: #{title}"
   end
@@ -22,5 +24,11 @@ class Issue < ActiveRecord::Base
 
   def watchers
     [assignee, setter]
+  end
+
+  def notify_watchers_of_creation
+    watchers.each do |watcher|
+      IssueNotifier.new_task(self, watcher).deliver
+    end
   end
 end
