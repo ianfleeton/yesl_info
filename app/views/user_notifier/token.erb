@@ -2,6 +2,6 @@
 
 To change your password please go to
 
-<%= URL %>users/forgot_password_new?id=<%= @id %>&t=<%= @token %>
+<%= forgot_password_new_users_url(id: @id, t: @token, only_path: false).html_safe %>
 
 and follow the instructions.
