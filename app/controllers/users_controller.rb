@@ -1,12 +1,16 @@
+require 'errors'
+
 class UsersController < ApplicationController
-  before_action :find_user, :except => [:index, :new, :create, :forgot_password, :forgot_password_send]
-  before_action :admin_required, :only => [:index, :new, :create, :destroy]
+  before_action :find_user, except: [:index, :new, :create, :forgot_password, :forgot_password_send]
+  before_action :user_required, only: [:show]
+  before_action :admin_required, only: [:index, :new, :create, :destroy]
 
   def index
     @users = User.order('name').includes(:organisation)
   end
   
   def show
+    raise Errors::AuthorizationError if !admin? && @user != current_user
     @offset = 100
   end
 

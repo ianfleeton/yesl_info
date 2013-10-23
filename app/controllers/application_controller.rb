@@ -1,3 +1,5 @@
+require 'errors'
+
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
@@ -15,6 +17,8 @@ class ApplicationController < ActionController::Base
 
   attr_reader :current_user
 
+  rescue_from Errors::AuthorizationError, with: :unauthorized
+
   # Check if the user is already logged in
   def logged_in?
     current_user.is_a?(User)
@@ -22,6 +26,11 @@ class ApplicationController < ActionController::Base
   
   def admin?
     logged_in? and current_user.admin?
+  end
+
+  def unauthorized
+    flash[:notice] = 'Unauthorized.'
+    redirect_to new_session_path
   end
 
   def admin_required
