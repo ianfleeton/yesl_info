@@ -92,6 +92,9 @@ YeslInfo::Application.routes.draw do
       get 'calendar'
       post 'update_multiple'
     end
+    member do
+      post 'resolve'
+    end
   end
 
   resources :note_pads

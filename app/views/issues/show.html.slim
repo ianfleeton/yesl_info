@@ -1,5 +1,13 @@
 = page_header @issue.title
 
+javascript:
+  $(function() {
+    $('#resolve').click(function() {
+      $('#resolve-modal').modal();
+      return false;
+    });
+  });
+
 .row
   .col-md-8
     p= "Issue ##{@issue.id}"
@@ -25,12 +33,14 @@
     = form_for(Comment.new(issue: @issue)) do |form|
       = form.hidden_field :issue_id
       .form-group
-        = form.text_area :comment, class: 'form-control', placeholder: 'Add something to the conversation...'
+        = form.text_area :comment, class: 'form-control', placeholder: 'Add something to the conversation...', rows: 5
       = form.submit 'Comment', class: 'btn btn-primary'
 
   .col-md-4
     .pull-right
-      p= edit_button(@issue)
+      p
+        a#resolve.btn.btn-default href="#" Resolve
+        =< edit_button(@issue)
     table.table
       tr
         td Organisation
@@ -51,3 +61,18 @@
         td
           = @issue.estimated_time
           | m
+
+#resolve-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag resolve_issue_path(@issue) do
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+          h4 class="modal-title" Resolve issue
+        .modal-body
+          .form-group
+            label Comment
+            textarea#resolve-comment.form-control name="comment" rows="3"
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" Cancel
+          = submit_tag 'Resolve', id: 'resolve-submit', class: 'btn btn-primary'

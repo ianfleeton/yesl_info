@@ -27,6 +27,8 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'spork-rails', github: 'A-gen/spork-rails'
   gem 'watchr'

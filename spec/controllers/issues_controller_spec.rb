@@ -41,6 +41,15 @@ describe IssuesController do
         expect_unauthorized
       end
     end
+
+    describe 'POST resolve' do
+      before { issue.save }
+
+      it 'blocks access if organisation is different' do
+        post :resolve, id: issue.id, comment: 'Whatever'
+        expect_unauthorized
+      end
+    end
   end
 
   context 'when signed in as user' do
@@ -112,6 +121,32 @@ describe IssuesController do
         Issue.stub(:all).and_return :issues
         get 'calendar'
         expect(assigns(:issues)).to eq :issues
+      end
+    end
+
+    describe 'POST resolve' do
+      before do
+        issue.completed = false
+        issue.save
+      end
+
+      it 'closes the issue' do
+        post :resolve, id: issue.id, comment: 'Sorted'
+        issue.reload
+        expect(issue.completed).to be_true
+      end
+
+      it 'redirects to the issue' do
+        post :resolve, id: issue.id, comment: 'Sorted'
+        expect(response).to redirect_to issue
+      end
+
+      it 'adds a comments on the issue' do
+        post :resolve, id: issue.id, comment: 'Sorted'
+        comment = issue.comments.last
+        expect(comment.comment.include?('* changed status to resolved')).to be_true
+        expect(comment.comment.include?('Sorted')).to be_true
+        expect(comment.user).to eq admin
       end
     end
   end

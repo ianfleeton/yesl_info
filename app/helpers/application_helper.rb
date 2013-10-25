@@ -1,6 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def markdown(string)
+    return '' if string.nil?
     redcarpet.render(string)
   end
 
