@@ -31,4 +31,26 @@ describe OrganisationsController do
       expect(response).to redirect_to new_session_path
     end
   end
+
+  describe 'POST unwatch' do
+    context 'as admin' do
+      before { controller.stub(:current_user).and_return admin }
+
+      it 'redirects to the organisation' do
+        post :unwatch, id: organisation.id
+        expect(response).to redirect_to organisation
+      end
+    end
+  end
+
+  describe 'POST watch' do
+    context 'as admin' do
+      before { controller.stub(:current_user).and_return admin }
+
+      it 'redirects to the organisation' do
+        post :watch, id: organisation.id
+        expect(response).to redirect_to organisation
+      end
+    end
+  end
 end

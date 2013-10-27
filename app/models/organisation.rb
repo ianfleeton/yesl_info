@@ -11,6 +11,9 @@ class Organisation < ActiveRecord::Base
   has_many :timesheet_entries, -> { order('started_at DESC').includes(:user) }, dependent: :delete_all
   has_many :issues, -> { order 'priority DESC' }, dependent: :delete_all
 
+  has_many :organisation_watchers
+  has_many :watchers, through: :organisation_watchers
+
   scope :recently_viewed, -> { order('last_viewed_at DESC').limit(10) }
 
   validates_presence_of :name

@@ -31,5 +31,19 @@ describe Issue do
       issue = FactoryGirl.build(:issue)
       expect(issue.watchers).to include issue.setter
     end
+
+    it "includes the organisation's watchers" do
+      organisation = FactoryGirl.create(:organisation)
+      watcher = FactoryGirl.create(:user)
+      OrganisationWatcher.create!(organisation: organisation, watcher: watcher)
+      issue = FactoryGirl.build(:issue, organisation: organisation)
+      expect(issue.watchers).to include watcher
+    end
+
+    it 'removes duplicates' do
+      assignee_setter = FactoryGirl.create(:user)
+      issue = FactoryGirl.build(:issue, assignee: assignee_setter, setter: assignee_setter)
+      expect(issue.watchers.count(assignee_setter)).to eq 1
+    end
   end
 end

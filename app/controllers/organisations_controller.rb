@@ -2,7 +2,7 @@ class OrganisationsController < ApplicationController
   before_action :admin_required, except: [:show]
   before_action :user_required, only: [:show]
 
-  before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries]
+  before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries, :unwatch, :watch]
 
   def index
     @organisations = Organisation.order('name')
@@ -67,6 +67,16 @@ class OrganisationsController < ApplicationController
     @timesheet_entries = @organisation.timesheet_entries.order('started_at DESC').limit(200).offset(offset)
     @offset = offset + 200
     render 'timesheet_entries/more_timesheet_entries', layout: nil
+  end
+
+  def unwatch
+    OrganisationWatcher.where(organisation: @organisation, watcher: current_user).delete_all
+    redirect_to @organisation
+  end
+
+  def watch
+    OrganisationWatcher.create(organisation: @organisation, watcher: current_user)
+    redirect_to @organisation
   end
 
   protected

@@ -108,6 +108,8 @@ YeslInfo::Application.routes.draw do
     member do
       post 'contacted'
       post 'more_timesheet_entries'
+      post 'unwatch'
+      post 'watch'
     end
   end
 

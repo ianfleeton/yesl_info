@@ -18,6 +18,11 @@ $(function() {
 <%= page_header(@organisation.name) %>
 
 <p>
+  <% if @organisation.watchers.include? current_user -%>
+  <%= link_to '<span class="glyphicon glyphicon-eye-close"></span> Unwatch'.html_safe, unwatch_organisation_path(@organisation), class: 'btn btn-default', method: 'post' %>
+  <% else -%>
+  <%= link_to '<span class="glyphicon glyphicon-eye-open"></span> Watch'.html_safe, watch_organisation_path(@organisation), class: 'btn btn-default', method: 'post' %>
+  <% end -%>
   <%= edit_button(@organisation) %>
   <%= delete_button(@organisation) %>
 </p>

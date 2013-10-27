@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023100822) do
+ActiveRecord::Schema.define(version: 20131027150632) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -127,6 +127,16 @@ ActiveRecord::Schema.define(version: 20131023100822) do
 
   add_index "numbers", ["organisation_id"], name: "index_numbers_on_organisation_id", using: :btree
   add_index "numbers", ["user_id"], name: "index_numbers_on_user_id", using: :btree
+
+  create_table "organisation_watchers", force: true do |t|
+    t.integer  "organisation_id", null: false
+    t.integer  "user_id",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organisation_watchers", ["organisation_id"], name: "index_organisation_watchers_on_organisation_id", using: :btree
+  add_index "organisation_watchers", ["user_id"], name: "index_organisation_watchers_on_user_id", using: :btree
 
   create_table "organisations", force: true do |t|
     t.string   "name",           default: "",    null: false

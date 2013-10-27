@@ -23,7 +23,7 @@ class Issue < ActiveRecord::Base
   end
 
   def watchers
-    [assignee, setter]
+    ([assignee, setter] + organisation.watchers).uniq
   end
 
   def notify_watchers_of_creation
