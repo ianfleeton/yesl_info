@@ -42,6 +42,15 @@ describe IssuesController do
       end
     end
 
+    describe 'POST reopen' do
+      before { issue.save }
+
+      it 'blocks access if organisation is different' do
+        post :reopen, id: issue.id, comment: 'Whatever'
+        expect_unauthorized
+      end
+    end
+
     describe 'POST resolve' do
       before { issue.save }
 
@@ -121,6 +130,32 @@ describe IssuesController do
         Issue.stub(:all).and_return :issues
         get 'calendar'
         expect(assigns(:issues)).to eq :issues
+      end
+    end
+
+    describe 'POST reopen' do
+      before do
+        issue.completed = true
+        issue.save
+      end
+
+      it 'reopens the issue' do
+        post :reopen, id: issue.id, comment: 'Broken'
+        issue.reload
+        expect(issue.completed).to be_false
+      end
+
+      it 'redirects to the issue' do
+        post :reopen, id: issue.id, comment: 'Broken'
+        expect(response).to redirect_to issue
+      end
+
+      it 'adds a comments on the issue' do
+        post :reopen, id: issue.id, comment: 'Broken'
+        comment = issue.comments.last
+        expect(comment.comment.include?('* reopened the issue')).to be_true
+        expect(comment.comment.include?('Broken')).to be_true
+        expect(comment.user).to eq admin
       end
     end
 

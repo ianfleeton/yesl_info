@@ -93,6 +93,7 @@ YeslInfo::Application.routes.draw do
       post 'update_multiple'
     end
     member do
+      post 'reopen'
       post 'resolve'
     end
   end

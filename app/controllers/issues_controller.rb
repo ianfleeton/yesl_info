@@ -1,8 +1,8 @@
 class IssuesController < ApplicationController
-  EXTERNAL_USER_ACTIONS = [:create, :edit, :new, :show, :update, :resolve]
+  EXTERNAL_USER_ACTIONS = [:create, :edit, :new, :show, :update, :reopen, :resolve]
   before_action :admin_required, except: EXTERNAL_USER_ACTIONS
   before_action :user_required, only: EXTERNAL_USER_ACTIONS
-  before_action :find_issue, only: [:show, :edit, :update, :destroy, :resolve]
+  before_action :find_issue, only: [:show, :edit, :update, :destroy, :reopen, :resolve]
 
   def index
   end
@@ -67,6 +67,14 @@ class IssuesController < ApplicationController
 
   def calendar
     @issues = Issue.all
+  end
+
+  def reopen
+    @issue.completed = false
+    @issue.save
+    Comment.create!(issue: @issue, user: current_user,
+      comment: "* reopened the issue\n\n#{params[:comment]}")
+    redirect_to @issue
   end
 
   def resolve

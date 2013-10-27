@@ -6,6 +6,11 @@ javascript:
       $('#resolve-modal').modal();
       return false;
     });
+
+    $('#reopen').click(function() {
+      $('#reopen-modal').modal();
+      return false;
+    });
   });
 
 .row
@@ -39,7 +44,10 @@ javascript:
   .col-md-4
     .pull-right
       p
-        a#resolve.btn.btn-default href="#" Resolve
+        - if @issue.completed?
+          a#reopen.btn.btn-default href="#" Reopen
+        - else
+          a#resolve.btn.btn-default href="#" Resolve
         =< edit_button(@issue)
     table.table
       tr
@@ -76,3 +84,18 @@ javascript:
         .modal-footer
           button.btn.btn-default type="button" data-dismiss="modal" Cancel
           = submit_tag 'Resolve', id: 'resolve-submit', class: 'btn btn-primary'
+
+#reopen-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag reopen_issue_path(@issue) do
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+          h4 class="modal-title" Reopen issue
+        .modal-body
+          .form-group
+            label Comment
+            textarea#reopen-comment.form-control name="comment" rows="3"
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" Cancel
+          = submit_tag 'Resolve', id: 'reopen-submit', class: 'btn btn-primary'

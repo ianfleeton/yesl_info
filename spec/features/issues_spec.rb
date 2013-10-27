@@ -32,4 +32,17 @@ feature 'Issues' do
     issue.reload
     expect(issue.completed).to be_true
   end
+
+  scenario 'Reopen issue', js: true do
+    issue = FactoryGirl.create(:issue, completed: true)
+    sign_in_as_admin
+    visit issue_path(issue)
+    click_link 'Reopen'
+    fill_in 'reopen-comment', with: 'Not fixed yet'
+    click_button 'reopen-submit'
+    expect(page).to have_content('reopened the issue')
+    expect(page).to have_content('Not fixed yet')
+    issue.reload
+    expect(issue.completed).to be_false
+  end
 end
