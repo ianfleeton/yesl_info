@@ -26,17 +26,17 @@
     <tr>
       <td><%= member.name %></td>
       <td class="numeric">
-        <%= number_to_currency(amount_invoiced_by(member, 28), unit: '£') %>
+        <%= number_to_currency(amount_invoiced_by(member, 28), unit: '£', precision: 0) %>
         <small>
-          (<%= number_to_currency(amount_invoiced_by(member, 28, 1), unit: '£') %> +
-          <%= number_to_currency(amount_invoiced_by(member, 28, 0), unit: '£') %>)
+          (<%= number_to_currency(amount_invoiced_by(member, 28, 1), unit: '£', precision: 0) %> +
+          <%= number_to_currency(amount_invoiced_by(member, 28, 0), unit: '£', precision: 0) %>)
         </small>
       </td>
       <td class="numeric">
-        <%= number_to_currency(amount_invoiced_by(member, 91), unit: '£') %>
+        <%= number_to_currency(amount_invoiced_by(member, 91), unit: '£', precision: 0) %>
         <small>
-          (<%= number_to_currency(amount_invoiced_by(member, 91, 1), unit: '£') %> +
-          <%= number_to_currency(amount_invoiced_by(member, 91, 0), unit: '£') %>)
+          (<%= number_to_currency(amount_invoiced_by(member, 91, 1), unit: '£', precision: 0) %> +
+          <%= number_to_currency(amount_invoiced_by(member, 91, 0), unit: '£', precision: 0) %>)
         </small>
       </td>
       <td>
@@ -58,17 +58,17 @@
     <tr>
       <td>Totals</td>
       <td class="numeric">
-        <%= number_to_currency(amount_invoiced_by(@staff, 28), unit: '£') %>
+        <%= number_to_currency(amount_invoiced_by(@staff, 28), unit: '£', precision: 0) %>
         <small>
-          (<%= number_to_currency(amount_invoiced_by(@staff, 28, 1), unit: '£') %> +
-          <%= number_to_currency(amount_invoiced_by(@staff, 28, 0), unit: '£') %>)
+          (<%= number_to_currency(amount_invoiced_by(@staff, 28, 1), unit: '£', precision: 0) %> +
+          <%= number_to_currency(amount_invoiced_by(@staff, 28, 0), unit: '£', precision: 0) %>)
         </small>
       </td>
       <td class="numeric">
-        <%= number_to_currency(amount_invoiced_by(@staff, 91), unit: '£') %>
+        <%= number_to_currency(amount_invoiced_by(@staff, 91), unit: '£', precision: 0) %>
         <small>
-          (<%= number_to_currency(amount_invoiced_by(@staff, 91, 1), unit: '£') %> +
-          <%= number_to_currency(amount_invoiced_by(@staff, 91, 0), unit: '£') %>)
+          (<%= number_to_currency(amount_invoiced_by(@staff, 91, 1), unit: '£', precision: 0) %> +
+          <%= number_to_currency(amount_invoiced_by(@staff, 91, 0), unit: '£', precision: 0) %>)
         </small>
       </td>
       <td colspan="3">&nbsp;</td>
