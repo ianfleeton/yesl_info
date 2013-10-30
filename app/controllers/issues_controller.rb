@@ -39,6 +39,7 @@ class IssuesController < ApplicationController
   end
 
   def update
+    @issue.updater = current_user
     if @issue.update_attributes(issue_params)
       flash[:notice] = 'Issue saved.'
       redirect_to @issue
