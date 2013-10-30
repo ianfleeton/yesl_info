@@ -9,7 +9,7 @@ class Organisation < ActiveRecord::Base
   has_many :note_pads, dependent: :destroy
   has_many :numbers, dependent: :delete_all
   has_many :timesheet_entries, -> { order('started_at DESC').includes(:user) }, dependent: :delete_all
-  has_many :issues, -> { order 'priority DESC' }, dependent: :delete_all
+  has_many :issues, -> { order 'completed, priority' }, dependent: :delete_all
 
   has_many :organisation_watchers
   has_many :watchers, through: :organisation_watchers
