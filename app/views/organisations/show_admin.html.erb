@@ -4,7 +4,7 @@ $(function() {
     $.cookie('organisation-pane', $(this).attr('href'), { path: '/' });
   });
 
-  panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#issues', '#notes', '#timesheet']
+  panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#issues', '#notes', '#timesheet', '#watchers']
 
   for(var i = 0; i < panes.length; i++) {
     var id = panes[i];
@@ -54,6 +54,7 @@ $(function() {
   <li><a href="#issues" data-toggle="tab">Issues</a></li>
   <li><a href="#notes" data-toggle="tab">Notes</a></li>
   <li><a href="#timesheet" data-toggle="tab">Timesheet</a></li>
+  <li><a href="#watchers" data-toggle="tab">Watchers</a></li>
 </ul>
 
 <div class="tab-content">
@@ -243,5 +244,20 @@ $(function() {
     <% @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: @current_user.id) %>
     <%= render 'timesheet_entries/form' %>
 
+  </div>
+
+  <div class="tab-pane" id="watchers">
+    <h2>Watchers</h2>
+    <% if @organisation.watchers.any? -%>
+    <ul>
+    <% @organisation.watchers.each do |watcher| -%>
+    <li><%= link_to watcher.name, watcher %></li>
+    <% end -%>
+    </ul>
+    <% else -%>
+    <p>
+      Nobody is watching issues for <%= @organisation %>.
+    </p>
+    <% end -%>
   </div>
 </div>
