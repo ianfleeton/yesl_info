@@ -69,6 +69,10 @@ javascript:
         td
           = @issue.estimated_time
           | m
+      tr
+        td Watchers
+        td
+          = raw @issue.watchers.map {|w| h(w)}.join '<br>'
 
 #resolve-modal.modal.fade
   .modal-dialog
