@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1.rc1'
+gem 'rails', '4.0.1'
 
 # Use Slim templating engine
 gem 'slim', '~> 2.0.0'
@@ -44,7 +44,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'libv8', '~> 3.11.8'
+gem 'libv8'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
