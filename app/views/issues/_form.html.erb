@@ -44,6 +44,10 @@
   <%= form.number_field :estimated_time, class: 'form-control' %> minutes
 </div>
 <div class="form-group">
+  <%= form.label :estimated_price %>
+  <%= form.number_field :estimated_price, class: 'form-control' %> GBP
+</div>
+<div class="form-group">
   <%= form.label :date_due %>
   <%= date_select :issue, :date_due, {order: [:day, :month, :year]} %>
 </div>

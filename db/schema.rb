@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027150632) do
+ActiveRecord::Schema.define(version: 20140207104826) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -92,17 +92,18 @@ ActiveRecord::Schema.define(version: 20131027150632) do
   add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id", using: :btree
 
   create_table "issues", force: true do |t|
-    t.integer  "organisation_id",                 null: false
-    t.integer  "setter_id",                       null: false
-    t.integer  "assignee_id",                     null: false
-    t.integer  "priority",        default: 3,     null: false
+    t.integer  "organisation_id",                                          null: false
+    t.integer  "setter_id",                                                null: false
+    t.integer  "assignee_id",                                              null: false
+    t.integer  "priority",                                 default: 3,     null: false
     t.date     "date_due"
-    t.boolean  "completed",       default: false, null: false
-    t.string   "title",                           null: false
+    t.boolean  "completed",                                default: false, null: false
+    t.string   "title",                                                    null: false
     t.text     "details"
     t.integer  "estimated_time"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.decimal  "estimated_price", precision: 10, scale: 2, default: 0.0,   null: false
   end
 
   create_table "note_pads", force: true do |t|

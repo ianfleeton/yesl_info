@@ -13,6 +13,7 @@ feature 'Issues' do
     fill_in 'Title', with: 'Make coffee'
     fill_in 'Details', with: 'Add cream'
     fill_in 'Estimated time', with: '10'
+    fill_in 'Estimated price', with: '2.50'
     select 'major', from: 'Priority'
     click_button 'Create Issue'
     expect(page).to have_content 'Issue saved.'

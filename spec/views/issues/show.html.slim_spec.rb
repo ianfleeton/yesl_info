@@ -60,6 +60,25 @@ describe 'issues/show' do
     expect(rendered).to have_content '90m'
   end
 
+  context 'when estimated price is 0' do
+    before { issue.estimated_price = 0 }
+
+    it 'does not mention price' do
+      render
+      expect(rendered).not_to have_content t('issues.show.estimated_price')
+    end
+  end
+
+  context 'when estimated price is 0' do
+    before { issue.estimated_price = 75.00 }
+
+    it 'displays estimated price' do
+      render
+      expect(rendered).to have_content t('issues.show.estimated_price')
+      expect(rendered).to have_content '£75.00'
+    end
+  end
+
   it 'links to edit the issue' do
     render
     expect(rendered).to have_selector "a[href='#{edit_issue_path(issue)}']"

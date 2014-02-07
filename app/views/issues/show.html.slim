@@ -69,6 +69,10 @@ javascript:
         td
           = @issue.estimated_time
           | m
+      - if @issue.estimated_price > 0
+        tr
+          td= t('.estimated_price')
+          td=> number_to_currency(@issue.estimated_price, unit: '£')
       tr
         td Watchers
         td
