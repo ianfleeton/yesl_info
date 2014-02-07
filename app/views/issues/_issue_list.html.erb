@@ -17,7 +17,7 @@
         <td><input type="checkbox" name="id[<%= issue.id %>]"></td>
         <td><%= link_to issue.organisation.name, issue.organisation %></td>
         <td>
-          <%= completed if issue.completed? %>
+          <%= completed_label if issue.completed? %>
           <%= link_to issue, issue %>
         </td>
         <td><%= priority_icon(issue.priority) %></td>

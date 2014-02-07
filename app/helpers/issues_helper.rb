@@ -24,7 +24,8 @@ module IssuesHelper
     (icon * occurrences[priority - 1]).html_safe
   end
 
-  def completed
+  # HTML to mark an issue as completed.
+  def completed_label
     '<span class="label label-success">&radic; Completed</span>'.html_safe
   end
 
