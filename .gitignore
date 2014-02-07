@@ -15,4 +15,3 @@
 # Ignore sensitive details
 database.yml
 secrets.yml
-/config/initializers/secret_token.rb
