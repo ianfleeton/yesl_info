@@ -1,5 +1,6 @@
 class Issue < ActiveRecord::Base
   include IssuesHelper
+  include ActionView::Helpers::NumberHelper
 
   belongs_to :assignee, class_name: 'User'
   belongs_to :setter, class_name: 'User'
@@ -51,6 +52,9 @@ class Issue < ActiveRecord::Base
     end
     if estimated_time_changed?
       comment += "* changed estimated time from #{estimated_time_was}m to #{estimated_time}m\n"
+    end
+    if estimated_price_changed?
+      comment += "* changed estimated price from #{number_to_currency(estimated_price_was, unit: '£')} to #{number_to_currency(estimated_price, unit: '£')}\n"
     end
     if date_due_changed?
       comment += "* changed due date from #{date_due_was} to #{date_due}\n"

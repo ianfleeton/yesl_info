@@ -46,4 +46,14 @@ describe Issue do
       expect(issue.watchers.count(assignee_setter)).to eq 1
     end
   end
+
+  describe '#add_change_comment' do
+    let(:issue) { FactoryGirl.create(:issue, estimated_price: 10.00) }
+
+    it 'mentions the estimated price has changed from x to y' do
+      issue.estimated_price = 20
+      issue.add_change_comment
+      expect(issue.comments.last.comment).to include("* changed estimated price from £10.00 to £20.00\n")
+    end
+  end
 end
