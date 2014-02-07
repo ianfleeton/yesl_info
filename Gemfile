@@ -31,8 +31,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'simplecov', require: false
-  gem 'spork-rails', github: 'A-gen/spork-rails'
-  gem 'watchr'
 end
 
 # Use SCSS for stylesheets
@@ -71,8 +69,11 @@ group :development do
   # Use Capistrano for deployment
   gem 'capistrano'
   gem 'rvm-capistrano'
+
+  gem 'guard-rspec', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 # Use debugger
