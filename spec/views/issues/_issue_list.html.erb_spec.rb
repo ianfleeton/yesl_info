@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe 'issues/_issue_list' do
   let(:issue) { FactoryGirl.create(:issue, created_at: Date.today - 1.week, updated_at: Date.today - 1.day) }
-  
+
+  before { view.stub(:admin?).and_return false }
+
   it 'displays the issue' do
     render_issues
     expect(rendered).to have_content(issue)
