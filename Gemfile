@@ -67,8 +67,8 @@ gem 'sdoc',          group: :doc, require: false
 
 group :development do
   # Use Capistrano for deployment
-  gem 'capistrano'
-  gem 'rvm-capistrano'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-rvm', git: 'git@github.com:capistrano/rvm.git'
 
   gem 'guard-rspec', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
