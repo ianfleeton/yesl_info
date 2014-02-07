@@ -35,7 +35,6 @@ namespace :deploy do
 
   desc "Symlinks files with secret information"
   task :symlink_secrets, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{deploy_to}/shared/config/secrets.yml #{release_path}/config/secrets.yml"
   end
