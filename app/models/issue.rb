@@ -3,7 +3,7 @@ class Issue < ActiveRecord::Base
 
   belongs_to :assignee, class_name: 'User'
   belongs_to :setter, class_name: 'User'
-  belongs_to :organisation
+  belongs_to :organisation, touch: true
 
   has_many :comments, -> { order 'created_at ASC' }
 
