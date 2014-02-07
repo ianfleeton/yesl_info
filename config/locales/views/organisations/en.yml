@@ -1,0 +1,6 @@
+en:
+  organisations:
+    show:
+      total_open_issue_estimated_price: 'Total estimated price for open issues is %{price}'
+    show_admin:
+      total_open_issue_estimated_price: 'Total estimated price for open issues is %{price}'

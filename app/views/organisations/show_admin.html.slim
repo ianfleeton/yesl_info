@@ -29,7 +29,7 @@ p
   => number_to_currency(@organisation.revenue_per_hour, unit: '£')
   strong= "(invoiceable amount/total time over 2yr)"
 
-p= link_to 'I have recently contacted this organisation', contacted_organisation_path, data: { method: 'post' }
+p= link_to 'I have recently contacted this organisation', contacted_organisation_path(@organisation), data: { method: 'post' }
 
 - if @organisation.on_stop?
   .hero-unit
@@ -135,6 +135,8 @@ ul.nav.nav-tabs
   .tab-pane#issues
     h2 Issues
 
+    p= t('.total_open_issue_estimated_price', price: number_to_currency(@organisation.open_issue_estimated_price_total, unit: '£'))
+
     p= add_button(Issue, organisation_id: @organisation)
 
     - unless @organisation.issues.empty?
@@ -177,7 +179,7 @@ ul.nav.nav-tabs
       - @timesheet_entries = @organisation.timesheet_entries.limit(100)
       = render 'timesheet_entries/table'
 
-    - @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: @current_user.id)
+    - @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: current_user.id)
     = render 'timesheet_entries/form'
 
   .tab-pane#watchers

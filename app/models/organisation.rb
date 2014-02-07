@@ -39,4 +39,9 @@ class Organisation < ActiveRecord::Base
       .where('started_at >= DATE_SUB(NOW(), INTERVAL 2 YEAR)')
       .sum('minutes')
   end
+
+  # Returns the sum of estimated prices for all open issues.
+  def open_issue_estimated_price_total
+    issues.where(completed: false).sum(:estimated_price)
+  end
 end
