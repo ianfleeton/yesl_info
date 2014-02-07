@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'yesl_info'
-set :repo_url, ENV['YESL_INFO_RESPOSITORY']
+set :repo_url, ENV['YESL_INFO_REPOSITORY']
 set :scm, :git
 set :deploy_to, '/home/admin/sites/yesl_info'
 set :deploy_via, :remote_cache
