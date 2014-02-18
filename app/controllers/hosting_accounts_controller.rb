@@ -48,10 +48,10 @@ class HostingAccountsController < ApplicationController
   end
 
   def backups
-    @hosting_accounts = HostingAccount.all(
-      conditions: ["backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)"],
-      order: "DATE_ADD(backed_up_on, INTERVAL backup_cycle DAY) asc",
-      limit: 20)
+    @hosting_accounts = HostingAccount
+      .where("backed_up_on < DATE_SUB(NOW(), INTERVAL backup_cycle DAY)")
+      .order("DATE_ADD(backed_up_on, INTERVAL backup_cycle DAY) asc")
+      .limit(20)
     respond_to do |format|
       format.text do
       end

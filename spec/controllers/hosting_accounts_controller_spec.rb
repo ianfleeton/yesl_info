@@ -23,6 +23,13 @@ describe HostingAccountsController do
     end
   end
 
+  describe 'GET backups' do
+    it 'succeeds' do
+      get :backups
+      expect(response).to be_successful
+    end
+  end
+
   def signed_in_as_admin
     controller.stub(:admin?).and_return(true)
   end
