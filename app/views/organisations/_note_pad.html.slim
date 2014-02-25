@@ -1,0 +1,10 @@
+- cache(note_pad) do
+  tr
+    td
+      strong= note_pad.title
+      br
+      pre= note_pad.content[0..255]
+    td= note_pad.updated_at
+    td
+      => edit_button(note_pad)
+      = delete_button(note_pad)

@@ -149,16 +149,7 @@
 
       - unless @organisation.note_pads.empty?
         table.table.table-bordered
-          - @organisation.note_pads.each do |np|
-            tr
-              td
-                strong= np.title
-                br
-                pre= np.content[0..255]
-              td= np.updated_at
-              td
-                => edit_button(np)
-                = delete_button(np)
+          = render partial: 'note_pad', collection: @organisation.note_pads
 
     .tab-pane#timesheet
       h2 Timesheet
