@@ -15,4 +15,14 @@ class TimesheetEntry < ActiveRecord::Base
       .having('SUM(minutes) >= ?', minimum_minutes)
       .order('hourly DESC')
   end
+
+  def self.hours_logged_between_days(min_days_ago, max_days_ago)
+    start_time = Time.now - max_days_ago.days
+    end_time   = Time.now - min_days_ago.days
+    beginning_of_the_day = start_time.strftime('%Y-%m-%d 00:00:00')
+    end_of_the_day       = end_time.strftime(  '%Y-%m-%d 23:59:59')
+    query = where(['started_at >= ? AND started_at <= ?', beginning_of_the_day, end_of_the_day])
+    query = yield query if block_given?
+    query.sum('minutes') / 60.0
+  end
 end
