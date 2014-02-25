@@ -16,6 +16,11 @@ gem 'simple_calendar'
 # Markdown
 gem 'redcarpet'
 
+group :production do
+  # memcached client for cache store
+  gem 'dalli'
+end
+
 group :development do
   gem 'thin'
 end
