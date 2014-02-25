@@ -1,192 +1,193 @@
-javascript:
-  $(function() {
-    $('.nav-tabs a').click(function() {
-      $.cookie('organisation-pane', $(this).attr('href'), { path: '/' });
+- cache(@organisation) do
+  javascript:
+    $(function() {
+      $('.nav-tabs a').click(function() {
+        $.cookie('organisation-pane', $(this).attr('href'), { path: '/' });
+      });
+
+      panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#issues', '#notes', '#timesheet', '#watchers']
+
+      for(var i = 0; i < panes.length; i++) {
+        var id = panes[i];
+        if($.cookie('organisation-pane') == id) {
+          $('a[href="' + id + '"]').tab('show');
+        }
+      }
     });
 
-    panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#issues', '#notes', '#timesheet', '#watchers']
+  = page_header(@organisation.name)
 
-    for(var i = 0; i < panes.length; i++) {
-      var id = panes[i];
-      if($.cookie('organisation-pane') == id) {
-        $('a[href="' + id + '"]').tab('show');
-      }
-    }
-  });
+  p
+    - if @organisation.watchers.include? current_user
+      => link_to '<span class="glyphicon glyphicon-eye-close"></span> Unwatch'.html_safe, unwatch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
+    - else
+      => link_to '<span class="glyphicon glyphicon-eye-open"></span> Watch'.html_safe, watch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
+    => edit_button(@organisation)
+    = delete_button(@organisation)
 
-= page_header(@organisation.name)
+  p
+    => "Revenue per hour:"
+    => number_to_currency(@organisation.revenue_per_hour, unit: '£')
+    strong= "(invoiceable amount/total time over 2yr)"
 
-p
-  - if @organisation.watchers.include? current_user
-    => link_to '<span class="glyphicon glyphicon-eye-close"></span> Unwatch'.html_safe, unwatch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
-  - else
-    => link_to '<span class="glyphicon glyphicon-eye-open"></span> Watch'.html_safe, watch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
-  => edit_button(@organisation)
-  = delete_button(@organisation)
+  p= link_to 'I have recently contacted this organisation', contacted_organisation_path(@organisation), data: { method: 'post' }
 
-p
-  => "Revenue per hour:"
-  => number_to_currency(@organisation.revenue_per_hour, unit: '£')
-  strong= "(invoiceable amount/total time over 2yr)"
+  - if @organisation.on_stop?
+    .hero-unit
+      h1 On stop!
+      p= "#{@organisation.name} is on stop. No new work should be carried out for #{@organisation.name} without first speaking to John."
 
-p= link_to 'I have recently contacted this organisation', contacted_organisation_path(@organisation), data: { method: 'post' }
+  ul.nav.nav-tabs
+    li.active: a href="#people" data-toggle="tab" People
+    li: a href="#emails" data-toggle="tab" Emails
+    li: a href="#numbers" data-toggle="tab" Numbers
+    li: a href="#addresses" data-toggle="tab" Addresses
+    li: a href="#domains" data-toggle="tab" Domains
+    li: a href="#databases" data-toggle="tab" Databases
+    li: a href="#issues" data-toggle="tab" Issues
+    li: a href="#notes" data-toggle="tab" Notes
+    li: a href="#timesheet" data-toggle="tab" Timesheet
+    li: a href="#watchers" data-toggle="tab" Watchers
 
-- if @organisation.on_stop?
-  .hero-unit
-    h1 On stop!
-    p= "#{@organisation.name} is on stop. No new work should be carried out for #{@organisation.name} without first speaking to John."
+  .tab-content
+    .tab-pane.active#people
+      h2 People
+      p= add_button(User, organisation_id: @organisation)
+      - unless @organisation.users.empty?
+        table.table.table-bordered
+          - @organisation.users.each do |u|
+            tr
+              td
+                = link_to u.name, u
+                = u.numbers.map {|n| "#{n.teltype}: #{n.number}"}.join(', ')
+                br
+                = u.email_addresses.map {|e| mail_to(e.address)}.join(', ').html_safe
 
-ul.nav.nav-tabs
-  li.active: a href="#people" data-toggle="tab" People
-  li: a href="#emails" data-toggle="tab" Emails
-  li: a href="#numbers" data-toggle="tab" Numbers
-  li: a href="#addresses" data-toggle="tab" Addresses
-  li: a href="#domains" data-toggle="tab" Domains
-  li: a href="#databases" data-toggle="tab" Databases
-  li: a href="#issues" data-toggle="tab" Issues
-  li: a href="#notes" data-toggle="tab" Notes
-  li: a href="#timesheet" data-toggle="tab" Timesheet
-  li: a href="#watchers" data-toggle="tab" Watchers
+    .tab-pane#emails
+      h2 Email addresses
+      p= add_button(EmailAddress, organisation_id: @organisation)
+      - unless @organisation.email_addresses.empty?
+        table.table.table-bordered
+          - @organisation.email_addresses.each do |a|
+            tr
+              td
+                = mail_to a.address, a.address
+                = '<br>Password: '.html_safe + a.password unless a.password.blank?
+              td
+                => edit_button(a)
+                = delete_button(a)
 
-.tab-content
-  .tab-pane.active#people
-    h2 People
-    p= add_button(User, organisation_id: @organisation)
-    - unless @organisation.users.empty?
+    .tab-pane#numbers
+      h2 Contact numbers
+      p= add_button(Number, organisation_id: @organisation)
+      - unless @organisation.numbers.empty?
+        table.table.table-bordered
+          - @organisation.numbers.each do |number|
+            tr
+              td= number.number
+              td= number.teltype
+              td= number.note
+              td
+                => edit_button(number)
+                = delete_button(number)
+
+    .tab-pane#addresses
+      h2 Addresses
+      p= add_button(Address, organisation_id: @organisation)
       table.table.table-bordered
-        - @organisation.users.each do |u|
+        - @organisation.addresses.each do |a|
           tr
-            td
-              = link_to u.name, u
-              = u.numbers.map {|n| "#{n.teltype}: #{n.number}"}.join(', ')
-              br
-              = u.email_addresses.map {|e| mail_to(e.address)}.join(', ').html_safe
-
-  .tab-pane#emails
-    h2 Email addresses
-    p= add_button(EmailAddress, organisation_id: @organisation)
-    - unless @organisation.email_addresses.empty?
-      table.table.table-bordered
-        - @organisation.email_addresses.each do |a|
-          tr
-            td
-              = mail_to a.address, a.address
-              = '<br>Password: '.html_safe + a.password unless a.password.blank?
+            td= format_address_single_line(a)
             td
               => edit_button(a)
               = delete_button(a)
 
-  .tab-pane#numbers
-    h2 Contact numbers
-    p= add_button(Number, organisation_id: @organisation)
-    - unless @organisation.numbers.empty?
-      table.table.table-bordered
-        - @organisation.numbers.each do |number|
-          tr
-            td= number.number
-            td= number.teltype
-            td= number.note
-            td
-              => edit_button(number)
-              = delete_button(number)
-
-  .tab-pane#addresses
-    h2 Addresses
-    p= add_button(Address, organisation_id: @organisation)
-    table.table.table-bordered
-      - @organisation.addresses.each do |a|
-        tr
-          td= format_address_single_line(a)
-          td
-            => edit_button(a)
-            = delete_button(a)
-
-  .tab-pane#domains
-    h2 Domains
-    p= add_button(Domain, organisation_id: @organisation)
-    ul
-      - @organisation.domains.each do |d|
-        li= link_to d.name, domain_path(d)
-
-  .tab-pane#databases
-    h2 Databases
-    p= add_button(Database, organisation_id: @organisation)
-    - unless @organisation.databases.empty?
-      table.table.table-bordered
-        thead
-          tr
-            th Host
-            th Name
-            th Username
-            th Password
-            th Location
-        tbody
-          - @organisation.databases.each do |db|
-            tr
-              td= db.host
-              td= db.name
-              td= db.username
-              td= db.password
-              td= db.location
-              td
-                => edit_button(db)
-                = delete_button(db)
-
-  .tab-pane#issues
-    h2 Issues
-
-    p= t('.total_open_issue_estimated_price', price: number_to_currency(@organisation.open_issue_estimated_price_total, unit: '£'))
-
-    p= add_button(Issue, organisation_id: @organisation)
-
-    - unless @organisation.issues.empty?
-      = render partial: 'issues/issue_list', locals: {issues: @organisation.issues}
-
-  .tab-pane#notes
-    h2 Note Pads
-    p= add_button(NotePad, organisation_id: @organisation)
-
-    - unless @organisation.note_pads.empty?
-      table.table.table-bordered
-        - @organisation.note_pads.each do |np|
-          tr
-            td
-              strong= np.title
-              br
-              pre= np.content[0..255]
-            td= np.updated_at
-            td
-              => edit_button(np)
-              = delete_button(np)
-
-  .tab-pane#timesheet
-    h2 Timesheet
-
-    javascript:
-      function filterTimesheet() {
-        $('.timesheet th').hide();
-        $('.timesheet td').hide();
-        $('.timesheet th + th').show();
-        $('.timesheet td + td').show();
-        $('#more-entries-placeholder td').show();
-      }
-
-      $(function() {
-        filterTimesheet();
-      });
-
-    - cache @organisation do
-      - @timesheet_entries = @organisation.timesheet_entries.limit(100)
-      = render 'timesheet_entries/table'
-
-    - @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: current_user.id)
-    = render 'timesheet_entries/form'
-
-  .tab-pane#watchers
-    h2 Watchers
-    - if @organisation.watchers.any?
+    .tab-pane#domains
+      h2 Domains
+      p= add_button(Domain, organisation_id: @organisation)
       ul
-        - @organisation.watchers.each do |watcher|
-          li= link_to watcher.name, watcher
-    - else
-      p= "Nobody is watching issues for #{@organisation}."
+        - @organisation.domains.each do |d|
+          li= link_to d.name, domain_path(d)
+
+    .tab-pane#databases
+      h2 Databases
+      p= add_button(Database, organisation_id: @organisation)
+      - unless @organisation.databases.empty?
+        table.table.table-bordered
+          thead
+            tr
+              th Host
+              th Name
+              th Username
+              th Password
+              th Location
+          tbody
+            - @organisation.databases.each do |db|
+              tr
+                td= db.host
+                td= db.name
+                td= db.username
+                td= db.password
+                td= db.location
+                td
+                  => edit_button(db)
+                  = delete_button(db)
+
+    .tab-pane#issues
+      h2 Issues
+
+      p= t('.total_open_issue_estimated_price', price: number_to_currency(@organisation.open_issue_estimated_price_total, unit: '£'))
+
+      p= add_button(Issue, organisation_id: @organisation)
+
+      - unless @organisation.issues.empty?
+        = render partial: 'issues/issue_list', locals: {issues: @organisation.issues}
+
+    .tab-pane#notes
+      h2 Note Pads
+      p= add_button(NotePad, organisation_id: @organisation)
+
+      - unless @organisation.note_pads.empty?
+        table.table.table-bordered
+          - @organisation.note_pads.each do |np|
+            tr
+              td
+                strong= np.title
+                br
+                pre= np.content[0..255]
+              td= np.updated_at
+              td
+                => edit_button(np)
+                = delete_button(np)
+
+    .tab-pane#timesheet
+      h2 Timesheet
+
+      javascript:
+        function filterTimesheet() {
+          $('.timesheet th').hide();
+          $('.timesheet td').hide();
+          $('.timesheet th + th').show();
+          $('.timesheet td + td').show();
+          $('#more-entries-placeholder td').show();
+        }
+
+        $(function() {
+          filterTimesheet();
+        });
+
+      - cache @organisation do
+        - @timesheet_entries = @organisation.timesheet_entries.limit(100)
+        = render 'timesheet_entries/table'
+
+      - @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: current_user.id)
+      = render 'timesheet_entries/form'
+
+    .tab-pane#watchers
+      h2 Watchers
+      - if @organisation.watchers.any?
+        ul
+          - @organisation.watchers.each do |watcher|
+            li= link_to watcher.name, watcher
+      - else
+        p= "Nobody is watching issues for #{@organisation}."
