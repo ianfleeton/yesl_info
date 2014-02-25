@@ -12,20 +12,7 @@
       </tr>
     </thead>
     <tbody>
-<% issues.each do |issue| -%>
-      <tr>
-        <td><input type="checkbox" name="id[<%= issue.id %>]"></td>
-        <td><%= link_to issue.organisation.name, issue.organisation %></td>
-        <td>
-          <%= completed_label if issue.completed? %>
-          <%= link_to issue, issue %>
-        </td>
-        <td><%= priority_icon(issue.priority) %></td>
-        <td><%= issue.assignee.name %></td>
-        <td><%= issue.created_at.to_date %></td>
-        <td><%= issue.updated_at.to_date %></td>
-      </tr>
-<% end -%>
+      <%= render partial: 'issues/issue', collection: issues %>
     </tbody>
   </table>
   <% if admin? %>

@@ -1,0 +1,12 @@
+- cache(issue) do
+  tr
+    td
+      input type="checkbox" name="id[#{issue.id}"
+    td= link_to issue.organisation.name, issue.organisation
+    td
+      => completed_label if issue.completed?
+      = link_to issue, issue
+    td= priority_icon(issue.priority)
+    td= issue.assignee.name
+    td= issue.created_at.to_date
+    td= issue.updated_at.to_date
