@@ -2,7 +2,7 @@ class OrganisationsController < ApplicationController
   before_action :admin_required, except: [:show]
   before_action :user_required, only: [:show]
 
-  before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :more_timesheet_entries, :unwatch, :watch]
+  before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :new_timesheet_entry, :more_timesheet_entries, :unwatch, :watch]
 
   def index
     @organisations = Organisation.order('name')
@@ -60,6 +60,10 @@ class OrganisationsController < ApplicationController
   def contacted
     @organisation.touch(:last_contacted)
     redirect_to @organisation, notice: 'Contact recorded.'
+  end
+
+  def new_timesheet_entry
+    @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: current_user.id)
   end
 
   def more_timesheet_entries

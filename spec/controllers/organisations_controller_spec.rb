@@ -53,4 +53,20 @@ describe OrganisationsController do
       end
     end
   end
+
+  describe 'GET new_timesheet_entry' do
+    context 'as admin' do
+      before { controller.stub(:current_user).and_return admin }
+
+      it 'sets @timesheet_entry belonging to the current user' do
+        get :new_timesheet_entry, id: organisation.id
+        expect(assigns(:timesheet_entry).user).to eq admin
+      end
+
+      it 'sets a @timesheet_entry belonging to the organisation' do
+        get :new_timesheet_entry, id: organisation.id
+        expect(assigns(:timesheet_entry).organisation).to eq organisation
+      end
+    end
+  end
 end

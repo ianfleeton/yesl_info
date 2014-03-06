@@ -167,12 +167,9 @@
           filterTimesheet();
         });
 
-      - cache @organisation do
-        - @timesheet_entries = @organisation.timesheet_entries.limit(100)
-        = render 'timesheet_entries/table'
-
-      - @timesheet_entry = TimesheetEntry.new(organisation_id: @organisation.id, user_id: current_user.id)
-      = render 'timesheet_entries/form'
+      p= link_to 'New Entry', new_timesheet_entry_organisation_path(@organisation), class: 'btn btn-primary'
+      - @timesheet_entries = @organisation.timesheet_entries.limit(100)
+      = render 'timesheet_entries/table'
 
     .tab-pane#watchers
       h2 Watchers

@@ -106,7 +106,9 @@ Rails.application.routes.draw do
     collection do
       get 'contacts'
     end
+
     member do
+      get  'new_timesheet_entry'
       post 'contacted'
       post 'more_timesheet_entries'
       post 'unwatch'
