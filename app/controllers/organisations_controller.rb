@@ -54,7 +54,7 @@ class OrganisationsController < ApplicationController
     @organisations = Organisation
       .where('last_contacted < DATE_SUB(NOW(), INTERVAL contact_cycle DAY)')
       .order('DATE_ADD(last_contacted, INTERVAL contact_cycle DAY) ASC')
-      .limit(10)
+      .limit(20)
   end
 
   def contacted
