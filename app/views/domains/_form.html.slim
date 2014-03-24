@@ -20,7 +20,7 @@
 
   .form-group
     = form.label :registered_on
-    = form.date_select :registered_on, order: [:day, :month, :year]
+    = form.date_select :registered_on, order: [:day, :month, :year], start_year: Date.today.year - 10, end_year: Date.today.year
 
   .form-group
     label for="domain_with_us_true" With us?
