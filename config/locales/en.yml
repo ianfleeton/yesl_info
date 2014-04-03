@@ -25,10 +25,13 @@ en:
       calendar_issues: Issues Calendar
       domains: Domains
       home: Home
-      organisations: Organisations
-      timesheet: Timesheet
       issues: Issues
+      links: Links
+      organisations: Organisations
+      passwords: Passwords
+      timesheet: Timesheet
       users: People
+      webpanel_logins: Webpanel Logins
   timesheet_entries:
     index:
       report: 'Report'

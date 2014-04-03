@@ -46,11 +46,11 @@
           </a>
           <ul class="dropdown-menu">
             <%= menu_links(
-              'Links' => links_path,
-              'Passwords' => passwords_path,
-              'Webpanel Logins' => webpanel_logins_path
+              t('.links') => [links_path, t('.links')],
+              t('.passwords') => [passwords_path, t('.passwords')],
+              t('.webpanel_logins') => [webpanel_logins_path, t('.webpanel_logins')]
             )
-            %>              
+            %>
           </ul>
         </li>
         <% elsif logged_in? -%>
