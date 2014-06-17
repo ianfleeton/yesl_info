@@ -101,6 +101,7 @@ module ApplicationHelper
   def edit_button(object)
     link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
+    title: "Edit #{object}",
     class: 'btn btn-default'
   end
 

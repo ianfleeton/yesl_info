@@ -38,7 +38,7 @@ class AddressesController < ApplicationController
   private
   
   def find_address
-    @address = Address.find_by_id(params[:id], :include => :organisation)
+    @address = Address.find_by(id: params[:id])
     if @address.nil?
       flash[:notice] = "That address doesn't exist."
       redirect_to addresses_path
