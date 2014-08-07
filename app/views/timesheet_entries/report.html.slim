@@ -8,11 +8,11 @@
   .form-group
     label
       = t('.start_date')
-      = date_select :report, :start
+      = date_select :report, :start, start_year: Date.today.year - 15, end_year: Date.today.year
   .form-group
     label
       = t('.end_date')
-      = date_select :report, :end
+      = date_select :report, :end, start_year: Date.today.year - 15, end_year: Date.today.year
   = submit_tag t('.generate_report'), class: 'btn btn-primary'
 
 - if @timesheet_entries
