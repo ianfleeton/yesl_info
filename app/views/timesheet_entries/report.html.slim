@@ -13,8 +13,9 @@
     label
       = t('.end_date')
       = date_select :report, :end, start_year: Date.today.year - 15, end_year: Date.today.year
-  = submit_tag t('.generate_report'), class: 'btn btn-primary'
+  .form-group
+    = submit_tag t('.generate_report'), class: 'btn btn-primary'
 
 - if @timesheet_entries
-  = "Total invoiced: #{number_to_currency(@timesheet_entries.map{|e| e.invoice_value }.reduce(:+), unit: '£')}"
+  p= "Total invoiced: #{number_to_currency(@timesheet_entries.map{|e| e.invoice_value }.reduce(:+), unit: '£')}"
   = render 'timesheet_entries/table'
