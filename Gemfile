@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2.rc2'
+gem 'rails', '4.1.4'
 
 # Use Slim templating engine
 gem 'slim', '~> 2.0.0'
