@@ -17,5 +17,5 @@
     = submit_tag t('.generate_report'), class: 'btn btn-primary'
 
 - if @timesheet_entries
-  p= "Total invoiced: #{number_to_currency(@timesheet_entries.map{|e| e.invoice_value }.reduce(:+), unit: '£')}"
+  p= "Total invoiced: #{number_to_currency(@timesheet_entries.select{|e|e.chargeable}.map{|e| e.invoice_value }.reduce(:+), unit: '£')}"
   = render 'timesheet_entries/table'
