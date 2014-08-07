@@ -8,8 +8,8 @@ set :deploy_to, '/home/admin/sites/yesl_info'
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
-set :rvm_type, :system
-set :rvm_path, '/usr/local/rvm'
+set :rvm_type, :user
+set :rvm_path, '/home/admin/.rvm'
 
 set :ssh_options, {
   forward_agent: true
