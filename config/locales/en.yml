@@ -33,8 +33,12 @@ en:
       users: People
       webpanel_logins: Webpanel Logins
   timesheet_entries:
+    edit:
+      heading: 'Edit Timesheet Entry'
     index:
       report: 'Report'
+    new:
+      heading: 'New Timesheet Entry'
     report:
       end_date: 'End date'
       heading: 'Timesheet Entry Report'
