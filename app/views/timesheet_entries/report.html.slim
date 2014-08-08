@@ -17,7 +17,7 @@
     = submit_tag t('.generate_report'), class: 'btn btn-primary'
 
 - if @timesheet_entries
-  - total_invoiced = @timesheet_entries.select{|e|e.chargeable}.map{|e| e.invoice_value }.reduce(:+)
+  - total_invoiced = @timesheet_entries.select{|e|e.chargeable}.map{|e| e.invoice_value }.reduce(:+) || 0
   p= "Total invoiced: #{number_to_currency(total_invoiced, unit: '£')}"
   - hours = (@timesheet_entries.map{|e| e.minutes}.reduce(:+)/60.0).round(2)
   - per_hour = (total_invoiced / hours)
