@@ -1,4 +1,4 @@
-<% cache Organisation.order('updated_at DESC').first do -%>
+<% cache [Organisation.order('updated_at DESC').first, params[:archived]] do -%>
 
 <%= page_header('Organisations') %>
 <p>
