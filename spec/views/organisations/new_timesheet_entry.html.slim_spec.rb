@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'organisations/new_timesheet_entry.html.slim' do
   let(:timesheet_entry) { TimesheetEntry.new }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AddressesController do
   before { signed_in_as_admin }

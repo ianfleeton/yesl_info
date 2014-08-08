@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'timesheet_entries/report' do
   it 'displays a heading' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'shared_examples_for_controllers'
 
 describe CommentsController do

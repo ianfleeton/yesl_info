@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'issues/show' do
   let(:created_at) { Date.today - 1.week }

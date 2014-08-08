@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'issues/_issue_list' do
   let(:issue) { FactoryGirl.create(:issue, created_at: Date.today - 1.week, updated_at: Date.today - 1.day) }

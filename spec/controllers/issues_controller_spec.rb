@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'shared_examples_for_controllers'
 
 describe IssuesController do
@@ -142,7 +142,7 @@ describe IssuesController do
       it 'reopens the issue' do
         post :reopen, id: issue.id, comment: 'Broken'
         issue.reload
-        expect(issue.completed).to be_false
+        expect(issue.completed).to be_falsey
       end
 
       it 'redirects to the issue' do
@@ -153,8 +153,8 @@ describe IssuesController do
       it 'adds a comments on the issue' do
         post :reopen, id: issue.id, comment: 'Broken'
         comment = issue.comments.last
-        expect(comment.comment.include?('* reopened the issue')).to be_true
-        expect(comment.comment.include?('Broken')).to be_true
+        expect(comment.comment.include?('* reopened the issue')).to be_truthy
+        expect(comment.comment.include?('Broken')).to be_truthy
         expect(comment.user).to eq admin
       end
     end
@@ -168,7 +168,7 @@ describe IssuesController do
       it 'closes the issue' do
         post :resolve, id: issue.id, comment: 'Sorted'
         issue.reload
-        expect(issue.completed).to be_true
+        expect(issue.completed).to be_truthy
       end
 
       it 'redirects to the issue' do
@@ -179,8 +179,8 @@ describe IssuesController do
       it 'adds a comments on the issue' do
         post :resolve, id: issue.id, comment: 'Sorted'
         comment = issue.comments.last
-        expect(comment.comment.include?('* changed status to resolved')).to be_true
-        expect(comment.comment.include?('Sorted')).to be_true
+        expect(comment.comment.include?('* changed status to resolved')).to be_truthy
+        expect(comment.comment.include?('Sorted')).to be_truthy
         expect(comment.user).to eq admin
       end
     end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Issues' do
   before do
@@ -31,7 +31,7 @@ feature 'Issues' do
     expect(page).to have_content('changed status to resolved')
     expect(page).to have_content('Fixed')
     issue.reload
-    expect(issue.completed).to be_true
+    expect(issue.completed).to be_truthy
   end
 
   scenario 'Reopen issue', js: true do
@@ -44,6 +44,6 @@ feature 'Issues' do
     expect(page).to have_content('reopened the issue')
     expect(page).to have_content('Not fixed yet')
     issue.reload
-    expect(issue.completed).to be_false
+    expect(issue.completed).to be_falsey
   end
 end

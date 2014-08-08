@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'errors'
 
 describe UsersController do
@@ -6,7 +6,7 @@ describe UsersController do
 
   context 'when admin' do
     def user(stubs = {})
-      @user ||= mock_model(User, stubs).as_null_object
+      @user ||= double(User, stubs).as_null_object
     end
 
     before { signed_in_as_admin }

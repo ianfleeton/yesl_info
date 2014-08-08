@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EmailAddressesController do
   context 'when signed in as admin' do

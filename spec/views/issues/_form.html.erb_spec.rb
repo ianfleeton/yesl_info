@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'issues/_form' do
   before { assign(:issue, Issue.new) }

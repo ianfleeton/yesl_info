@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe TimesheetEntriesController do
   before { signed_in_as_admin }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe HomeController do
   before { controller.stub(:admin?).and_return(true) }
@@ -8,7 +8,7 @@ describe HomeController do
       before do
         NotePad.should_receive(:find_by)
           .with(title: 'Home Content')
-          .and_return(mock_model(NotePad, content: 'Welcome'))
+          .and_return(double(NotePad, content: 'Welcome'))
       end
 
       it 'finds home content and assigns to @home_content' do

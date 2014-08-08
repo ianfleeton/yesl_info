@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe HostingAccountsController do
   before { signed_in_as_admin }

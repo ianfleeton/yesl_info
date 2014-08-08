@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Users' do
   before { FactoryGirl.create(:admin) }

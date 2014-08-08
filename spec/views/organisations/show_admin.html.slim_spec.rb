@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require_relative 'show_shared'
 
 describe 'organisations/show_admin.html.slim' do

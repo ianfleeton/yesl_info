@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Timesheet Report' do
   before { FactoryGirl.create(:admin) }

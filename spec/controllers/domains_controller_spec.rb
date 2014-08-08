@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DomainsController do
   before { signed_in_as_admin }
@@ -10,7 +10,7 @@ describe DomainsController do
     end
 
     context 'when the domain fails to save' do
-      let(:domain) { mock_model(Domain).as_null_object }
+      let(:domain) { double(Domain).as_null_object }
 
       before { domain.stub(:save).and_return(false) }
 
