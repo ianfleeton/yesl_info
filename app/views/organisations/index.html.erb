@@ -3,6 +3,11 @@
 <%= page_header('Organisations') %>
 <p>
   <%= add_button(Organisation) %>
+  <% if params[:archived] == '1' %>
+    <%= link_to t('.show_unarchived'), organisations_path, class: 'btn btn-default' %>
+  <% else %>
+    <%= link_to t('.show_archived'), '?archived=1', class: 'btn btn-default' %>
+  <% end %>
 </p>
 <%= alpha_links.html_safe %>
 

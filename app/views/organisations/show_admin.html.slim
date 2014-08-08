@@ -22,6 +22,10 @@
       => link_to '<span class="glyphicon glyphicon-eye-close"></span> Unwatch'.html_safe, unwatch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
     - else
       => link_to '<span class="glyphicon glyphicon-eye-open"></span> Watch'.html_safe, watch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
+    - if @organisation.archived?
+      => link_to "<span class=\"glyphicon glyphicon-chevron-up\"></span> #{t('.unarchive')}".html_safe, unarchive_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
+    - else
+      => link_to "<span class=\"glyphicon glyphicon-chevron-down\"></span> #{t('.archive')}".html_safe, archive_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
     => edit_button(@organisation)
     = delete_button(@organisation)
 

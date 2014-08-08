@@ -32,6 +32,13 @@ en:
       timesheet: Timesheet
       users: People
       webpanel_logins: Webpanel Logins
+  organisations:
+    index:
+      show_archived: 'Show Archived'
+      show_unarchived: 'Show Unarchived'
+    show:
+      archive: 'Archive'
+      unarchive: 'Unarchive'
   timesheet_entries:
     edit:
       heading: 'Edit Timesheet Entry'

@@ -2,10 +2,23 @@ class OrganisationsController < ApplicationController
   before_action :admin_required, except: [:show]
   before_action :user_required, only: [:show]
 
-  before_action :find_organisation, only: [:show, :edit, :update, :destroy, :contacted, :new_timesheet_entry, :more_timesheet_entries, :unwatch, :watch]
+  before_action :find_organisation, only: [
+    :archive,
+    :contacted,
+    :destroy,
+    :edit,
+    :more_timesheet_entries,
+    :new_timesheet_entry,
+    :show,
+    :unarchive,
+    :unwatch,
+    :update,
+    :watch
+  ]
 
   def index
-    @organisations = Organisation.order('name')
+    archived = params[:archived] == '1'
+    @organisations = Organisation.order('name').where(archived: archived)
   end
   
   def show
@@ -80,6 +93,18 @@ class OrganisationsController < ApplicationController
 
   def watch
     OrganisationWatcher.create(organisation: @organisation, watcher: current_user)
+    redirect_to @organisation
+  end
+
+  def archive
+    @organisation.archived = true
+    @organisation.save
+    redirect_to @organisation
+  end
+
+  def unarchive
+    @organisation.archived = false
+    @organisation.save
     redirect_to @organisation
   end
 

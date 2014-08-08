@@ -69,4 +69,40 @@ describe OrganisationsController do
       end
     end
   end
+
+  describe 'POST archive' do
+    let!(:organisation) { FactoryGirl.create(:organisation, archived: false) }
+
+    before do
+      controller.stub(:current_user).and_return admin
+    end
+
+    it 'archives the organisation' do
+      post :archive, id: organisation.id
+      expect(organisation.reload.archived?).to be_truthy
+    end
+
+    it 'redirects to the organisation' do
+      post :archive, id: organisation.id
+      expect(response).to redirect_to(organisation)
+    end
+  end
+
+  describe 'POST unarchive' do
+    let!(:organisation) { FactoryGirl.create(:organisation, archived: true) }
+
+    before do
+      controller.stub(:current_user).and_return admin
+    end
+
+    it 'archives the organisation' do
+      post :unarchive, id: organisation.id
+      expect(organisation.reload.archived?).to be_falsey
+    end
+
+    it 'redirects to the organisation' do
+      post :unarchive, id: organisation.id
+      expect(response).to redirect_to(organisation)
+    end
+  end
 end

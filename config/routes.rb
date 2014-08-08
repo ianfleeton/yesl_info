@@ -108,9 +108,11 @@ Rails.application.routes.draw do
     end
 
     member do
-      get  'new_timesheet_entry'
+      post 'archive'
       post 'contacted'
       post 'more_timesheet_entries'
+      get  'new_timesheet_entry'
+      post 'unarchive'
       post 'unwatch'
       post 'watch'
     end

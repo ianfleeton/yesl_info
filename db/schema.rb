@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207104826) do
+ActiveRecord::Schema.define(version: 20140808185910) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20140207104826) do
     t.datetime "updated_at"
     t.datetime "last_viewed_at"
     t.boolean  "on_stop",        default: false, null: false
+    t.boolean  "archived",       default: false, null: false
   end
 
   add_index "organisations", ["last_viewed_at"], name: "index_organisations_on_last_viewed_at", using: :btree
