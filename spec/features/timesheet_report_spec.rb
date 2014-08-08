@@ -19,10 +19,10 @@ feature 'Timesheet Report' do
     bodge_it = FactoryGirl.create(:organisation, name: 'Bodge IT')
     scarper = FactoryGirl.create(:organisation, name: 'Scarper')
 
-    job_1 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Wrote code', started_at: '2012-08-13 00:00:00', invoice_value: 5.0)
-    job_2 = FactoryGirl.create(:timesheet_entry, organisation: scarper, description: 'Designed', started_at: '2012-08-13 00:00:00', invoice_value: 19.0)
-    job_3 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Deployed', started_at: '2013-06-29 23:59:59', invoice_value: 7.0)
-    job_4 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Tested', started_at: '2013-06-30 00:00:00', invoice_value: 11.0)
+    job_1 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Wrote code', started_at: '2012-08-13 00:00:00', invoice_value: 5.0, chargeable: true)
+    job_2 = FactoryGirl.create(:timesheet_entry, organisation: scarper, description: 'Designed', started_at: '2012-08-13 00:00:00', invoice_value: 19.0, chargeable: true)
+    job_3 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Deployed', started_at: '2013-06-29 23:59:59', invoice_value: 7.0, chargeable: true)
+    job_4 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Tested', started_at: '2013-06-30 00:00:00', invoice_value: 11.0, chargeable: true)
 
     visit report_timesheet_entries_path
 
