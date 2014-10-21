@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020111743) do
+ActiveRecord::Schema.define(version: 20141021092939) do
 
   create_table "addresses", force: true do |t|
     t.integer  "organisation_id", default: 0,  null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20141020111743) do
     t.string   "expected_http_status_code",                         default: "200",  null: false
     t.string   "scheme",                                            default: "http", null: false
     t.integer  "port",                                              default: 80,     null: false
+    t.boolean  "maintained",                                        default: true,   null: false
   end
 
   add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id", using: :btree

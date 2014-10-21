@@ -81,6 +81,20 @@ class HostingAccountsController < ApplicationController
   end
 
   def hosting_account_params
-    params.require(:hosting_account).permit(:annual_fee, :backed_up_on, :backup_cycle, :domain_id, :expected_http_status_code, :ftp_host, :host_name, :password, :port, :scheme, :started_on, :username)
+    params.require(:hosting_account).permit(
+      :annual_fee,
+      :backed_up_on,
+      :backup_cycle,
+      :domain_id,
+      :expected_http_status_code,
+      :ftp_host,
+      :host_name,
+      :maintained,
+      :password,
+      :port,
+      :scheme,
+      :started_on,
+      :username,
+    )
   end
 end

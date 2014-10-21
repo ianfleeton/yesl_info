@@ -39,6 +39,10 @@
     <td><%= @hosting_account.expected_http_status_code %></td>
   </tr>
   <tr>
+    <th>Maintained?</th>
+    <td><%= @hosting_account.maintained? ? 'Yes' : 'No' %></td>
+  </tr>
+  <tr>
     <th>Started on</th>
     <td><%= format_date(@hosting_account.started_on) %></td></tr>
   <tr>
