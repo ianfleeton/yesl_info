@@ -5,7 +5,7 @@ describe HostingAccountsController do
 
   describe 'GET index' do
     it 'finds all hosting accounts' do
-      HostingAccount.should_receive(:all)
+      expect(HostingAccount).to receive(:all)
       get :index
     end
 
@@ -18,7 +18,7 @@ describe HostingAccountsController do
 
   describe 'GET show' do
     it 'finds the hosting account' do
-      controller.should_receive(:find_hosting_account)
+      expect(controller).to receive(:find_hosting_account)
       get 'show', id: '1'
     end
   end
@@ -31,6 +31,6 @@ describe HostingAccountsController do
   end
 
   def signed_in_as_admin
-    controller.stub(:admin?).and_return(true)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 end

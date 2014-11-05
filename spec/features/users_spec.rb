@@ -12,7 +12,7 @@ feature 'Users' do
     fill_in 'Email', with: 'alice.adams@example.org'
     fill_in 'Password', with: 'secret'
     click_button 'Save'
-    page.should have_content 'Successfully added new user.'
+    expect(page).to have_content 'Successfully added new user.'
   end
 
   scenario 'Reassign user to another organisation' do

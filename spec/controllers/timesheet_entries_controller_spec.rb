@@ -30,6 +30,6 @@ describe TimesheetEntriesController do
   end
 
   def signed_in_as_admin
-    controller.stub(:admin?).and_return(true)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 end

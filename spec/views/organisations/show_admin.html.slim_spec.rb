@@ -5,7 +5,7 @@ describe 'organisations/show_admin.html.slim' do
   let(:organisation) { FactoryGirl.create(:organisation) }
 
   before do
-    view.stub(:current_user).and_return(FactoryGirl.create(:admin))
+    allow(view).to receive(:current_user).and_return(FactoryGirl.create(:admin))
     assign(:organisation, organisation)
   end
 

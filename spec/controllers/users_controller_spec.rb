@@ -13,19 +13,19 @@ describe UsersController do
 
     describe 'GET new' do
       it 'creates a new user' do
-        User.should_receive(:new)
+        expect(User).to receive(:new)
         get 'new'
       end
 
       it 'assigns @user' do
-        User.stub(:new).and_return(user)
+        allow(User).to receive(:new).and_return(user)
         get 'new'
-        assigns(:user).should eq user
+        expect(assigns(:user)).to eq user
       end
 
       it "sets the new user's organisation" do
         get 'new', organisation_id: organisation_id
-        assigns(:user).organisation_id.should eq organisation_id
+        expect(assigns(:user).organisation_id).to eq organisation_id
       end
     end
   end
@@ -35,7 +35,7 @@ describe UsersController do
     let(:other_user) { FactoryGirl.create(:user) }
 
     before do
-      controller.stub(:current_user).and_return(user)
+      allow(controller).to receive(:current_user).and_return(user)
     end
 
     describe 'GET show' do
@@ -47,6 +47,6 @@ describe UsersController do
   end
 
   def signed_in_as_admin
-    controller.stub(:admin?).and_return(true)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 end

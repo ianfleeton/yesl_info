@@ -7,7 +7,7 @@ describe CommentsController do
     let(:trespasser) { FactoryGirl.create(:user) }
 
     before do
-      controller.stub(:current_user).and_return(trespasser)
+      allow(controller).to receive(:current_user).and_return(trespasser)
     end
 
     describe 'POST create' do
@@ -23,7 +23,7 @@ describe CommentsController do
 
   context 'when admin' do
     before do
-      controller.stub(:current_user).and_return FactoryGirl.create(:admin)
+      allow(controller).to receive(:current_user).and_return FactoryGirl.create(:admin)
     end
 
     describe 'POST create' do

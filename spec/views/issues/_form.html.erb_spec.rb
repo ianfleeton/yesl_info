@@ -4,7 +4,7 @@ describe 'issues/_form' do
   before { assign(:issue, Issue.new) }
 
   context 'when admin' do
-    before { view.stub(:admin?).and_return true }
+    before { allow(view).to receive(:admin?).and_return true }
 
     it 'renders a dropdown of organisations' do
       render
@@ -28,7 +28,7 @@ describe 'issues/_form' do
   end
 
   context 'when user' do
-    before { view.stub(:admin?).and_return false }
+    before { allow(view).to receive(:admin?).and_return false }
 
     it 'does not render a dropdown of organisations' do
       render

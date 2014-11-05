@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe EmailAddressesController do
   context 'when signed in as admin' do
-    before { controller.stub(:admin?).and_return true }
+    before { allow(controller).to receive(:admin?).and_return true }
   end
 
   context 'when not signed in as admin' do
-    before { controller.stub(:admin?).and_return false }
+    before { allow(controller).to receive(:admin?).and_return false }
 
     describe 'GET new' do
       it 'denies access' do
@@ -17,6 +17,6 @@ describe EmailAddressesController do
   end
 
   def should_deny_access
-    response.should redirect_to '/sessions/new'
+    expect(response).to redirect_to '/sessions/new'
   end
 end

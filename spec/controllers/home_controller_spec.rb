@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe HomeController do
-  before { controller.stub(:admin?).and_return(true) }
+  before { allow(controller).to receive(:admin?).and_return(true) }
 
   describe 'GET index' do
     context 'with home content set' do
       before do
-        NotePad.should_receive(:find_by)
+        expect(NotePad).to receive(:find_by)
           .with(title: 'Home Content')
           .and_return(double(NotePad, content: 'Welcome'))
       end
@@ -18,7 +18,7 @@ describe HomeController do
     end
 
     context 'with no home content' do
-      before { NotePad.stub(:find_by).and_return(nil) }
+      before { allow(NotePad).to receive(:find_by).and_return(nil) }
 
       it 'sets @home_content to an empty string' do
         get 'index'

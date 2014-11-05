@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'issues/_issue_list' do
   let(:issue) { FactoryGirl.create(:issue, created_at: Date.today - 1.week, updated_at: Date.today - 1.day) }
 
-  before { view.stub(:admin?).and_return false }
+  before { allow(view).to receive(:admin?).and_return false }
 
   it 'displays the issue' do
     render_issues

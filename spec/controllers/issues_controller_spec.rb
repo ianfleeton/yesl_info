@@ -12,7 +12,7 @@ describe IssuesController do
     let(:trespasser) { FactoryGirl.create(:user) }
 
     before do
-      controller.stub(:current_user).and_return(trespasser)
+      allow(controller).to receive(:current_user).and_return(trespasser)
     end
 
     describe 'GET show' do
@@ -63,7 +63,7 @@ describe IssuesController do
 
   context 'when signed in as user' do
     before do
-      controller.stub(:current_user).and_return(user)
+      allow(controller).to receive(:current_user).and_return(user)
     end
 
     describe 'GET new' do
@@ -88,7 +88,7 @@ describe IssuesController do
 
   context 'when signed in as admin' do
     before do
-      controller.stub(:current_user).and_return(admin)
+      allow(controller).to receive(:current_user).and_return(admin)
     end
 
     describe 'GET show' do
@@ -103,7 +103,7 @@ describe IssuesController do
     describe 'POST create' do
       it 'allows only whitelisted attributes to be set' do
         post 'create', { issue: Issue.new.attributes }
-        controller.send(:issue_params).keys.should eq(['assignee_id', 'date_due', 'details',
+        expect(controller.send(:issue_params).keys).to eq(['assignee_id', 'date_due', 'details',
           'estimated_time', 'organisation_id', 'priority', 'setter_id', 'title'])
       end
     end
@@ -122,12 +122,12 @@ describe IssuesController do
 
     describe 'GET calendar' do
       it 'finds all issues' do
-        Issue.should_receive(:all)
+        expect(Issue).to receive(:all)
         get 'calendar'
       end
 
       it 'assigns issues to @issues' do
-        Issue.stub(:all).and_return :issues
+        allow(Issue).to receive(:all).and_return :issues
         get 'calendar'
         expect(assigns(:issues)).to eq :issues
       end
