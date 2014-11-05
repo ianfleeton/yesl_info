@@ -11,6 +11,8 @@
   </li>
 </ul>
 
+<% cache @domain do -%>
+
 <p class="btn-group">
   <%= edit_button(@domain) %>
   <%= link_to 'WHOIS', {:action => :whois, :id => @domain}, :class => 'btn btn-default' %>
@@ -55,3 +57,4 @@
 <% end -%>
   </div>
 </div>
+<% end -%>

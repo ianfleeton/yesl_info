@@ -1,4 +1,4 @@
-<% cache [User.order('updated_at DESC').first, Organisation.order('updated_at DESC').first] do %>
+<% cache [cache_key_for_users, cache_key_for_organisations] do %>
 <div class="page-header">
   <h1>People</h1>
 </div>
@@ -18,11 +18,7 @@
     	<h2><%= this_c.upcase %></h2>
     	<table class="table table-bordered">
     <% end %>
-    <tr>
-      <td><%= link_to u.name, u %></td>
-      <td><%= mail_to u.email, u.email %></td>
-      <td><%= link_to u.organisation.name, u.organisation %></td>
-    </tr>
+    <%= render partial: 'user', locals: { user: u } %>
   <% end %>
   </table>
 <% end %>
