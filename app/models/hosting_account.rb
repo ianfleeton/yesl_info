@@ -3,4 +3,8 @@ class HostingAccount < ActiveRecord::Base
   validates_inclusion_of :scheme, in: %w{http https}
 
   belongs_to :domain, touch: true
+
+  def url
+    "#{scheme}://#{host_name}" + (port == 80 ? '' : ":#{port}")
+  end
 end

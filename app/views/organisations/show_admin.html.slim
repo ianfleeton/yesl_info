@@ -109,9 +109,22 @@
     .tab-pane#domains
       h2 Domains
       p= add_button(Domain, organisation_id: @organisation)
-      ul
+      table.table.table-bordered
+        thead
+          tr
+            th Domain
+            th Registered
+            th Hosting
         - @organisation.domains.each do |d|
-          li= link_to d.name, domain_path(d)
+          tr
+            td= link_to d.name, domain_path(d)
+            td= d.registered_on
+            td
+              - if d.hosting_accounts.any?
+                - account = d.hosting_accounts.first
+                => link_to account.host_name, account.url
+                | on
+                =< link_to account.ftp_host, account
 
     .tab-pane#databases
       h2 Databases
