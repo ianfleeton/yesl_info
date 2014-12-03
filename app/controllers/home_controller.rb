@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   def webpanel_logins
     ActiveRecord::Base.establish_connection(
       adapter:  'mysql2',
-      host:     'straylight.yesl.co.uk',
+      host:     'elara.yesl.co.uk',
       username: 'webpanel_panel',
       password: Secrets[:webpanel_database_password],
       database: 'webpanel_panel'
