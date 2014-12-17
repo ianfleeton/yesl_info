@@ -8,16 +8,16 @@ describe Issue do
     end
   end
 
-  describe '#start_time' do
+  describe '#starts_at' do
     it 'returns date_due' do
       d = Date.today
       issue = Issue.new(date_due: d)
-      expect(issue.start_time).to eq d
+      expect(issue.starts_at).to eq d
     end
 
     it "returns today's date if date_due is nil" do
       issue = Issue.new(date_due: nil)
-      expect(issue.start_time).to eq Date.today
+      expect(issue.starts_at).to eq Date.today
     end
   end
 

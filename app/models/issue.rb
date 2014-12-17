@@ -2,6 +2,9 @@ class Issue < ActiveRecord::Base
   include IssuesHelper
   include ActionView::Helpers::NumberHelper
 
+  extend SimpleCalendar
+  has_calendar
+
   belongs_to :assignee, class_name: 'User'
   belongs_to :setter, class_name: 'User'
   belongs_to :organisation, touch: true
@@ -25,7 +28,7 @@ class Issue < ActiveRecord::Base
   end
 
   # Returns date_due for interoperability with simple_calendar
-  def start_time
+  def starts_at
     date_due || Date.today
   end
 
