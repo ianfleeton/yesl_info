@@ -67,7 +67,7 @@ class IssuesController < ApplicationController
   end
 
   def calendar
-    @issues = Issue.all
+    @issues = Issue.where(completed: false)
   end
 
   def reopen
