@@ -64,6 +64,17 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              Secrets[:smtp_address],
+    port:                 Secrets[:smtp_port],
+    enable_starttls_auto: Secrets[:smtp_enable_starttls_auto]
+    domain:               'yesl.info',
+    user_name:            Secrets[:smtp_user_name],
+    password:             Secrets[:smtp_password],
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -77,5 +88,3 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 end
-
-ActionMailer::Base.delivery_method = :sendmail
