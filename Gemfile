@@ -19,6 +19,9 @@ gem 'redcarpet'
 # MySQL
 gem 'mysql2'
 
+# Get notified of exceptions
+gem 'exception_notification'
+
 group :production do
   # memcached client for cache store
   gem 'dalli'
