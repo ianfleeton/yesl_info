@@ -68,7 +68,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              Secrets[:smtp_address],
     port:                 Secrets[:smtp_port],
-    enable_starttls_auto: Secrets[:smtp_enable_starttls_auto]
+    enable_starttls_auto: Secrets[:smtp_enable_starttls_auto],
     domain:               'yesl.info',
     user_name:            Secrets[:smtp_user_name],
     password:             Secrets[:smtp_password],
