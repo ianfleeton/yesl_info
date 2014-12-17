@@ -1,6 +1,7 @@
-= calendar @issues do |issue|
-  a.calendar-issue href="#{issue_path(issue)}"
-    h4
-      abbr title="#{issue.organisation.name}"= issue.organisation.initials
-    p= issue.assignee.initials
-    p= issue.title
+= calendar events: @issues do |date, issues|
+  - issues.each do |issue|
+    a.calendar-issue href="#{issue_path(issue)}"
+      h4
+        abbr title="#{issue.organisation.name}"= issue.organisation.initials
+      p= issue.assignee.initials
+      p= issue.title
