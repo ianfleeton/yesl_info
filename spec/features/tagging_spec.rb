@@ -16,7 +16,6 @@ feature 'Tagging' do
     client2.tag_list << 'wordpress'
     client2.save
 
-    save_and_open_page
     click_link 'Tags'
 
     expect(page).to have_css('.tag-list a', text: 'wordpress')
