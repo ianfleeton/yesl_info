@@ -18,14 +18,18 @@
   </div>
   <fieldset>
     <legend>On stop?</legend>
-    <label class="radio">
-      <%= form.radio_button :on_stop, true %>
-      Yes
-    </label>
-    <label class="radio">
-      <%= form.radio_button :on_stop, false %> 
-      No
-    </label>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :on_stop, true %>
+        Yes
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <%= form.radio_button :on_stop, false %> 
+        No
+      </label>
+    </div>
   </fieldset>
 
   <br><%= form.submit 'Save', class: 'btn btn-primary' %>

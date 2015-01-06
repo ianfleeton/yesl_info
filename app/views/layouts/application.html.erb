@@ -36,11 +36,11 @@
         )
         %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             Extras
-            <b class="caret"></b>
+            <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" role="menu">
             <%= menu_links(
               t('.links') => [links_path, t('.links')],
               t('.passwords') => [passwords_path, t('.passwords')],
@@ -55,13 +55,14 @@
       </ul>
       <div class="pull-right">
         <% if logged_in? -%>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <i class="glyphicon glyphicon-user"></i>
               <%= @current_user.name %>
-            <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
               <li><%= link_to 'Account', @current_user %></li>
               <li><%= link_to 'Sign Out', '/sessions/destroy', data: { method: 'delete' } %></li>
             </ul>
@@ -69,10 +70,13 @@
         </ul>
         <% end -%>
         <% if admin? -%>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">View Recent <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              View Recent
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
 <% Organisation.recently_viewed.each do |o| -%>
               <li>
                 <a href="<%= organisation_path(o) %>"><%= o.name %></a>
