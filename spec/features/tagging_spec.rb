@@ -20,4 +20,24 @@ feature 'Tagging' do
     expect(page).to have_css('.tag-list', text: 'wordpress')
     expect(page).not_to have_content 'No tags yet.'
   end
+
+  scenario 'Find organisations with same tag' do
+    client.tag_list << 'worldpay'
+    client.save
+
+    client2 = FactoryGirl.create(:organisation)
+    client2.tag_list << 'worldpay'
+    client2.save
+
+    visit organisation_path(client)
+    click_link 'worldpay'
+
+    expect(page).to have_content 'Organisations tagged with "worldpay"'
+
+    within '.result-list' do
+      click_link client2.name
+    end
+
+    expect(page).to have_css('h1', text: client2.name)
+  end
 end

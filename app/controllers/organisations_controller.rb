@@ -116,6 +116,11 @@ class OrganisationsController < ApplicationController
     redirect_to @organisation, notice: 'Tagged.'
   end
 
+  def tagged_with
+    @organisations = Organisation.tagged_with params[:tag]
+    @tag = params[:tag]
+  end
+
   protected
 
   def find_organisation

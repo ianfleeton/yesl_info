@@ -126,4 +126,29 @@ describe OrganisationsController do
       expect(response).to redirect_to(organisation)
     end
   end
+
+  describe 'GET tagged_with' do
+    before do
+      allow(controller).to receive(:current_user).and_return admin
+    end
+
+    it 'assigns @organisations with organisations tagged with params[:tag]' do
+      o1 = FactoryGirl.build(:organisation)
+      o1.tag_list << 'tag1'
+      o1.save!
+      o2 = FactoryGirl.build(:organisation)
+      o2.tag_list << 'tag2'
+      o2.save!
+
+      get :tagged_with, tag: 'tag1'
+
+      expect(assigns(:organisations)).to include(o1)
+      expect(assigns(:organisations)).not_to include(o2)
+    end
+
+    it 'sets @tag to params[:tag]' do
+      get :tagged_with, tag: 'tag1'
+      expect(assigns(:tag)).to eq 'tag1'
+    end
+  end
 end

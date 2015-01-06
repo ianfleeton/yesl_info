@@ -119,6 +119,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'organisations/tagged_with/:tag' => 'organisations#tagged_with', as: :tagged_with_organisations
+
   resources :sessions do
     delete 'destroy', on: :collection
   end

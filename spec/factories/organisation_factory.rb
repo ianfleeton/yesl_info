@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :organisation do
-    name 'Your e Solutions Ltd'
+    sequence(:name) {|n| "Your e Solutions Ltd #{n}"}
     last_contacted Date.yesterday
   end
 end
