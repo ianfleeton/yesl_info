@@ -121,15 +121,13 @@ describe IssuesController do
     end
 
     describe 'GET calendar' do
-      it 'finds all issues' do
-        expect(Issue).to receive(:all)
-        get 'calendar'
-      end
+      let!(:complete) { FactoryGirl.create(:issue, completed: true) }
+      let!(:outstanding) { FactoryGirl.create(:issue, completed: false) }
 
-      it 'assigns issues to @issues' do
-        allow(Issue).to receive(:all).and_return :issues
+      it 'assigns outsdanding issues to @issues' do
         get 'calendar'
-        expect(assigns(:issues)).to eq :issues
+        expect(assigns(:issues)).to include(outstanding)
+        expect(assigns(:issues)).not_to include(complete)
       end
     end
 
