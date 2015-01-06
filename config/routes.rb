@@ -113,6 +113,7 @@ Rails.application.routes.draw do
       post 'contacted'
       post 'more_timesheet_entries'
       get  'new_timesheet_entry'
+      delete 'remove_tag'
       post 'unarchive'
       post 'unwatch'
       post 'watch'

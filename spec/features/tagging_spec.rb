@@ -40,4 +40,14 @@ feature 'Tagging' do
 
     expect(page).to have_css('h1', text: client2.name)
   end
+
+  scenario 'Remove tag from organisation' do
+    client.tag_list << 'worldpay'
+    client.save
+
+    visit organisation_path(client)
+    click_button 'Remove worldpay tag'
+
+    expect(page).not_to have_css('.tag-list', text: 'worldpay')
+  end
 end

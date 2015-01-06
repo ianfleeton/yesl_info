@@ -127,6 +127,29 @@ describe OrganisationsController do
     end
   end
 
+  describe 'DELETE remove_tag' do
+    before do
+      allow(controller).to receive(:current_user).and_return admin
+      organisation.tag_list << 'tag'
+      organisation.save
+    end
+
+    it 'removes a tag from the organisation' do
+      delete :remove_tag, tag: 'tag', id: organisation.id
+      expect(assigns(:organisation).reload.tag_list.length).to eq 0
+    end
+
+    it 'sets a flash notice' do
+      delete :remove_tag, tag: 'tag', id: organisation.id
+      expect(flash[:notice]).to eq 'Tag removed.'
+    end
+
+    it 'redirects to the organisation' do
+      delete :remove_tag, tag: 'tag', id: organisation.id
+      expect(response).to redirect_to(organisation)
+    end    
+  end
+
   describe 'GET tagged_with' do
     before do
       allow(controller).to receive(:current_user).and_return admin

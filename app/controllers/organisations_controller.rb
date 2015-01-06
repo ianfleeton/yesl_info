@@ -10,6 +10,7 @@ class OrganisationsController < ApplicationController
     :edit,
     :more_timesheet_entries,
     :new_timesheet_entry,
+    :remove_tag,
     :show,
     :unarchive,
     :unwatch,
@@ -114,6 +115,13 @@ class OrganisationsController < ApplicationController
     @organisation.save
     @organisation.touch
     redirect_to @organisation, notice: 'Tagged.'
+  end
+
+  def remove_tag
+    @organisation.tag_list.remove(params[:tag])
+    @organisation.save
+    @organisation.touch
+    redirect_to @organisation, notice: 'Tag removed.'
   end
 
   def tagged_with

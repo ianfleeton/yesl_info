@@ -33,7 +33,10 @@
   - if @organisation.tag_list.any?
     ul.tag-list
       - @organisation.tag_list.each do |tag|
-        li= link_to tag, tagged_with_organisations_path(tag)
+        li
+          = link_to tag, tagged_with_organisations_path(tag)
+          = form_tag({action: 'remove_tag', id: @organisation.id, tag: tag}, method: :delete, style: 'display:inline;') do
+            = submit_tag 'X', title: "Remove #{tag} tag"
   - else
     p= "No tags yet."
   = form_tag(action: 'add_tag', id: @organisation.id) do

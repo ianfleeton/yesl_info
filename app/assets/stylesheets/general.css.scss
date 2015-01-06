@@ -46,3 +46,17 @@
 .button_to, .button_to > div {
   display: inline;
 }
+
+.tag-list {
+  li {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #e7e7e7;
+    background: #f8f8f8;
+    margin: 2px;
+
+    input {
+      margin-left: 8px;
+    }
+  }
+}
