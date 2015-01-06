@@ -105,6 +105,7 @@ Rails.application.routes.draw do
   resources :organisations do
     collection do
       get 'contacts'
+      get 'tags'
     end
 
     member do

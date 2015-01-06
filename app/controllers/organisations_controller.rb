@@ -110,6 +110,10 @@ class OrganisationsController < ApplicationController
     redirect_to @organisation
   end
 
+  def tags
+    @tags = ActsAsTaggableOn::Tag.where('taggings_count > 0').order('name')
+  end
+
   def add_tag
     @organisation.tag_list << params[:tag]
     @organisation.save

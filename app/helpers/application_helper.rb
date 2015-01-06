@@ -19,7 +19,7 @@ module ApplicationHelper
   def menu_link(text, path, title)
     content_tag(
       :li,
-      link_to(text, path),
+      link_to(text, path, title: title),
       { title: title }.merge(current_page?(path) ? { class: 'active' } : {})
     )
   end

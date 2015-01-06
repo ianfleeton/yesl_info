@@ -106,6 +106,25 @@ describe OrganisationsController do
     end
   end
 
+  describe 'GET tags' do
+    before do
+      allow(controller).to receive(:current_user).and_return admin
+    end
+
+    it 'populates @tags with all tags' do
+      organisation.tag_list << 'tag1'
+      organisation.tag_list << 'tag2'
+      organisation.save
+
+      get :tags
+
+      tag_names = assigns(:tags).map{|t| t.name}
+
+      expect(tag_names).to include 'tag1'
+      expect(tag_names).to include 'tag2'
+    end
+  end
+
   describe 'POST add_tag' do
     before do
       allow(controller).to receive(:current_user).and_return admin

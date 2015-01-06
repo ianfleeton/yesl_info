@@ -1,0 +1,5 @@
+= page_header 'Tags'
+
+ul.tag-list
+  - @tags.each do |tag|
+    li= link_to tag, tagged_with_organisations_path(tag)

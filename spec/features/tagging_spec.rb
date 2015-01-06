@@ -8,6 +8,21 @@ feature 'Tagging' do
     sign_in_as_admin
   end
 
+  scenario 'View all tags' do
+    client.tag_list << 'worldpay'
+    client.save
+
+    client2 = FactoryGirl.create(:organisation)
+    client2.tag_list << 'wordpress'
+    client2.save
+
+    save_and_open_page
+    click_link 'Tags'
+
+    expect(page).to have_css('.tag-list a', text: 'wordpress')
+    expect(page).to have_css('.tag-list a', text: 'worldpay')
+  end
+
   scenario 'No tags yet' do
     visit organisation_path(client)
     expect(page).to have_content 'No tags yet.'
