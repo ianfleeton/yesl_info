@@ -22,6 +22,9 @@ gem 'mysql2'
 # Get notified of exceptions
 gem 'exception_notification'
 
+# Tagging
+gem 'acts-as-taggable-on', '~> 3.4'
+
 group :production do
   # memcached client for cache store
   gem 'dalli'

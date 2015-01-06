@@ -3,6 +3,7 @@ class OrganisationsController < ApplicationController
   before_action :user_required, only: [:show]
 
   before_action :find_organisation, only: [
+    :add_tag,
     :archive,
     :contacted,
     :destroy,
@@ -106,6 +107,13 @@ class OrganisationsController < ApplicationController
     @organisation.archived = false
     @organisation.save
     redirect_to @organisation
+  end
+
+  def add_tag
+    @organisation.tag_list << params[:tag]
+    @organisation.save
+    @organisation.touch
+    redirect_to @organisation, notice: 'Tagged.'
   end
 
   protected

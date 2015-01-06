@@ -108,6 +108,7 @@ Rails.application.routes.draw do
     end
 
     member do
+      post 'add_tag'
       post 'archive'
       post 'contacted'
       post 'more_timesheet_entries'

@@ -105,4 +105,25 @@ describe OrganisationsController do
       expect(response).to redirect_to(organisation)
     end
   end
+
+  describe 'POST add_tag' do
+    before do
+      allow(controller).to receive(:current_user).and_return admin
+    end
+
+    it 'adds a tag to the organisation' do
+      post :add_tag, tag: 'tag', id: organisation.id
+      expect(assigns(:organisation).reload.tag_list.first).to eq 'tag'
+    end
+
+    it 'sets a flash notice' do
+      post :add_tag, tag: 'tag', id: organisation.id
+      expect(flash[:notice]).to eq 'Tagged.'
+    end
+
+    it 'redirects to the organisation' do
+      post :add_tag, tag: 'tag', id: organisation.id
+      expect(response).to redirect_to(organisation)
+    end
+  end
 end

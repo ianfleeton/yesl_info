@@ -18,6 +18,8 @@ class Organisation < ActiveRecord::Base
 
   validates_presence_of :name
 
+  acts_as_taggable
+
   def to_s
     name
   end
