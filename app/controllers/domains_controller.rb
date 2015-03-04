@@ -3,9 +3,9 @@ class DomainsController < ApplicationController
   before_action :find_domain, except: [:index, :new, :create]
 
   def index
-    @domains = Domain.order('name')
+    @domains = Domain.order('name').eager_load('hosting_accounts')
   end
-  
+
   def show
   end
 
@@ -48,11 +48,11 @@ class DomainsController < ApplicationController
   end
 
   def renewals
-    
+
   end
 
   private
-  
+
   def find_domain
     @domain = Domain.includes(:organisation).find_by(id: params[:id])
     if @domain.nil?

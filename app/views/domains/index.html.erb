@@ -14,12 +14,17 @@
       </ul>
     <% end %>
   	<% last_c = this_c %>
-  	
+
   	<a name="alphanum<%= this_c %>"></a></li>
   	<h2><%= this_c.upcase %> <a href="#top" class="top">&#8593;</a></h2>
   	<ul>
   <% end %>
-  <li><%= link_to d.name, d %></li>
+  <li>
+    <%= link_to d.name, d %>
+    <% d.hosting_accounts.each do |ha| %>
+    [<%= link_to ha.host_name, ha %>]
+    <% end %>
+  </li>
 <% end %>
 </ul>
 </div>
