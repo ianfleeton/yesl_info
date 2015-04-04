@@ -105,7 +105,7 @@ class IssuesController < ApplicationController
     issue = Issue.find(id)
     issue.completed = true
     issue.save
-    IssueNotifier.marked_as_complete(issue).deliver
+    IssueNotifier.marked_as_complete(issue).deliver_now
   end
 
   def issue_params

@@ -38,7 +38,7 @@ class Issue < ActiveRecord::Base
 
   def notify_watchers_of_creation
     watchers.each do |watcher|
-      IssueNotifier.new_task(self, watcher).deliver
+      IssueNotifier.new_task(self, watcher).deliver_now
     end
   end
 

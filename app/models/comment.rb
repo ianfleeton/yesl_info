@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
 
   def notify_watchers
     watchers.each do |watcher|
-      IssueNotifier.new_comment(self, watcher).deliver
+      IssueNotifier.new_comment(self, watcher).deliver_now
     end
   end
 end

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def index
     @users = User.order('name').includes(:organisation)
   end
-  
+
   def show
     raise Errors::AuthorizationError if !admin? && @user != current_user
     @offset = 100
@@ -17,20 +17,20 @@ class UsersController < ApplicationController
   def new
     @user = User.new(organisation_id: params[:organisation_id])
   end
-  
+
   def create
     @user = User.new(admin? ? user_params_for_admin : user_params)
-    
+
     if @user.save
       redirect_to @user, notice: 'Successfully added new user.'
     else
       render :action => "new"
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if @user.update_attributes(admin? ? user_params_for_admin : user_params)
       flash[:notice] = "User successfully updated."
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def forgot_password
   end
-  
+
   def forgot_password_send
     @user = User.find_by_email(params[:email])
     if @user.nil? || @user.email.blank?
@@ -57,14 +57,14 @@ class UsersController < ApplicationController
     else
       @user.forgot_password_token = User.generate_forgot_password_token
       @user.save
-      UserNotifier.token(@user).deliver
+      UserNotifier.token(@user).deliver_now
     end
   end
 
   def forgot_password_new
     forgot_password_params_ok?
   end
-  
+
   def forgot_password_change
     if forgot_password_params_ok?
       @user.password = params[:password]
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def forgot_password_params_ok?
     if @user.forgot_password_token.blank?
       flash[:notice] = "Please enter your email address below"
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     end
     true
   end
-  
+
   def find_user
     @user = User.find(params[:id])
   end
