@@ -3,7 +3,7 @@ class CreateTimesheetEntries < ActiveRecord::Migration
     create_table :timesheet_entries do |t|
       t.integer :organisation_id, :default => 0, :null => false
       t.integer :user_id, :default => 0, :null => false
-      t.text :description, :default => '', :null => false
+      t.text :description, :null => false
       t.decimal :invoice_value, :precision => 10, :scale => 2, :default => 0.0, :null => false
       t.boolean :chargeable, :default => false, :null => false
       t.integer :minutes, :default => 0, :null => false

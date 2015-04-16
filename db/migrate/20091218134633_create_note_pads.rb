@@ -3,7 +3,7 @@ class CreateNotePads < ActiveRecord::Migration
     create_table :note_pads do |t|
       t.integer :organisation_id, :default => 0, :null => false
       t.string :title, :default => '', :null => false
-      t.text :content, :default => '', :null => false
+      t.text :content, :null => false
 
       t.timestamps
     end
