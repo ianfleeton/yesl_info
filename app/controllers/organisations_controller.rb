@@ -13,16 +13,14 @@ class OrganisationsController < ApplicationController
     :remove_tag,
     :show,
     :unarchive,
-    :unwatch,
     :update,
-    :watch
   ]
 
   def index
     archived = params[:archived] == '1'
     @organisations = Organisation.order('name').where(archived: archived)
   end
-  
+
   def show
     record_view
     @offset = 100
@@ -33,7 +31,7 @@ class OrganisationsController < ApplicationController
       redirect_to new_session_path and return unless same_organisation_as? @organisation
     end
   end
-  
+
   def new
     @organisation = Organisation.new
   end
@@ -86,16 +84,6 @@ class OrganisationsController < ApplicationController
     @timesheet_entries = @organisation.timesheet_entries.order('started_at DESC').limit(200).offset(offset)
     @offset = offset + 200
     render 'timesheet_entries/more_timesheet_entries', layout: nil
-  end
-
-  def unwatch
-    OrganisationWatcher.where(organisation: @organisation, watcher: current_user).delete_all
-    redirect_to @organisation
-  end
-
-  def watch
-    OrganisationWatcher.create(organisation: @organisation, watcher: current_user)
-    redirect_to @organisation
   end
 
   def archive

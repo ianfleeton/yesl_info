@@ -1,8 +1,0 @@
-- cache(user) do
-  h2= user.name
-  - if user.issues.empty?
-    p
-      | No issues for
-      =< user.name
-  - else
-    = render partial: 'issue_list', locals: {issues: user.issues}

@@ -1,11 +1,2 @@
 - cache @organisation do
   = page_header @organisation.name
-
-  h2 Issues
-
-  p= t('.total_open_issue_estimated_price', price: number_to_currency(@organisation.open_issue_estimated_price_total, unit: '£'))
-
-  p= add_button(Issue, organisation_id: @organisation)
-
-  - unless @organisation.issues.empty?
-    = render partial: 'issues/issue_list', locals: {issues: @organisation.issues}

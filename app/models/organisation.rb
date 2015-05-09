@@ -9,10 +9,6 @@ class Organisation < ActiveRecord::Base
   has_many :note_pads, dependent: :destroy
   has_many :numbers, dependent: :delete_all
   has_many :timesheet_entries, -> { order('started_at DESC').includes(:user) }, dependent: :delete_all
-  has_many :issues, -> { order 'completed, priority' }, dependent: :delete_all
-
-  has_many :organisation_watchers
-  has_many :watchers, through: :organisation_watchers
 
   scope :recently_viewed, -> { order('last_viewed_at DESC').limit(10) }
 
@@ -40,10 +36,5 @@ class Organisation < ActiveRecord::Base
     timesheet_entries
       .where('started_at >= DATE_SUB(NOW(), INTERVAL 2 YEAR)')
       .sum('minutes')
-  end
-
-  # Returns the sum of estimated prices for all open issues.
-  def open_issue_estimated_price_total
-    issues.where(completed: false).sum(:estimated_price)
   end
 end

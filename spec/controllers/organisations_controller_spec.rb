@@ -32,28 +32,6 @@ describe OrganisationsController do
     end
   end
 
-  describe 'POST unwatch' do
-    context 'as admin' do
-      before { allow(controller).to receive(:current_user).and_return admin }
-
-      it 'redirects to the organisation' do
-        post :unwatch, id: organisation.id
-        expect(response).to redirect_to organisation
-      end
-    end
-  end
-
-  describe 'POST watch' do
-    context 'as admin' do
-      before { allow(controller).to receive(:current_user).and_return admin }
-
-      it 'redirects to the organisation' do
-        post :watch, id: organisation.id
-        expect(response).to redirect_to organisation
-      end
-    end
-  end
-
   describe 'GET new_timesheet_entry' do
     context 'as admin' do
       before { allow(controller).to receive(:current_user).and_return admin }
@@ -166,7 +144,7 @@ describe OrganisationsController do
     it 'redirects to the organisation' do
       delete :remove_tag, tag: 'tag', id: organisation.id
       expect(response).to redirect_to(organisation)
-    end    
+    end
   end
 
   describe 'GET tagged_with' do

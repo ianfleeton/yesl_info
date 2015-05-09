@@ -5,7 +5,7 @@
         $.cookie('organisation-pane', $(this).attr('href'), { path: '/' });
       });
 
-      panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#issues', '#notes', '#timesheet', '#watchers']
+      panes = ['#emails', '#numbers', '#addresses', '#domains', '#databases', '#notes', '#timesheet']
 
       for(var i = 0; i < panes.length; i++) {
         var id = panes[i];
@@ -18,10 +18,6 @@
   = page_header(@organisation.name)
 
   p
-    - if @organisation.watchers.include? current_user
-      => link_to '<span class="glyphicon glyphicon-eye-close"></span> Unwatch'.html_safe, unwatch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
-    - else
-      => link_to '<span class="glyphicon glyphicon-eye-open"></span> Watch'.html_safe, watch_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
     - if @organisation.archived?
       => link_to "<span class=\"glyphicon glyphicon-chevron-up\"></span> #{t('.unarchive')}".html_safe, unarchive_organisation_path(@organisation), class: 'btn btn-default', method: 'post'
     - else
@@ -63,10 +59,8 @@
     li: a href="#addresses" data-toggle="tab" Addresses
     li: a href="#domains" data-toggle="tab" Domains
     li: a href="#databases" data-toggle="tab" Databases
-    li: a href="#issues" data-toggle="tab" Issues
     li: a href="#notes" data-toggle="tab" Notes
     li: a href="#timesheet" data-toggle="tab" Timesheet
-    li: a href="#watchers" data-toggle="tab" Watchers
 
   .tab-content
     .tab-pane.active#people
@@ -165,16 +159,6 @@
                   => edit_button(db)
                   = delete_button(db)
 
-    .tab-pane#issues
-      h2 Issues
-
-      p= t('.total_open_issue_estimated_price', price: number_to_currency(@organisation.open_issue_estimated_price_total, unit: '£'))
-
-      p= add_button(Issue, organisation_id: @organisation)
-
-      - unless @organisation.issues.empty?
-        = render partial: 'issues/issue_list', locals: {issues: @organisation.issues}
-
     .tab-pane#notes
       h2 Note Pads
       p= add_button(NotePad, organisation_id: @organisation)
@@ -202,12 +186,3 @@
       p= link_to 'New Entry', new_timesheet_entry_organisation_path(@organisation), class: 'btn btn-primary'
       - @timesheet_entries = @organisation.timesheet_entries.limit(100)
       = render 'timesheet_entries/table'
-
-    .tab-pane#watchers
-      h2 Watchers
-      - if @organisation.watchers.any?
-        ul
-          - @organisation.watchers.each do |watcher|
-            li= link_to watcher.name, watcher
-      - else
-        p= "Nobody is watching issues for #{@organisation}."

@@ -61,8 +61,6 @@ Rails.application.routes.draw do
 
   resources :addresses
 
-  resources :comments
-
   resources :databases
 
   resources :domains do
@@ -86,16 +84,6 @@ Rails.application.routes.draw do
   get 'links' => 'home#links', as: :links
   get 'passwords' => 'home#passwords', as: :passwords
   get 'webpanel_logins' => 'home#webpanel_logins', as: :webpanel_logins
-
-  resources :issues do
-    collection do
-      post 'update_multiple'
-    end
-    member do
-      post 'reopen'
-      post 'resolve'
-    end
-  end
 
   resources :note_pads
 

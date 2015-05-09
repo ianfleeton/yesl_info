@@ -24,7 +24,6 @@ en:
     application:
       domains: Domains
       home: Home
-      issues: Issues
       links: Links
       organisations: Organisations
       passwords: Passwords
