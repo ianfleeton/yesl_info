@@ -89,7 +89,6 @@ Rails.application.routes.draw do
 
   resources :issues do
     collection do
-      get 'calendar'
       post 'update_multiple'
     end
     member do

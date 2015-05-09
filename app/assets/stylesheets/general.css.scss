@@ -4,43 +4,9 @@
   }
 }
 
-.calendar table td {
-  border: 1px solid #ccc;
-  padding: 4px 7px;
-  width: 14.28%;
-  vertical-align: top;
-}
-
 .day-of-month {
   text-align: right;
   font-size: 14px;
-}
-
-.calendar a {
-  display: block;
-  color: #333;
-}
-
-.calendar-issue {
-  background-color: #eee;
-  margin: 1px 0;
-  padding: 3px;
-
-  h4 {
-    display: inline-block;
-    font-size: 12px;
-    margin: 0;
-  }
-
-  h4 + p {
-    padding: 0 4px;
-  }
-
-  p {
-    display: inline-block;
-    font-size: 12px;
-    margin: 0;
-  }
 }
 
 .button_to, .button_to > div {

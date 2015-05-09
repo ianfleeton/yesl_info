@@ -7,9 +7,6 @@ gem 'rails', '4.2.1'
 # Use Slim templating engine
 gem 'slim', '~> 2.0.0'
 
-# Calendar
-gem 'simple_calendar'
-
 # Markdown
 gem 'redcarpet'
 

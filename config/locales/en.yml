@@ -22,7 +22,6 @@
 en:
   layouts:
     application:
-      calendar_issues: Issues Calendar
       domains: Domains
       home: Home
       issues: Issues

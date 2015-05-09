@@ -66,10 +66,6 @@ class IssuesController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def calendar
-    @issues = Issue.where(completed: false)
-  end
-
   def reopen
     @issue.completed = false
     @issue.save

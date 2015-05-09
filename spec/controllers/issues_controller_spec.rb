@@ -120,17 +120,6 @@ describe IssuesController do
       end
     end
 
-    describe 'GET calendar' do
-      let!(:complete) { FactoryGirl.create(:issue, completed: true) }
-      let!(:outstanding) { FactoryGirl.create(:issue, completed: false) }
-
-      it 'assigns outsdanding issues to @issues' do
-        get 'calendar'
-        expect(assigns(:issues)).to include(outstanding)
-        expect(assigns(:issues)).not_to include(complete)
-      end
-    end
-
     describe 'POST reopen' do
       before do
         issue.completed = true
