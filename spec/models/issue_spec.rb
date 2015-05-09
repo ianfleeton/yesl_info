@@ -52,6 +52,7 @@ describe Issue do
 
     it 'mentions the estimated price has changed from x to y' do
       issue.estimated_price = 20
+      issue.updater = FactoryGirl.create(:user)
       issue.add_change_comment
       expect(issue.comments.last.comment).to include("* changed estimated price from £10.00 to £20.00\n")
     end

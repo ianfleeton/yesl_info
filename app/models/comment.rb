@@ -4,6 +4,7 @@ class Comment < ActiveRecord::Base
 
   validates :comment, presence: true
   validates :issue_id, presence: true
+  validates :user_id, presence: true
 
   after_create :notify_watchers
 
