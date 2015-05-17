@@ -3,7 +3,7 @@ class Slack::Webhook
     uri = URI.parse(webhook_url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    request = Net::HTTP::Post.new('/')
+    request = Net::HTTP::Post.new(uri.path)
     request.body = URI.encode_www_form({
       'payload' => {
         'channel' => '#general',
