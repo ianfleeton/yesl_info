@@ -5,14 +5,14 @@ class Slack::Webhook
     http.use_ssl = true
     request = Net::HTTP::Post.new('/')
     request.add_field('Content-Type', 'application/json')
-    request.body = {
+    request.body = URI.encode_www_form({
       'payload' => {
         'channel' => '#general',
         'username' => 'timesheet',
         'text' => "#{object.user} added a new timesheet entry to #{object.organisation}: #{object.description} <#{Rails.application.routes.url_helpers.edit_timesheet_entry_url(object)}>",
         'icon_emoji' => ':clock3:'
-      }
-    }
+      }.to_json
+    })
     http.request(request)
   end
 
