@@ -79,4 +79,7 @@ group :development, :test do
 
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0.0'
+
+  # Allows stubbing HTTP requests and setting expectations on HTTP requests
+  gem 'webmock', '~> 1.21'
 end

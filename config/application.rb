@@ -34,5 +34,11 @@ module YeslInfo
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Autoload files in /lib.
+    config.autoload_paths << Rails.root.join('lib')
+
+    Rails.application.routes.default_url_options[:host] = 'yesl.info'
+    Rails.application.routes.default_url_options[:protocol] = 'https'
   end
 end

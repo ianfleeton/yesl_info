@@ -24,6 +24,7 @@ class TimesheetEntriesController < ApplicationController
   def create
     @timesheet_entry = TimesheetEntry.new(timesheet_entry_params)
     if @timesheet_entry.save
+      Slack::Webhook.trigger(:create, @timesheet_entry)
       flash[:notice] = "Successfully added new timesheet entry."
       redirect_to @timesheet_entry.organisation
     else

@@ -1,7 +1,14 @@
 require 'rails_helper'
 
-describe TimesheetEntriesController do
+RSpec.describe TimesheetEntriesController do
   before { signed_in_as_admin }
+
+  describe 'POST create' do
+    it 'triggers a Slack webhook' do
+      expect(Slack::Webhook).to receive(:trigger)
+      post :create, timesheet_entry: { description: 'Some work', started_at: Time.now, organisation_id: FactoryGirl.create(:organisation).id }
+    end
+  end
 
   describe 'GET report' do
     it 'renders the report template' do
