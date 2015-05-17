@@ -30,6 +30,9 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'simplecov', require: false
+
+  # Allows stubbing HTTP requests and setting expectations on HTTP requests
+  gem 'webmock', '~> 1.21'
 end
 
 # Use SCSS for stylesheets
@@ -79,7 +82,4 @@ group :development, :test do
 
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0.0'
-
-  # Allows stubbing HTTP requests and setting expectations on HTTP requests
-  gem 'webmock', '~> 1.21'
 end
