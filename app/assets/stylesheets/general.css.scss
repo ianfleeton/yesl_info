@@ -26,3 +26,20 @@
     }
   }
 }
+
+#search-results {
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 2px;
+  }
+}
+
+.page-header {
+  margin-top: 0;
+}

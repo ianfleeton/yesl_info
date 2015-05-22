@@ -1,0 +1,11 @@
+.container
+  .panel.panel-info
+    .panel-heading
+      | Find anything
+    .panel-body
+      = form_tag(search_path, method: :get) do
+        .input-group
+          input.form-control#search-query name="query" type="search" placeholder="Search for..." value="#{params[:query]}"
+          span.input-group-btn
+            input.btn.btn-default type="submit" value="Go!"
+      #search-results

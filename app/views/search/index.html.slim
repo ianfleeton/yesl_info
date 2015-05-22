@@ -1,0 +1,49 @@
+#search-results
+  - if params[:query].present?
+    .row
+      .col-md-3
+        h4 Organisations
+        - if @organisations.any?
+          ul
+            - @organisations.each do |o|
+              li= link_to o, o
+        - else
+          => tick_cross(false, true)
+          | no matches
+        h4 Domains
+        - if @domains.any?
+          ul
+            - @domains.each do |d|
+              li= link_to d, d
+        - else
+          => tick_cross(false, true)
+          | no matches
+        h4 People
+        - if @users.any?
+          ul
+            - @users.each do |u|
+              li= link_to u, u
+        - else
+          => tick_cross(false, true)
+          | no matches
+      .col-md-5
+        h4 Timesheet Entries
+        - if @timesheet_entries.any?
+          ul
+            - @timesheet_entries.each do |t|
+              li= link_to t.description, edit_timesheet_entry_path(t)
+        - else
+          => tick_cross(false, true)
+          | no matches
+      .col-md-4
+        h4 Note Pads
+        - if @note_pads.any?
+          ul
+            - @note_pads.each do |n|
+              li
+                = link_to n.title, edit_note_pad_path(n)
+                br
+                = n.content[0..100]
+        - else
+          => tick_cross(false, true)
+          | no matches

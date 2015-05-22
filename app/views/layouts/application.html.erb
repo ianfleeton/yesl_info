@@ -91,6 +91,11 @@
 </nav><!--.navbar-->
 
 <div id="menu-spacer"></div>
+
+<% if admin? -%>
+<%= render 'application/search' %>
+<% end -%>
+
 <div class="container">
 <% if flash[:notice] -%>
 <div class="alert alert-info fade in">

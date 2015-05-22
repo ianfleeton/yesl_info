@@ -110,6 +110,8 @@ Rails.application.routes.draw do
 
   get 'organisations/tagged_with/:tag' => 'organisations#tagged_with', as: :tagged_with_organisations
 
+  get 'search' => 'search#index', as: :search
+
   resources :sessions do
     delete 'destroy', on: :collection
   end
