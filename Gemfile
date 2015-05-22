@@ -33,6 +33,9 @@ group :test do
 
   # Allows stubbing HTTP requests and setting expectations on HTTP requests
   gem 'webmock', '~> 1.21'
+
+  # One-liners that test common Rails functionality
+  gem 'shoulda-matchers', require: false
 end
 
 # Use SCSS for stylesheets
