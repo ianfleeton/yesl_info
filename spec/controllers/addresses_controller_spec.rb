@@ -9,8 +9,4 @@ describe AddressesController do
       expect(controller.send(:address_params).keys).to eq(['address_line_1', 'address_line_2', 'county', 'organisation_id', 'postcode', 'town_city'])
     end
   end
-
-  def signed_in_as_admin
-    allow(controller).to receive(:admin?).and_return(true)
-  end
 end

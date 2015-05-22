@@ -4,3 +4,7 @@ def sign_in_as_admin
   fill_in 'Password', with: 'secret'
   click_button 'Login'
 end
+
+def signed_in_as_admin
+  allow(controller).to receive(:admin?).and_return(true)
+end
