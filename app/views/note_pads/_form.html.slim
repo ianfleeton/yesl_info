@@ -9,7 +9,11 @@
       li= msg
 
 = form_for @note_pad do |form|
-  = form.hidden_field :organisation_id 
+  = form.hidden_field :organisation_id
+
+  .form-group
+    = form.label :organisation
+    = form.collection_select :organisation_id, Organisation.order('name'), :id, :name, {}, class: 'form-control'
 
   .form-group
     = form.label :title
