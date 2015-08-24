@@ -3,6 +3,8 @@ class TimesheetEntry < ActiveRecord::Base
   belongs_to :user, touch: true
   belongs_to :organisation, touch: true
 
+  before_validation :set_non_nil_values
+
   def self.recently_worked_with
     # TODO: there should be an attribute of organisations instead of this hacky list of IDs to exclude
     excluded_organisations = '9, 539, 562, 679, 680, 689'
@@ -24,5 +26,10 @@ class TimesheetEntry < ActiveRecord::Base
     query = where(['started_at >= ? AND started_at <= ?', beginning_of_the_day, end_of_the_day])
     query = yield query if block_given?
     query.sum('minutes') / 60.0
+  end
+
+  def set_non_nil_values
+    self.invoice_value ||= 0
+    self.minutes ||= 0
   end
 end
