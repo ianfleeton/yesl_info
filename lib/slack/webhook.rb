@@ -6,7 +6,7 @@ class Slack::Webhook
     request = Net::HTTP::Post.new(uri.path)
     request.body = URI.encode_www_form({
       'payload' => {
-        'channel' => '#general',
+        'channel' => '#timesheet',
         'username' => 'timesheet',
         'text' => "#{object.user} added a new timesheet entry to #{object.organisation}: #{object.description} <#{Rails.application.routes.url_helpers.edit_timesheet_entry_url(object)}>",
         'icon_emoji' => ':clock3:'
