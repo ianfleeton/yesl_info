@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.4'
 
 # Use Slim templating engine
 gem 'slim', '~> 2.0.0'
@@ -11,7 +11,7 @@ gem 'slim', '~> 2.0.0'
 gem 'redcarpet'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.2'
 
 # Get notified of exceptions
 gem 'exception_notification'
@@ -62,20 +62,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-group :development do
-  # Use Capistrano for deployment
-  gem 'capistrano-rails', '~> 1.1.0'
-  gem 'capistrano-rvm', git: 'git@github.com:capistrano/rvm.git'
-
-  gem 'guard-rspec', require: false
-
-  gem 'thin'
-end
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0.0'
+end
+
+group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -83,6 +78,11 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
 
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0.0'
+  # Use Capistrano for deployment
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-rvm', git: 'git@github.com:capistrano/rvm.git'
+
+  gem 'guard-rspec', require: false
+
+  gem 'thin'
 end
