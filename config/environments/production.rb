@@ -70,7 +70,7 @@ Rails.application.configure do
       address:              Secrets[:smtp_address],
       port:                 Secrets[:smtp_port],
       enable_starttls_auto: Secrets[:smtp_enable_starttls_auto],
-      domain:               'yesl.info',
+      domain:               ENV['YESL_INFO_HOST'],
       user_name:            Secrets[:smtp_user_name],
       password:             Secrets[:smtp_password],
       authentication:       'plain',
@@ -92,8 +92,8 @@ Rails.application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
     email: {
-      email_prefix: "[yesl.info] ",
-      sender_address: %{"notifier" <notifier@yesl.info>},
+      email_prefix: "[#{ENV['YESL_INFO_HOST']}] ",
+      sender_address: %{"notifier" <notifier@#{ENV['YESL_INFO_HOST']}>},
       exception_recipients: %w{ianf@yesl.co.uk}
     }
 end

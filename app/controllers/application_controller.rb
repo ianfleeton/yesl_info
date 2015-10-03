@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   before_action :set_timezone, :ssl_required, :initialize_user
-  
+
   # make these available as ActionView helper methods.
   helper_method :logged_in?, :admin?, :current_user
 
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user.is_a?(User)
   end
-  
+
   def admin?
     logged_in? and current_user.admin?
   end
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
   private
 
     def ssl_required
-      redirect_to 'https://yesl.info' if Rails.env.production? && request.protocol != 'https://'
+      redirect_to root_url if Rails.env.production? && request.protocol != 'https://'
     end
 
     def set_timezone

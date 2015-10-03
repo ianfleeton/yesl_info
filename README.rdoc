@@ -3,6 +3,10 @@
 The Capistrano deploy file expects the environment variable
 YESL_INFO_REPOSITORY to be set.
 
+=== Hosting configuration
+
+Set YESL_INFO_HOST env var to the host domain.
+
 === Database configuration
 
 The development database config requires MYSQL_ROOT_PASSWORD env to be set and
@@ -37,7 +41,7 @@ Please feel free to use a different markup language if you do not plan to run
 
 === License
 
-yesl.info is released under the MIT License:
+yesl_info is released under the MIT License:
 
   http://www.opensource.org/licenses/MIT
 
