@@ -19,5 +19,4 @@
 /tmp
 
 # Ignore sensitive details
-database.yml
 secrets.yml

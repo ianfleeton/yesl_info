@@ -3,6 +3,11 @@
 The Capistrano deploy file expects the environment variable
 YESL_INFO_REPOSITORY to be set.
 
+=== Database configuration
+
+The development database config requires MYSQL_ROOT_PASSWORD env to be set and
+the production database config requires YESL_INFO_DATABASE_PASSWORD to be set.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
