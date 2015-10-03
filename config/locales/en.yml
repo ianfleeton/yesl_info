@@ -23,6 +23,12 @@ en:
   home:
     index:
       dashboard: 'Dashboard'
+      hourly: 'Hourly'
+      hours: 'Hours'
+      organisation: 'Organisation'
+      recently_worked_with: 'Recently Worked With'
+      view_backups: 'View Backups'
+      view_contacts: 'View Contacts'
   layouts:
     application:
       domains: Domains

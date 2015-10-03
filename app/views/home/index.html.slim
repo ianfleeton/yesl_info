@@ -4,23 +4,23 @@
   p
     => @backups_pending
     | backups pending &#8212;
-    =< link_to 'View Backups', backups_hosting_accounts_path
+    =< link_to t('.view_backups'), backups_hosting_accounts_path
 
 - if @contacts > 0
   p
     => @contacts
     | organisations to keep in touch with &#8212;
-    =< link_to 'View Contacts', contacts_organisations_path
+    =< link_to t('.view_contacts'), contacts_organisations_path
 
 = raw @home_content
 
-h2 Recently Worked With
+h2= t('.recently_worked_with')
 
 table.table.table-bordered.table-striped
   tr
-    th Organisation
-    th Hours
-    th Hourly
+    th= t('.organisation')
+    th= t('.hours')
+    th= t('.hourly')
   - TimesheetEntry.recently_worked_with.each do |recent|
     tr class=class_for_actual_rate(recent.hourly)
       td= link_to recent.name, organisation_path(id: recent.organisation_id)
