@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150509204628) do
     t.date     "registered_on",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "with_us",         limit: 1,   default: true, null: false
+    t.boolean  "with_us",                     default: true, null: false
   end
 
   add_index "domains", ["organisation_id"], name: "index_domains_on_organisation_id", using: :btree
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150509204628) do
     t.string   "expected_http_status_code", limit: 255,                         default: "200",  null: false
     t.string   "scheme",                    limit: 255,                         default: "http", null: false
     t.integer  "port",                      limit: 4,                           default: 80,     null: false
-    t.boolean  "maintained",                limit: 1,                           default: true,   null: false
+    t.boolean  "maintained",                                                    default: true,   null: false
   end
 
   add_index "hosting_accounts", ["domain_id"], name: "index_hosting_accounts_on_domain_id", using: :btree
@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 20150509204628) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_viewed_at"
-    t.boolean  "on_stop",        limit: 1,   default: false, null: false
-    t.boolean  "archived",       limit: 1,   default: false, null: false
+    t.boolean  "on_stop",                    default: false, null: false
+    t.boolean  "archived",                   default: false, null: false
   end
 
   add_index "organisations", ["last_viewed_at"], name: "index_organisations_on_last_viewed_at", using: :btree
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20150509204628) do
     t.integer  "user_id",         limit: 4,                              default: 0,     null: false
     t.text     "description",     limit: 65535,                                          null: false
     t.decimal  "invoice_value",                 precision: 10, scale: 2, default: 0.0,   null: false
-    t.boolean  "chargeable",      limit: 1,                              default: false, null: false
+    t.boolean  "chargeable",                                             default: false, null: false
     t.integer  "minutes",         limit: 4,                              default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -161,12 +161,12 @@ ActiveRecord::Schema.define(version: 20150509204628) do
     t.string   "name",                  limit: 255, default: "",    null: false
     t.string   "encrypted_password",    limit: 255
     t.string   "salt",                  limit: 255
-    t.boolean  "admin",                 limit: 1,   default: false, null: false
+    t.boolean  "admin",                             default: false, null: false
     t.string   "forgot_password_token", limit: 255, default: "",    null: false
     t.integer  "organisation_id",       limit: 4,   default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "staff",                 limit: 1,   default: false, null: false
+    t.boolean  "staff",                             default: false, null: false
   end
 
   add_index "users", ["staff"], name: "index_users_on_staff", using: :btree
