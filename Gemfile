@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 # Use Slim templating engine
-gem 'slim', '~> 2.0.0'
+gem 'slim', '~> 3.0'
 
 # Markdown
 gem 'redcarpet'
