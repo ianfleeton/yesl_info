@@ -35,7 +35,7 @@ group :test do
   gem 'webmock', '~> 1.21'
 
   # One-liners that test common Rails functionality
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 end
 
 # Use SCSS for stylesheets
@@ -67,7 +67,7 @@ group :development, :test do
   gem 'byebug'
 
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.3.0'
 end
 
 group :development do
