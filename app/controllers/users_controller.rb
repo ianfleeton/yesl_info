@@ -3,7 +3,7 @@ require 'errors'
 class UsersController < ApplicationController
   before_action :find_user, except: [:index, :new, :create, :forgot_password, :forgot_password_send]
   before_action :user_required, only: [:show]
-  before_action :admin_required, only: [:index, :new, :create, :destroy]
+  before_action :admin_required, only: [:index, :new, :create, :update, :destroy]
 
   def index
     @users = User.order('name').includes(:organisation)
