@@ -8,7 +8,7 @@
             - @organisations.each do |o|
               li= link_to o, o
         - else
-          => tick_cross(false, true)
+          => a_cross
           | no matches
         h4 Domains
         - if @domains.any?
@@ -16,7 +16,7 @@
             - @domains.each do |d|
               li= link_to d, d
         - else
-          => tick_cross(false, true)
+          => a_cross
           | no matches
         h4 People
         - if @users.any?
@@ -24,7 +24,7 @@
             - @users.each do |u|
               li= link_to u, u
         - else
-          => tick_cross(false, true)
+          => a_cross
           | no matches
       .col-md-5
         h4 Timesheet Entries
@@ -33,7 +33,7 @@
             - @timesheet_entries.each do |t|
               li= link_to t.description, edit_timesheet_entry_path(t)
         - else
-          => tick_cross(false, true)
+          => a_cross
           | no matches
       .col-md-4
         h4 Note Pads
@@ -45,5 +45,5 @@
                 br
                 = n.content[0..100]
         - else
-          => tick_cross(false, true)
+          => a_cross
           | no matches

@@ -23,16 +23,12 @@ module ApplicationHelper
     '<span class="cross">✘</span>'.html_safe
   end
 
-  def tick_cross yes, show_cross=true
-    if yes
-      a_tick
-    elsif show_cross
-      a_cross
-    end
+  def tick_cross(val)
+    val ? a_tick : a_cross
   end
 
-  def tick yes
-    tick_cross yes, false
+  def tick(val)
+    a_tick if val
   end
 
   def alpha_links
