@@ -7,9 +7,6 @@ gem 'rails', '4.2.5'
 # Use Slim templating engine
 gem 'slim', '~> 3.0'
 
-# Markdown
-gem 'redcarpet'
-
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.2'
 
