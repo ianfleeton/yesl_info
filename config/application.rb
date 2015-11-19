@@ -30,7 +30,7 @@ module YeslInfo
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     # config.i18n.default_locale = :de
 
-    config.action_mailer.default_url_options = { host: ENV['YESL_INFO_HOST'], protocol: 'https' }
+    config.action_mailer.default_url_options = { host: ENV['YESL_INFO_HOST'] || 'localhost', protocol: 'https' }
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
@@ -38,7 +38,7 @@ module YeslInfo
     # Autoload files in /lib.
     config.autoload_paths << Rails.root.join('lib')
 
-    Rails.application.routes.default_url_options[:host] = ENV['YESL_INFO_HOST']
+    Rails.application.routes.default_url_options[:host] = ENV['YESL_INFO_HOST'] || 'localhost'
     Rails.application.routes.default_url_options[:protocol] = 'https'
   end
 end
