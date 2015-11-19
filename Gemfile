@@ -16,11 +16,6 @@ gem 'exception_notification'
 # Tagging
 gem 'acts-as-taggable-on', '~> 3.4'
 
-group :production do
-  # memcached client for cache store
-  gem 'dalli'
-end
-
 group :test do
   gem 'capybara'
   gem 'launchy'
