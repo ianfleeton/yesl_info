@@ -83,7 +83,6 @@ Rails.application.routes.draw do
 
   get 'links' => 'home#links', as: :links
   get 'passwords' => 'home#passwords', as: :passwords
-  get 'webpanel_logins' => 'home#webpanel_logins', as: :webpanel_logins
 
   resources :note_pads
 

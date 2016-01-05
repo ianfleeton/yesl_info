@@ -19,20 +19,8 @@ class HomeController < ApplicationController
     10.times {@passwords << create_password}
   end
 
-  def webpanel_logins
-    ActiveRecord::Base.establish_connection(
-      adapter:  'mysql2',
-      host:     'elara.yesl.co.uk',
-      username: 'webpanel_panel',
-      password: Secrets[:webpanel_database_password],
-      database: 'webpanel_panel'
-    )
-    @logins =  ActiveRecord::Base.connection.select_rows("SELECT username, password FROM users ORDER BY username")
-    ActiveRecord::Base.establish_connection(Rails.env)
-  end
-
   private
-  
+
     def create_password
       SecureRandom.base64(9)
     end

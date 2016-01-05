@@ -39,7 +39,6 @@ en:
       tags: Tags
       timesheet: Timesheet
       users: People
-      webpanel_logins: Webpanel Logins
   organisations:
     index:
       show_archived: 'Show Archived'
