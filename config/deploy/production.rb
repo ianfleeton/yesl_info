@@ -3,16 +3,16 @@
 # Supports bulk-adding hosts to roles, the primary server in each group
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
-role :app, %w{admin@carpo.yesl.co.uk}
-role :web, %w{admin@carpo.yesl.co.uk}
-role :db,  %w{admin@carpo.yesl.co.uk}
+role :app, ["admin@#{ENV['YESL_INFO_HOST']}"]
+role :web, ["admin@#{ENV['YESL_INFO_HOST']}"]
+role :db,  ["admin@#{ENV['YESL_INFO_HOST']}"]
 
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server definition into the
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
-server 'carpo.yesl.co.uk', user: 'admin', roles: %w{web app db}, my_property: :my_value
+server ENV['YESL_INFO_HOST'], user: 'admin', roles: %w{web app db}, my_property: :my_value
 
 set :branch, ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
 
