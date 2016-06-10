@@ -20,3 +20,6 @@
 
 # Ignore sensitive details
 secrets.yml
+
+# Ignore Byebug history.
+/.byebug_history
