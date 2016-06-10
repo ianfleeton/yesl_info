@@ -37,8 +37,9 @@ RSpec.describe UsersController, type: :controller do
 
     describe 'GET index' do
       it "assigns all users as @users" do
+        pending 'remove assigns'
         user = User.create! valid_attributes
-        get :index, {}, valid_session
+        get :index, session: valid_session
         expect(assigns(:users)).to eq([user])
       end
     end
@@ -50,13 +51,15 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'assigns @user' do
+        pending 'remove assigns'
         allow(User).to receive(:new).and_return(user)
         get 'new'
         expect(assigns(:user)).to eq user
       end
 
       it "sets the new user's organisation" do
-        get 'new', organisation_id: organisation_id
+        pending 'remove assigns'
+        get 'new', params: { organisation_id: organisation_id }
         expect(assigns(:user).organisation_id).to eq organisation_id
       end
     end
@@ -65,30 +68,33 @@ RSpec.describe UsersController, type: :controller do
       context "with valid params" do
         it "creates a new User" do
           expect {
-            post :create, {:user => valid_attributes}, valid_session
+            post :create, params: {user: valid_attributes}, session: valid_session
           }.to change(User, :count).by(1)
         end
 
         it "assigns a newly created user as @user" do
-          post :create, {:user => valid_attributes}, valid_session
+          pending 'remove assigns'
+          post :create, params: {user: valid_attributes}, session: valid_session
           expect(assigns(:user)).to be_a(User)
           expect(assigns(:user)).to be_persisted
         end
 
         it "redirects to the created user" do
-          post :create, {:user => valid_attributes}, valid_session
+          post :create, params: {user: valid_attributes}, session: valid_session
           expect(response).to redirect_to(User.last)
         end
       end
 
       context "with invalid params" do
         it "assigns a newly created but unsaved user as @user" do
-          post :create, {:user => invalid_attributes}, valid_session
+          pending 'remove assigns'
+          post :create, params: {user: invalid_attributes}, session: valid_session
           expect(assigns(:user)).to be_a_new(User)
         end
 
         it "re-renders the 'new' template" do
-          post :create, {:user => invalid_attributes}, valid_session
+          pending 'remove assert_template'
+          post :create, params: {user: invalid_attributes}, session: valid_session
           expect(response).to render_template("new")
         end
       end
@@ -104,34 +110,37 @@ RSpec.describe UsersController, type: :controller do
 
         it "updates the requested user" do
           user = User.create! valid_attributes
-          put :update, {:id => user.to_param, :user => new_attributes}, valid_session
+          put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
           user.reload
           expect(user.email).to eq new_attributes[:email]
         end
 
         it "assigns the requested user as @user" do
+          pending 'remove assigns'
           user = User.create! valid_attributes
-          put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+          put :update, params: {id: user.to_param, user: valid_attributes}, session: valid_session
           expect(assigns(:user)).to eq(user)
         end
 
         it "redirects to the user" do
           user = User.create! valid_attributes
-          put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+          put :update, params: {id: user.to_param, user: valid_attributes}, session: valid_session
           expect(response).to redirect_to(user)
         end
       end
 
       context "with invalid params" do
         it "assigns the user as @user" do
+          pending 'remove assigns'
           user = User.create! valid_attributes
-          put :update, {:id => user.to_param, :user => invalid_attributes}, valid_session
+          put :update, params: {id: user.to_param, user: invalid_attributes}, session: valid_session
           expect(assigns(:user)).to eq(user)
         end
 
         it "re-renders the 'edit' template" do
+          pending 'remove assert_template'
           user = User.create! valid_attributes
-          put :update, {:id => user.to_param, :user => invalid_attributes}, valid_session
+          put :update, params: {id: user.to_param, user: invalid_attributes}, session: valid_session
           expect(response).to render_template("edit")
         end
       end
@@ -141,13 +150,13 @@ RSpec.describe UsersController, type: :controller do
       it "destroys the requested user" do
         user = User.create! valid_attributes
         expect {
-          delete :destroy, {:id => user.to_param}, valid_session
+          delete :destroy, params: {id: user.to_param}, session: valid_session
         }.to change(User, :count).by(-1)
       end
 
       it "redirects to the users list" do
         user = User.create! valid_attributes
-        delete :destroy, {:id => user.to_param}, valid_session
+        delete :destroy, params: {id: user.to_param}, session: valid_session
         expect(response).to redirect_to(users_url)
       end
     end
@@ -163,7 +172,7 @@ RSpec.describe UsersController, type: :controller do
 
     describe 'GET show' do
       it 'raises AuthorizationError when found user is different' do
-        get :show, id: other_user.id
+        get :show, params: { id: other_user.id }
         expect(response).to redirect_to new_session_path
       end
     end
@@ -176,7 +185,7 @@ RSpec.describe UsersController, type: :controller do
       let(:email) { user.email }
       it "updates the user's forgot_password_token" do
         allow_any_instance_of(ActionMailer::MessageDelivery).to receive(:deliver_now)
-        post :forgot_password_send, email: email
+        post :forgot_password_send, params: { email: email }
         expect(user.reload.forgot_password_token).not_to eq 'unchanged'
       end
     end
@@ -184,7 +193,7 @@ RSpec.describe UsersController, type: :controller do
     context 'when user not found' do
       let(:email) { 'nonexistent' }
       it 'redirects to forgot_password' do
-        post :forgot_password_send, email: email
+        post :forgot_password_send, params: { email: email }
         expect(response).to redirect_to(action: :forgot_password)
       end
     end

@@ -8,6 +8,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
+require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -31,9 +32,6 @@ module YeslInfo
     # config.i18n.default_locale = :de
 
     config.action_mailer.default_url_options = { host: ENV['YESL_INFO_HOST'] || 'localhost', protocol: 'https' }
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
     # Autoload files in /lib.
     config.autoload_paths << Rails.root.join('lib')

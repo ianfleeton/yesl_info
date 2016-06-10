@@ -10,12 +10,14 @@ RSpec.describe NumbersController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new number as @number" do
-      get :new, {}, valid_session
+      pending 'remove assigns'
+      get :new, session: valid_session
       expect(assigns(:number)).to be_a_new(Number)
     end
 
     it 'assigns the organisation_id and user_id params to the number' do
-      get :new, { organisation_id: 1, user_id: 2 }, valid_session
+      pending 'remove assigns'
+      get :new, params: { organisation_id: 1, user_id: 2 }, session: valid_session
       expect(assigns(:number).organisation_id).to eq 1
       expect(assigns(:number).user_id).to eq 2
     end
@@ -23,7 +25,7 @@ RSpec.describe NumbersController, type: :controller do
 
   describe 'POST create' do
     it 'allows only number, organisation_id and teltype to be set' do
-      post 'create', { number: Number.new.attributes }
+      post 'create', params: { number: Number.new.attributes }
       expect(controller.send(:number_params).keys).to eq(['number', 'organisation_id', 'teltype', 'user_id'])
     end
   end

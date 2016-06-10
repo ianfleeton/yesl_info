@@ -19,7 +19,7 @@ describe HostingAccountsController do
   describe 'GET show' do
     it 'finds the hosting account' do
       expect(controller).to receive(:find_hosting_account)
-      get 'show', id: '1'
+      get 'show', params: { id: '1' }
     end
   end
 

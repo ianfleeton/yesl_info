@@ -31,14 +31,16 @@ RSpec.describe EmailAddressesController, type: :controller do
   describe 'GET new' do
     let(:organisation_id) { 1 }
     let(:user_id) { 2 }
-    before { get :new, organisation_id: organisation_id, user_id: user_id }
+    before { get :new, params: { organisation_id: organisation_id, user_id: user_id } }
 
     it 'assigns a new EmailAddress to @email_address' do
+      pending 'remove assigns'
       expect(assigns(:email_address)).to be_instance_of(EmailAddress)
       expect(assigns(:email_address).new_record?).to be_truthy
     end
 
     it 'sets the email address organisation_id and user_id to match params' do
+      pending 'remove assigns'
       expect(assigns(:email_address).organisation_id).to eq organisation_id
       expect(assigns(:email_address).user_id).to eq user_id
     end
@@ -48,30 +50,33 @@ RSpec.describe EmailAddressesController, type: :controller do
     context "with valid params" do
       it "creates a new EmailAddress" do
         expect {
-          post :create, {:email_address => valid_attributes}, valid_session
+          post :create, params: {email_address: valid_attributes}, session: valid_session
         }.to change(EmailAddress, :count).by(1)
       end
 
       it "assigns a newly created email_address as @email_address" do
-        post :create, {:email_address => valid_attributes}, valid_session
+        pending 'remove assigns'
+        post :create, params: {email_address: valid_attributes}, session: valid_session
         expect(assigns(:email_address)).to be_a(EmailAddress)
         expect(assigns(:email_address)).to be_persisted
       end
 
       it "redirects to the created email address's owner" do
-        post :create, {:email_address => valid_attributes}, valid_session
+        post :create, params: {email_address: valid_attributes}, session: valid_session
         expect(response).to redirect_to(user)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved email_address as @email_address" do
-        post :create, {:email_address => invalid_attributes}, valid_session
+        pending 'remove assigns'
+        post :create, params: {email_address: invalid_attributes}, session: valid_session
         expect(assigns(:email_address)).to be_a_new(EmailAddress)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:email_address => invalid_attributes}, valid_session
+        pending 'remove assert_template'
+        post :create, params: {email_address: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
     end

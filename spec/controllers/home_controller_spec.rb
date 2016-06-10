@@ -12,6 +12,7 @@ describe HomeController do
       end
 
       it 'finds home content and assigns to @home_content' do
+        pending 'remove assigns'
         get 'index'
         expect(assigns(:home_content)).to eq 'Welcome'
       end
@@ -21,6 +22,7 @@ describe HomeController do
       before { allow(NotePad).to receive(:find_by).and_return(nil) }
 
       it 'sets @home_content to an empty string' do
+        pending 'remove assigns'
         get 'index'
         expect(assigns(:home_content)).to eq ''
       end

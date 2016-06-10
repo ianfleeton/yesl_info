@@ -15,6 +15,7 @@ describe DomainsController do
       before { allow(domain).to receive(:save).and_return(false) }
 
       it 'assigns @organisation' do
+        pending 'remove assigns'
         allow(Domain).to receive(:new).and_return(domain)
         allow(domain).to receive(:organisation).and_return 'org'
         post 'create', { domain: { name: 'example.org' } }
