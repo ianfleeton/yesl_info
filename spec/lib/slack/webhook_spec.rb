@@ -10,7 +10,7 @@ module Slack
     describe '.trigger' do
       it 'posts to the webook URL' do
         stub_request(:any, "https://www.example.com/")
-        Webhook.trigger(:create, FactoryGirl.create(:timesheet_entry))
+        Webhook.trigger(:create, FactoryBot.create(:timesheet_entry))
         expect(WebMock).to have_requested(:post, 'https://www.example.com')
       end
     end

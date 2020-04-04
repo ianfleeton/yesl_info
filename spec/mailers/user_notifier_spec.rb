@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UserNotifier, type: :mailer do
   describe '.token' do
-    let(:user) { FactoryGirl.build(:user) }
+    let(:user) { FactoryBot.build(:user) }
 
     it 'has a relevant subject' do
       mail = UserNotifier.token(user)

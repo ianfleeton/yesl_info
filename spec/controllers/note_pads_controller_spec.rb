@@ -5,7 +5,7 @@ RSpec.describe NotePadsController, type: :controller do
 
   describe 'POST create' do
     it 'creates a new notepad' do
-      params = {title: 'my title', organisation_id: FactoryGirl.create(:organisation).id, content: 'my content'}
+      params = {title: 'my title', organisation_id: FactoryBot.create(:organisation).id, content: 'my content'}
       post :create, params: { note_pad: params }
 
       expect(NotePad.find_by(params)).to be

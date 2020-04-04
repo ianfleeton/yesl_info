@@ -5,7 +5,7 @@ RSpec.describe EmailAddressesController, type: :controller do
 
   before { allow(controller).to receive(:admin?).and_return(true) }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   # This should return the minimal set of attributes required to create a valid
   # EmailAddress. As you add validations to EmailAddress, be sure to

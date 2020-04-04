@@ -71,4 +71,4 @@ end
 
 load "#{Rails.root}/config/routes.rb"
 
-FactoryGirl.reload
+FactoryBot.reload

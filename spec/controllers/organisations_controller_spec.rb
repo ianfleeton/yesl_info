@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe OrganisationsController do
-  let(:organisation) { FactoryGirl.create(:organisation) }
-  let(:admin) { FactoryGirl.create(:admin) }
-  let(:trespasser) { FactoryGirl.create(:user) }
-  let(:user) { FactoryGirl.create(:user, organisation: organisation) }
+  let(:organisation) { FactoryBot.create(:organisation) }
+  let(:admin) { FactoryBot.create(:admin) }
+  let(:trespasser) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, organisation: organisation) }
 
   describe 'GET show' do
     it 'renders show_admin for admin' do
@@ -53,7 +53,7 @@ describe OrganisationsController do
   end
 
   describe 'POST archive' do
-    let!(:organisation) { FactoryGirl.create(:organisation, archived: false) }
+    let!(:organisation) { FactoryBot.create(:organisation, archived: false) }
 
     before do
       allow(controller).to receive(:current_user).and_return admin
@@ -71,7 +71,7 @@ describe OrganisationsController do
   end
 
   describe 'POST unarchive' do
-    let!(:organisation) { FactoryGirl.create(:organisation, archived: true) }
+    let!(:organisation) { FactoryBot.create(:organisation, archived: true) }
 
     before do
       allow(controller).to receive(:current_user).and_return admin
@@ -161,10 +161,10 @@ describe OrganisationsController do
 
     it 'assigns @organisations with organisations tagged with params[:tag]' do
       pending 'remove assigns'
-      o1 = FactoryGirl.build(:organisation)
+      o1 = FactoryBot.build(:organisation)
       o1.tag_list << 'tag1'
       o1.save!
-      o2 = FactoryGirl.build(:organisation)
+      o2 = FactoryBot.build(:organisation)
       o2.tag_list << 'tag2'
       o2.save!
 

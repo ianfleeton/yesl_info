@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'errors'
 
 RSpec.describe UsersController, type: :controller do
-  let(:organisation) { FactoryGirl.create(:organisation) }
+  let(:organisation) { FactoryBot.create(:organisation) }
   let(:organisation_id) { 123 }
 
   # This should return the minimal set of attributes required to create a valid
@@ -163,8 +163,8 @@ RSpec.describe UsersController, type: :controller do
   end
 
   context 'when external user' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:other_user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:other_user) { FactoryBot.create(:user) }
 
     before do
       allow(controller).to receive(:current_user).and_return(user)
@@ -179,7 +179,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'POST forgot_password_send' do
-    let!(:user) { FactoryGirl.create(:user, forgot_password_token: 'unchanged') }
+    let!(:user) { FactoryBot.create(:user, forgot_password_token: 'unchanged') }
 
     context 'when user found by email' do
       let(:email) { user.email }

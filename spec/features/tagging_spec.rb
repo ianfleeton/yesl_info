@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Tagging' do
-  let(:client) { FactoryGirl.create(:organisation) }
+  let(:client) { FactoryBot.create(:organisation) }
 
   background do
-    FactoryGirl.create(:admin)
+    FactoryBot.create(:admin)
     sign_in_as_admin
   end
 
@@ -12,7 +12,7 @@ feature 'Tagging' do
     client.tag_list << 'worldpay'
     client.save
 
-    client2 = FactoryGirl.create(:organisation)
+    client2 = FactoryBot.create(:organisation)
     client2.tag_list << 'wordpress'
     client2.save
 
@@ -39,7 +39,7 @@ feature 'Tagging' do
     client.tag_list << 'worldpay'
     client.save
 
-    client2 = FactoryGirl.create(:organisation)
+    client2 = FactoryBot.create(:organisation)
     client2.tag_list << 'worldpay'
     client2.save
 

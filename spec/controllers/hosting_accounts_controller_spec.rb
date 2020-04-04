@@ -10,7 +10,7 @@ describe HostingAccountsController do
     end
 
     it 'renders JSON' do
-      FactoryGirl.create(:hosting_account)
+      FactoryBot.create(:hosting_account)
       get :index
       expect(response.body).to eq HostingAccount.all.to_json
     end

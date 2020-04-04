@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe 'organisations/show_admin.html.slim' do
-  let(:organisation) { FactoryGirl.create(:organisation) }
+  let(:organisation) { FactoryBot.create(:organisation) }
 
   before do
-    allow(view).to receive(:current_user).and_return(FactoryGirl.create(:admin))
+    allow(view).to receive(:current_user).and_return(FactoryBot.create(:admin))
     assign(:organisation, organisation)
   end
 

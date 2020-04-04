@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 feature 'Addresses' do
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:admin) { FactoryBot.create(:admin) }
   before { admin }
 
   scenario 'Edit address' do
     sign_in_as_admin
-    organisation = FactoryGirl.create(:organisation)
-    address = FactoryGirl.create(:address, organisation: organisation)
+    organisation = FactoryBot.create(:organisation)
+    address = FactoryBot.create(:address, organisation: organisation)
     visit organisation_path(organisation)
     click_link "Edit #{address}"
     new_street = SecureRandom.hex

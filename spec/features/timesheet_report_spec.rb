@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Timesheet Report' do
-  before { FactoryGirl.create(:admin) }
+  before { FactoryBot.create(:admin) }
 
   scenario 'Reach report page from timesheet page' do
     sign_in_as_admin
@@ -16,13 +16,13 @@ feature 'Timesheet Report' do
   scenario 'Prepare a report with a date range' do
     sign_in_as_admin
 
-    bodge_it = FactoryGirl.create(:organisation, name: 'Bodge IT')
-    scarper = FactoryGirl.create(:organisation, name: 'Scarper')
+    bodge_it = FactoryBot.create(:organisation, name: 'Bodge IT')
+    scarper = FactoryBot.create(:organisation, name: 'Scarper')
 
-    job_1 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Wrote code', started_at: '2012-08-13 00:00:00', invoice_value: 5.0, chargeable: true)
-    job_2 = FactoryGirl.create(:timesheet_entry, organisation: scarper, description: 'Designed', started_at: '2012-08-13 00:00:00', invoice_value: 19.0, chargeable: true)
-    job_3 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Deployed', started_at: '2013-06-29 23:59:59', invoice_value: 7.0, chargeable: true)
-    job_4 = FactoryGirl.create(:timesheet_entry, organisation: bodge_it, description: 'Tested', started_at: '2013-06-30 00:00:00', invoice_value: 11.0, chargeable: true)
+    job_1 = FactoryBot.create(:timesheet_entry, organisation: bodge_it, description: 'Wrote code', started_at: '2012-08-13 00:00:00', invoice_value: 5.0, chargeable: true)
+    job_2 = FactoryBot.create(:timesheet_entry, organisation: scarper, description: 'Designed', started_at: '2012-08-13 00:00:00', invoice_value: 19.0, chargeable: true)
+    job_3 = FactoryBot.create(:timesheet_entry, organisation: bodge_it, description: 'Deployed', started_at: '2013-06-29 23:59:59', invoice_value: 7.0, chargeable: true)
+    job_4 = FactoryBot.create(:timesheet_entry, organisation: bodge_it, description: 'Tested', started_at: '2013-06-30 00:00:00', invoice_value: 11.0, chargeable: true)
 
     visit report_timesheet_entries_path
 

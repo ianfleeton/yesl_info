@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :timesheet_entry do
     association :organisation
-    description 'Refactored'
-    started_at  Date.yesterday
+    description { "Refactored" }
+    started_at { Date.yesterday }
   end
 end
