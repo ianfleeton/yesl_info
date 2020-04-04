@@ -1,4 +1,4 @@
-class DropOrganisationWatchers < ActiveRecord::Migration
+class DropOrganisationWatchers < ActiveRecord::Migration[4.2]
   def up
     create_table "addresses", force: :cascade do |t|
       t.integer  "organisation_id", limit: 4,   default: 0,  null: false

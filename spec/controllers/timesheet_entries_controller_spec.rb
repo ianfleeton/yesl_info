@@ -6,14 +6,14 @@ RSpec.describe TimesheetEntriesController, type: :controller do
   describe 'POST create' do
     it 'triggers a Slack webhook' do
       expect(Slack::Webhook).to receive(:trigger)
-      post :create, timesheet_entry: { description: 'Some work', started_at: Time.now, organisation_id: FactoryGirl.create(:organisation).id }
+      post :create, params: {timesheet_entry: { description: 'Some work', started_at: Time.now, organisation_id: FactoryGirl.create(:organisation).id }}
     end
 
     it 'swallows webhook errors' do
       allow(Slack::Webhook).to receive(:trigger).and_raise(URI::InvalidURIError)
       te = double(TimesheetEntry, save: true, organisation: FactoryGirl.build_stubbed(:organisation))
       allow(TimesheetEntry).to receive(:new).and_return(te)
-      post :create, timesheet_entry: { description: 'Some work', started_at: Time.current, organisation_id: 1 }
+      post :create, params: {timesheet_entry: { description: 'Some work', started_at: Time.current, organisation_id: 1 }}
     end
   end
 

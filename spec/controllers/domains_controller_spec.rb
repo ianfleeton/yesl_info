@@ -5,7 +5,7 @@ describe DomainsController do
 
   describe 'POST create' do
     it 'allows only whitelisted attributes to be set' do
-      post 'create', { domain: Domain.new.attributes }
+      post "create", params: {domain: Domain.new.attributes}
       expect(controller.send(:domain_params).keys).to eq(['forwarding_id', 'name', 'organisation_id', 'registered_on', 'with_us'])
     end
 
@@ -18,7 +18,7 @@ describe DomainsController do
         pending 'remove assigns'
         allow(Domain).to receive(:new).and_return(domain)
         allow(domain).to receive(:organisation).and_return 'org'
-        post 'create', { domain: { name: 'example.org' } }
+        post 'create', params: { domain: { name: 'example.org' } }
         expect(assigns(:organisation)).to eq 'org'
       end
     end

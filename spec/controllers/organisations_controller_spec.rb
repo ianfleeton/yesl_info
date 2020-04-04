@@ -60,12 +60,12 @@ describe OrganisationsController do
     end
 
     it 'archives the organisation' do
-      post :archive, id: organisation.id
+      post :archive, params: {id: organisation.id}
       expect(organisation.reload.archived?).to be_truthy
     end
 
     it 'redirects to the organisation' do
-      post :archive, id: organisation.id
+      post :archive, params: {id: organisation.id}
       expect(response).to redirect_to(organisation)
     end
   end
@@ -78,12 +78,12 @@ describe OrganisationsController do
     end
 
     it 'archives the organisation' do
-      post :unarchive, id: organisation.id
+      post :unarchive, params: {id: organisation.id}
       expect(organisation.reload.archived?).to be_falsey
     end
 
     it 'redirects to the organisation' do
-      post :unarchive, id: organisation.id
+      post :unarchive, params: {id: organisation.id}
       expect(response).to redirect_to(organisation)
     end
   end
